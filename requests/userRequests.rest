@@ -66,10 +66,6 @@ GET http://localhost:4000/users/userByEmail/miguelito@gmail.com
 
 ############################################################
 
-GET http://localhost:4000/users/63753c4177d38efc5acd4c9b
-
-############################################################
-
 PUT http://localhost:4000/users/updateUser/6379163bb4053490032511c1
 Content-Type: application/json
 
@@ -80,4 +76,14 @@ Content-Type: application/json
 
 ############################################################
 
-DELETE  http://localhost:4000/users/63753c4177d38efc5acd4c9b
+DELETE http://localhost:4000/users/63753c4177d38efc5acd4c9b
+
+############################################################
+
+POST http://localhost:4000/users/login
+Content-Type: application/json
+
+{
+  "email": "Gonzalo",
+  "password": "Navarte"
+}

@@ -13,9 +13,9 @@ exports.createUser = async function (req, res) {
     avatar: req.body.avatar,
     telofono: req.body.telofono,
     email: req.body.email,
-    password: req.body.password,
+    password: bcrypt.hashSync(req.body.password, 8),
     preguntaVerificacion: req.body.preguntaVerificacion,
-    respuestaVerificacion: req.body.respuestaVerificacion,
+    respuestaVerificacion: bcrypt.hashSync(req.body.respuestaVerificacion, 8),
     rol: req.body.rol,
     clases: []
     })
@@ -109,17 +109,17 @@ exports.loginUser = async function (req, res) {
     const user_password= {password: req.body.password}
     try {
         const User = await Usuario.findOne(user_email);
-        const passwordIsValid = bcrypt.compareSync(user_password, loginUser.password);
+        const passwordIsValid = bcrypt.compareSync(user_password, User.password);
         if (!passwordIsValid)
             return res.status(400).json({message: "Error en la contraseña"})
         else {
-            const token = jwt.sign({
-                id: _details._id
-            }, process.env.SECRET, {
-                expiresIn: 86400 // expires in 24 hours
-            });
-            const loginUser = {token:token, user:User};
-            return res.status(201).json({loginUser, message: "Succesfully login"})
+            // const token = jwt.sign({
+            //     id: _details._id
+            // }, process.env.SECRET, {
+            //     expiresIn: 86400 // expires in 24 hours
+            // });
+            // const loginUser = {token:token, user:User};
+            return res.status(201).json({User, message: "Succesfully login"})
         }
 
     } catch (e) {

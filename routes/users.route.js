@@ -11,6 +11,7 @@ router.get('/:id', UserController.getUserById)
 router.get('/userByEmail/:email', UserController.getUserByEmail)
 router.put('/updateUser/:id', UserController.updateUser)
 router.delete('/:id', UserController.removeUser)
+router.post('/login', UserController.loginUser)
 
 module.exports = router;
 
