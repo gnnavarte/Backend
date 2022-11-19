@@ -1,0 +1,83 @@
+POST http://localhost:4000/users/registration
+Content-Type: application/json
+
+# {
+#   "nombre": "Miguel Angel",
+#   "apellido": "Duran",
+#   "avatar": "https://static-cdn.jtvnw.net/jtv_user_pictures/5a72c3d9-424a-40a6-bf23-73370cd85578-profile_image-300x300.png",
+#   "telofono": "1120221114",
+#   "email": "miguelito@gmail.com",
+#   "password": "miguel123",
+#   "preguntaVerificacion": "¿Como se llama tu hijo?",
+#   "respuestaVerificacion": "Mati Viola",
+#   "rol": "profesor",
+#   "clases": "6365a2b2a84e9259f2af82fa9" 
+# }
+
+# {
+#   "nombre": "Matias",
+#   "apellido": "Viola",
+#   "avatar": "https://media-exp1.licdn.com/dms/image/C5603AQGo2IkYrcinbw/profile-displayphoto-shrink_800_800/0/1660079656684?e=1670457600&v=beta&t=-pogSYcHUL19tnJOGkvoF6lbskO0PpeHYzFwckTUDRw",
+#   "telofono": "1120221115",
+#   "email": "mati@gmail.com",
+#   "password": "mati123",
+#   "preguntaVerificacion": "¿Como se llama tu papa?",
+#   "respuestaVerificacion": "Miguel Angel",
+#   "rol": "estudiante",
+#   "clases": "6365a2b2a84e9259f2af82fa9" 
+# }
+
+# {
+#   "nombre": "Martin",
+#   "apellido": "Fustiniana",
+#   "avatar": "https://avatars.githubusercontent.com/u/1561955?v=4",
+#   "telofono": "1120221117",
+#   "email": "martin@gmail.com",
+#   "password": "fusti123",
+#   "preguntaVerificacion": "¿Como se llama tu papa?",
+#   "respuestaVerificacion": "Miguel Angel",
+#   "rol": "estudiante",
+#   "clases": "6365a2b2a84e9259f2af82fa9" 
+# }
+
+{
+  "nombre": "Gonzalo",
+  "apellido": "Navarte",
+  "avatar": "https://avatars.githubusercontent.com/u/1561955?v=4",
+  "telofono": "1132902700",
+  "email": "gonzalo@gmail.com",
+  "password": "gonzalo123",
+  "preguntaVerificacion": "¿Como se llama tu papa?",
+  "respuestaVerificacion": "Eduardo",
+  "rol": "estudiante"
+}
+
+############################################################
+
+GET http://localhost:4000/users/
+
+############################################################
+
+GET http://localhost:4000/users/6377016c2620ee375d82c882
+
+############################################################
+
+GET http://localhost:4000/users/userByEmail/miguelito@gmail.com
+
+############################################################
+
+GET http://localhost:4000/users/63753c4177d38efc5acd4c9b
+
+############################################################
+
+PUT http://localhost:4000/users/updateUser/6379163bb4053490032511c1
+Content-Type: application/json
+
+{
+  "nombre": "Gonzalo",
+  "apellido": "Navarte"
+}
+
+############################################################
+
+DELETE  http://localhost:4000/users/63753c4177d38efc5acd4c9b

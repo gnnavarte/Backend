@@ -1,0 +1,13 @@
+GET http://localhost:3001/api/clases
+
+##################
+
+GET http://localhost:3001/api/clases/6365a2b2a84e9259f2af82f9
+
+###############################
+POST http://localhost:3001/api/clases
+Content-Type: application/json 
+
+{
+    "nombre":"clase de programacion"
+}
