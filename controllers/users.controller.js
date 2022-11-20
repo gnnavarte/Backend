@@ -30,7 +30,6 @@ exports.createUser = async function (req, res) {
 }
 
 exports.getUsers = async function (req, res) {
-
     const page = req.query.page ? req.query.page : 1
     const limit = req.query.limit ? req.query.limit : 10;
     var options = {
@@ -68,29 +67,19 @@ exports.getUserByEmail = async function (req, res) {
 }
 
 exports.updateUser = async function (req, res) {
-
-    const identifier= {_id: ObjectId(req.params.id)}
-    console.log(identifier)
     try {
+        const identifier= {_id: ObjectId(req.params.id)}
         var oldUser = await Usuario.findOne(identifier);
-        console.log(oldUser)
-        // return res.status(200).json({status: 200, data: updatedUser, message: "Succesfully Updated User"})
+        //Edit the User Object
+        oldUser.nombre = req.body.nombre,
+        oldUser.apellido = req.body.apellido,
+        oldUser.avatar = req.body.avatar,
+        oldUser.telofono = req.body.telofono,
+        oldUser.rol = req.body.rol
+        const updatedUser = await oldUser.save()
+        return res.status(200).json({status: 200, data: updatedUser, message: "Succesfully Updated User"})
     } catch (e) {
         return res.status(400).json({status: 400., message: e.message})
-    }
-
-    //Edit the User Object
-    oldUser.nombre = req.body.nombre,
-    oldUser.apellido = req.body.apellido,
-    oldUser.avatar = req.body.avatar,
-    oldUser.telofono = req.body.telofono,
-    oldUser.rol = req.body.rol
-    
-    try {
-    const updatedUser = await oldUser.save()
-    return res.status(200).json({status: 200, data: updatedUser, message: "Succesfully Updated User"})
-    } catch (e) {
-    return res.status(400).json({status: 400., message: e.message})
     }
 }
 
@@ -106,13 +95,13 @@ exports.removeUser = async function (req, res, next) {
 
 exports.loginUser = async function (req, res) {
     const user_email= {email: req.body.email}
-    const user_password= {password: req.body.password}
+    const user_password= req.body.password
     try {
         const User = await Usuario.findOne(user_email);
         const passwordIsValid = bcrypt.compareSync(user_password, User.password);
         if (!passwordIsValid)
-            return res.status(400).json({message: "Error en la contraseña"})
-        else {
+            return res.status(400).json({message: "Invalid username or password"})
+        // else {
             // const token = jwt.sign({
             //     id: _details._id
             // }, process.env.SECRET, {
@@ -120,10 +109,10 @@ exports.loginUser = async function (req, res) {
             // });
             // const loginUser = {token:token, user:User};
             return res.status(201).json({User, message: "Succesfully login"})
-        }
+        // }
 
     } catch (e) {
         //Return an Error Response Message with Code and the Error Message.
-        return res.status(400).json({status: 400, message: "Invalid username or password"})
+        return res.status(400).json({status: 400, message: e.message})
     }
 }
