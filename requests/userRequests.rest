@@ -66,7 +66,7 @@ GET http://localhost:4000/users/userByEmail/miguelito@gmail.com
 
 ############################################################
 
-PUT http://localhost:4000/users/updateUser/6379163bb4053490032511c1
+PUT http://localhost:4000/users/updateUser/637977e96f05c7199dca5802
 Content-Type: application/json
 
 {
