@@ -1,5 +1,6 @@
 const express = require('express')
 const router = express.Router()
+const Authorization = require('../auth/authorization');
 const UserController = require('../controllers/users.controller');
 
 router.get('/test', function(req, res) {
@@ -9,7 +10,7 @@ router.post('/registration', UserController.createUser)
 router.get('/', UserController.getUsers)
 router.get('/:id', UserController.getUserById)
 router.get('/userByEmail/:email', UserController.getUserByEmail)
-router.put('/updateUser/:id', UserController.updateUser)
+router.put('/updateUser',Authorization ,UserController.updateUser)
 router.delete('/:id', UserController.removeUser)
 router.post('/login', UserController.loginUser)
 

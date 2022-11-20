@@ -68,7 +68,7 @@ exports.getUserByEmail = async function (req, res) {
 
 exports.updateUser = async function (req, res) {
     try {
-        const identifier= {_id: ObjectId(req.params.id)}
+        const identifier= {_id: ObjectId(req.user_identifier)}
         var oldUser = await Usuario.findOne(identifier);
         //Edit the User Object
         oldUser.nombre = req.body.nombre,
@@ -99,17 +99,17 @@ exports.loginUser = async function (req, res) {
     try {
         const User = await Usuario.findOne(user_email);
         const passwordIsValid = bcrypt.compareSync(user_password, User.password);
-        if (!passwordIsValid)
+        if (!(User && passwordIsValid))
             return res.status(400).json({message: "Invalid username or password"})
-        // else {
-            // const token = jwt.sign({
-            //     id: _details._id
-            // }, process.env.SECRET, {
-            //     expiresIn: 86400 // expires in 24 hours
-            // });
-            // const loginUser = {token:token, user:User};
-            return res.status(201).json({User, message: "Succesfully login"})
-        // }
+        else {
+            const token = jwt.sign({
+                id: User._id
+            }, process.env.SECRET, {
+                expiresIn: 86400 // expires in 24 hours
+            });
+            const authenticated_user = {name:User.nombre, last_name:User.apellido ,token:token};
+            return res.status(201).json({authenticated_user, message: "Succesfully login"})
+        }
 
     } catch (e) {
         //Return an Error Response Message with Code and the Error Message.

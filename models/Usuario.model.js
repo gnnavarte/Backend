@@ -23,6 +23,9 @@ usuarioSchema.plugin(mongoosePaginate);
 usuarioSchema.set('toJSON', {
     transform: (document, returnedObject) => {
       returnedObject.id = returnedObject._id.toString()
+      delete returnedObject.password
+      delete returnedObject.preguntaVerificacion
+      delete returnedObject.respuestaVerificacion
       delete returnedObject._id
       delete returnedObject.__v
     }

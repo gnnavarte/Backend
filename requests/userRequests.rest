@@ -58,7 +58,7 @@ GET http://localhost:4000/users/
 
 ############################################################
 
-GET http://localhost:4000/users/6377016c2620ee375d82c882
+GET http://localhost:4000/users/637977e96f05c7199dca5802
 
 ############################################################
 
@@ -66,11 +66,12 @@ GET http://localhost:4000/users/userByEmail/miguelito@gmail.com
 
 ############################################################
 
-PUT http://localhost:4000/users/updateUser/637977e96f05c7199dca5802
+PUT http://localhost:4000/users/updateUser
 Content-Type: application/json
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzNzk3N2U5NmYwNWM3MTk5ZGNhNTgwMiIsImlhdCI6MTY2ODk4MDI1MiwiZXhwIjoxNjY5MDY2NjUyfQ.PacZ1Eaf7liFPaxYh_wzrjECLNiEqmO5JqdTOp2lIGA
 
 {
-  "nombre": "Gonzalo",
+  "nombre": "Gonzalito",
   "apellido": "Navarte"
 }
 
