@@ -1,4 +1,4 @@
-POST http://localhost:4000/users/registration
+POST http://localhost:8080/users/registration
 Content-Type: application/json
 
 # {
@@ -27,34 +27,35 @@ Content-Type: application/json
 #   "clases": "6365a2b2a84e9259f2af82fa9" 
 # }
 
-# {
-#   "nombre": "Martin",
-#   "apellido": "Fustiniana",
-#   "avatar": "https://avatars.githubusercontent.com/u/1561955?v=4",
-#   "telofono": "1120221117",
-#   "email": "martin@gmail.com",
-#   "password": "fusti123",
-#   "preguntaVerificacion": "¿Como se llama tu papa?",
-#   "respuestaVerificacion": "Miguel Angel",
-#   "rol": "estudiante",
-#   "clases": "6365a2b2a84e9259f2af82fa9" 
-# }
+ {
+   "nombre": "Martin",
+   "apellido": "Fustiniana",
+   "avatar": "https://avatars.githubusercontent.com/u/1561955?v=4",
+   "telofono": "1120221117",
+   "email": "martin@gmail.com",
+   "password": "fusti123",
+   "preguntaVerificacion": "¿Como se llama tu papa?",
+   "respuestaVerificacion": "Miguel Angel",
+   "rol": "estudiante",
+   "clases": "6365a2b2a84e9259f2af82fa9" 
+ }
 
-{
-  "nombre": "Gonzalo",
-  "apellido": "Navarte",
-  "avatar": "https://avatars.githubusercontent.com/u/1561955?v=4",
-  "telofono": "1132902700",
-  "email": "gonzalo@gmail.com",
-  "password": "gonzalo123",
-  "preguntaVerificacion": "¿Como se llama tu papa?",
-  "respuestaVerificacion": "Eduardo",
-  "rol": "estudiante"
-}
+
+#{
+#  "nombre": "Gonzalo",
+#  "apellido": "Navarte",
+#  "avatar": "https://avatars.githubusercontent.com/u/1561955?v=4",
+#  "telofono": "1132902700",
+#  "email": "gonzalo@gmail.com",
+#  "password": "gonzalo123",
+#  "preguntaVerificacion": "¿Como se llama tu papa?",
+#  "respuestaVerificacion": "Eduardo",
+#  "rol": "estudiante"
+#}
 
 ############################################################
 
-GET http://localhost:4000/users/
+GET http://localhost:8080/users/
 
 ############################################################
 

@@ -2,7 +2,7 @@ const Usuario = require('../models/Usuario.model');
 const ObjectId = require('mongodb').ObjectId;
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
-
+require('dotenv').config()
 _this = this;
 
 exports.createUser = async function (req, res) {
@@ -94,25 +94,32 @@ exports.removeUser = async function (req, res, next) {
 }
 
 exports.loginUser = async function (req, res) {
-    const user_email= {email: req.body.email}
-    const user_password= req.body.password
-    try {
-        const User = await Usuario.findOne(user_email);
-        const passwordIsValid = bcrypt.compareSync(user_password, User.password);
-        if (!(User && passwordIsValid))
-            return res.status(400).json({message: "Invalid username or password"})
-        else {
-            const token = jwt.sign({
-                id: User._id
-            }, process.env.SECRET, {
-                expiresIn: 86400 // expires in 24 hours
-            });
-            const authenticated_user = {name:User.nombre, last_name:User.apellido ,token:token};
-            return res.status(201).json({authenticated_user, message: "Succesfully login"})
-        }
+    const {body}=req
+    const {email,password}=body
 
-    } catch (e) {
-        //Return an Error Response Message with Code and the Error Message.
-        return res.status(400).json({status: 400, message: e.message})
+    const user = await Usuario.findOne({email})
+    
+    console.log(password,user.password)
+    //indica si password es correcto
+    const passwordCorrect = user ===null
+    ? false
+    : await bcrypt.compare(password,user.password)
+
+    if(!(user && passwordCorrect)){
+        response.status(401).json({
+            error:'invalid user or password'
+        })
     }
+
+    const userForToken={
+        id:user._id,
+        email:user.email
+    }
+
+    const token = jwt.sign(userForToken,process.env.SECRET)
+
+    res.send({
+        id:user.id,
+        token
+    })
 }

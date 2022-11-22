@@ -38,6 +38,7 @@ if (process.env.NODE_ENV === 'Development') {
   require('./config').config();
 }
 
+const URL= 'mongodb+srv://matias:matigonza@cluster0.wrjdamk.mongodb.net/TusClases?retryWrites=true&w=majority'
 
 //Database connection --
 const mongoose = require('mongoose')
@@ -50,7 +51,7 @@ let opts = {
   useUnifiedTopology: true
   };
 
-mongoose.connect(url,opts)
+mongoose.connect(URL,opts)
   .then(() => {
     console.log(`Succesfully Connected to theMongodb Database..`)
   })
