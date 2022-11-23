@@ -22,6 +22,7 @@ const studentRouter = require('./routes/students.route');
 const classRouter = require('./routes/classes.route');
 const commentRouter = require('./routes/comments.route');
 const qualificationRouter = require('./routes/qualifications.route');
+const hiringRouter = require('./routes/hirings.route')
 
 //Indico las rutas de los endpoint
 app.use('/', indexRouter);
@@ -31,6 +32,7 @@ app.use('/students', studentRouter);
 app.use('/classes', classRouter);
 app.use('/comments', commentRouter);
 app.use('/qualifications', qualificationRouter);
+app.use('/hirings', hiringRouter)
 
 if (process.env.NODE_ENV === 'Development') {
   require('./config').config();

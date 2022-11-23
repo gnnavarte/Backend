@@ -13,7 +13,6 @@ exports.createHiring = async function (req, res) {
     })
     try {
     const createdHiring = await nuevaContratacion.save();
-    console.log(createdUser)
     return res.status(201).json({createdHiring, message: "Hiring successfully created"})
     } catch (e) {
     console.log(e)
@@ -59,7 +58,7 @@ exports.updateHiring = async function (req, res) {
 exports.removeHiring = async function (req, res, next) {
     const identifier= {_id: ObjectId(req.params.id)}
     try {
-    const hiringDeleted = await Usuario.remove(identifier)
+    const hiringDeleted = await Contratacion.remove(identifier)
     return res.status(200).json({status: 200, data: hiringDeleted, message: "Hiring successfully deleted"})
     } catch (e) {
     return res.status(400).json({status: 400, message: e.message})
