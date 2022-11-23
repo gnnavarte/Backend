@@ -6,7 +6,6 @@ require('dotenv').config()
 _this = this;
 
 exports.createUser = async function (req, res) {
-    console.log("llegue al controller",req.body)
     const nuevoUsuario = new Usuario({
     nombre: req.body.nombre,
     apellido: req.body.apellido,
@@ -22,23 +21,17 @@ exports.createUser = async function (req, res) {
     try {
     const createdUser = await nuevoUsuario.save();
     console.log(createdUser)
-    return res.status(201).json({createdUser, message: "Succesfully Created User"})
+    return res.status(201).json({createdUser, message: "User successfully created"})
     } catch (e) {
     console.log(e)
-    return res.status(400).json({status: 400, message: "User Creation was Unsuccesfull"})
+    return res.status(400).json({status: 400, message: "User creation was unsuccessful"})
     }
 }
 
 exports.getUsers = async function (req, res) {
-    const page = req.query.page ? req.query.page : 1
-    const limit = req.query.limit ? req.query.limit : 10;
-    var options = {
-        page,
-        limit
-    }
     try {
-    const Users = await Usuario.paginate({}, options)
-    return res.status(200).json({status: 200, data: Users, message: "Succesfully Users Recieved"});
+    const Users = await Usuario.find({}).populate('clases')
+    return res.status(200).json({status: 200, data: Users, message: "Successfully received users"});
     } catch (e) {
     return res.status(400).json({status: 400, message: e.message});
     }
@@ -49,7 +42,7 @@ exports.getUserById = async function (req, res) {
     console.log(identifier);
     try {
     const User = await Usuario.findOne(identifier);
-    return res.status(200).json({status: 200, data: User, message: "Succesfully User Recieved"});
+    return res.status(200).json({status: 200, data: User, message: "User successfully received"});
     } catch (e) {
     return res.status(400).json({status: 400, message: e.message});
     }
@@ -60,7 +53,7 @@ exports.getUserByEmail = async function (req, res) {
     console.log(email);
     try {
     const User = await Usuario.findOne(user_email);
-    return res.status(200).json({status: 200, data: User, message: "Succesfully Users Recieved"});
+    return res.status(200).json({status: 200, data: User, message: "User successfully received"});
     } catch (e) {
     return res.status(400).json({status: 400, message: e.message});
     }
@@ -77,7 +70,7 @@ exports.updateUser = async function (req, res) {
         oldUser.telofono = req.body.telofono,
         oldUser.rol = req.body.rol
         const updatedUser = await oldUser.save()
-        return res.status(200).json({status: 200, data: updatedUser, message: "Succesfully Updated User"})
+        return res.status(200).json({status: 200, data: updatedUser, message: "Successfully updated user"})
     } catch (e) {
         return res.status(400).json({status: 400., message: e.message})
     }
@@ -87,7 +80,7 @@ exports.removeUser = async function (req, res, next) {
     const identifier= {_id: ObjectId(req.params.id)}
     try {
     const userDeleted = await Usuario.remove(identifier)
-    return res.status(200).json({status: 200, data: userDeleted, message: "Succesfully Deleted... "})
+    return res.status(200).json({status: 200, data: userDeleted, message: "User successfully deleted"})
     } catch (e) {
     return res.status(400).json({status: 400, message: e.message})
     }
@@ -107,7 +100,7 @@ exports.loginUser = async function (req, res) {
 
     if(!(user && passwordCorrect)){
         response.status(401).json({
-            error:'invalid user or password'
+            error:'Invalid user or password'
         })
     }
 

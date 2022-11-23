@@ -4,16 +4,15 @@ const Authorization = require('../auth/authorization');
 const UserController = require('../controllers/users.controller');
 
 router.get('/test', function(req, res) {
-    res.send('Llegaste a la ruta de users');
+    res.send('Llegaste a la ruta de usuarios');
   });
-router.post('/registration', UserController.createUser)
+router.post('/', UserController.createUser)
 router.get('/', UserController.getUsers)
 router.get('/:id', UserController.getUserById)
-router.get('/userByEmail/:email', UserController.getUserByEmail)
-router.put('/updateUser',Authorization ,UserController.updateUser)
 router.delete('/:id', UserController.removeUser)
+router.get('/email/:email', UserController.getUserByEmail)
+router.put('/update',Authorization ,UserController.updateUser)
 router.post('/login', UserController.loginUser)
-
 module.exports = router;
 
 

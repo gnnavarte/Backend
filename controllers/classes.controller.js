@@ -4,7 +4,6 @@ const ObjectId = require('mongodb').ObjectId;
 _this = this;
 
 exports.createClass = async function (req, res) {
-    console.log("llegue al controller",req.body)
     const nuevaClase = new Clase({
     nombre: req.body.nombre,
     descripcion: req.body.descripcion,
@@ -19,24 +18,17 @@ exports.createClass = async function (req, res) {
     })
     try {
     const createdClass = await nuevaClase.save();
-    return res.status(201).json({createdClass, message: "Succesfully Created Class"})
+    return res.status(201).json({createdClass, message: "Successfully created class"})
     } catch (e) {
     console.log(e)
-    return res.status(400).json({status: 400, message: "Class Creation was Unsuccesfull"})
+    return res.status(400).json({status: 400, message: "Class creation was unsuccessful"})
     }
 }
 
 exports.getClasses = async function (req, res) {
-
-    const page = req.query.page ? req.query.page : 1
-    const limit = req.query.limit ? req.query.limit : 10;
-    var options = {
-        page,
-        limit
-    }
     try {
-    const Classes = await Clase.paginate({}, options)
-    return res.status(200).json({status: 200, data: Classes, message: "Succesfully Classes Recieved"});
+    const Classes = await Clase.find({}).populate('calificaciones').populate('comentarios').populate('profesores')
+    return res.status(200).json({status: 200, data: Classes, message: "Classes successfully received"});
     } catch (e) {
     return res.status(400).json({status: 400, message: e.message});
     }
@@ -47,54 +39,39 @@ exports.getClassById = async function (req, res) {
     console.log(identifier);
     try {
     const Class = await Clase.findOne(identifier);
-    return res.status(200).json({status: 200, data: Class, message: "Succesfully Class Recieved"});
+    return res.status(200).json({status: 200, data: Class, message: "Class successfully received"});
     } catch (e) {
     return res.status(400).json({status: 400, message: e.message});
     }
 }
 
 exports.getClassByCategory = async function (req, res) {
-    const user_email= {email: req.params.email}
-    console.log(email);
+    const class_category= {category: req.params.category}
     try {
-    const Class = await Clase.findOne(user_email);
-    return res.status(200).json({status: 200, data: Class, message: "Succesfully Class Recieved"});
+    const Class = await Clase.findOne(class_category);
+    return res.status(200).json({status: 200, data: Class, message: "Class successfully received"});
     } catch (e) {
     return res.status(400).json({status: 400, message: e.message});
     }
 }
 
 exports.updateClass = async function (req, res) {
-
-    const identifier= {_id: ObjectId(req.params.id)}
-    console.log(identifier)
     try {
+        const identifier= {_id: ObjectId(req.user_identifier)}
         var oldClass = await Clase.findOne(identifier);
-        console.log(oldClass)
-        // return res.status(200).json({status: 200, data: updatedUser, message: "Succesfully Updated User"})
+        //Edit the User Object
+        oldClass.nombre = req.body.nombre,
+        oldClass.descripcion = req.body.descripcion,
+        oldClass.tipo = req.body.tipo,
+        oldClass.categoria = req.body.categoria,
+        oldClass.frecuencia = req.body.frecuencia,
+        oldClass.duracion = req.body.duracion,
+        oldClass.costo = req.body.costo,
+        oldClass.imagen = req.body.imagen
+        const updatedClass = await oldClass.save()
+        return res.status(200).json({status: 200, data: updatedClass, message: "Class successfully updated"})
     } catch (e) {
         return res.status(400).json({status: 400., message: e.message})
-    }
-
-    //Edit the User Object
-    // nombre: String,
-    // apellido: String,
-    // avatar: String,
-    // telofono: String,
-    // email: String,
-    // password: String,
-    // preguntaVerificacion: String,
-    // respuestaVerificacion: String,
-    // rol: String,
-
-    oldClass.nombre = "String"
-    oldClass.apellido = "String"
-    
-    try {
-    const updatedClass = await oldClass.save()
-    return res.status(200).json({status: 200, data: updatedClass, message: "Succesfully Updated User"})
-    } catch (e) {
-    return res.status(400).json({status: 400., message: e.message})
     }
 }
 
@@ -102,7 +79,7 @@ exports.removeClass = async function (req, res, next) {
     const identifier= {_id: ObjectId(req.params.id)}
     try {
     const classDeleted = await Clase.remove(identifier)
-    return res.status(200).json({status: 200, data: classDeleted, message: "Succesfully Deleted... "})
+    return res.status(200).json({status: 200, data: classDeleted, message: "Class successfully deleted"})
     } catch (e) {
     return res.status(400).json({status: 400, message: e.message})
     }

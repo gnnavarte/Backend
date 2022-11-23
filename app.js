@@ -26,13 +26,11 @@ const qualificationRouter = require('./routes/qualifications.route');
 //Indico las rutas de los endpoint
 app.use('/', indexRouter);
 app.use('/users', userRouter);
-/*
 app.use('/teachers', teacherRouter);
 app.use('/students', studentRouter);
 app.use('/classes', classRouter);
 app.use('/comments', commentRouter);
 app.use('/qualifications', qualificationRouter);
-*/
 
 if (process.env.NODE_ENV === 'Development') {
   require('./config').config();

@@ -12,24 +12,17 @@ exports.createQualification = async function (req, res) {
     })
     try {
     const createdQualification = await nuevaCalificacion.save();
-    return res.status(201).json({createdQualification, message: "Succesfully Created Qualification"})
+    return res.status(201).json({createdQualification, message: "Qualification successfully created"})
     } catch (e) {
     console.log(e)
-    return res.status(400).json({status: 400, message: "Qualification Creation was Unsuccesfull"})
+    return res.status(400).json({status: 400, message: "Qualification creation was not successful"})
     }
 }
 
 exports.getQualifications = async function (req, res) {
-
-    const page = req.query.page ? req.query.page : 1
-    const limit = req.query.limit ? req.query.limit : 10;
-    var options = {
-        page,
-        limit
-    }
     try {
-    const Qualifications = await Calificacion.paginate({}, options)
-    return res.status(200).json({status: 200, data: Qualifications, message: "Succesfully Qualifications Recieved"});
+    const Qualifications = await Calificacion.find({}).populate('clases').populate('estudiantes')
+    return res.status(200).json({status: 200, data: Qualifications, message: "Qualifications successfully received"});
     } catch (e) {
     return res.status(400).json({status: 400, message: e.message});
     }
@@ -40,7 +33,7 @@ exports.getQualificationById = async function (req, res) {
     console.log(identifier);
     try {
     const Qualification = await Calificacion.findOne(identifier);
-    return res.status(200).json({status: 200, data: Qualification, message: "Succesfully Qualification Recieved"});
+    return res.status(200).json({status: 200, data: Qualification, message: "Qualification successfully received"});
     } catch (e) {
     return res.status(400).json({status: 400, message: e.message});
     }
@@ -50,7 +43,7 @@ exports.removeQualification = async function (req, res) {
     const identifier= {_id: ObjectId(req.params.id)}
     try {
     const qualificationDeleted = await Calificacion.remove(identifier)
-    return res.status(200).json({status: 200, data: qualificationDeleted, message: "Succesfully Deleted... "})
+    return res.status(200).json({status: 200, data: qualificationDeleted, message: "Qualification successfully deleted"})
     } catch (e) {
     return res.status(400).json({status: 400, message: e.message})
     }

@@ -1,5 +1,4 @@
 const {Schema, model} = require("mongoose")
-const mongoosePaginate = require('mongoose-paginate-v2');
 
 const profesorSchema = new Schema({
     usuario:{
@@ -9,8 +8,6 @@ const profesorSchema = new Schema({
     titulo: String,
     experiencia: String,
 })
-
-profesorSchema.plugin(mongoosePaginate);
 
 profesorSchema.set('toJSON', {
     transform: (document, returnedObject) => {

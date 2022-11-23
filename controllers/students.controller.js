@@ -12,24 +12,17 @@ exports.createStudent = async function (req, res) {
     })
     try {
     const createdStudent = await nuevoEstudiante.save();
-    return res.status(201).json({createdStudent, message: "Succesfully Created Student"})
+    return res.status(201).json({createdStudent, message: "Student successfully created"})
     } catch (e) {
     console.log(e)
-    return res.status(400).json({status: 400, message: "Student Creation was Unsuccesfull"})
+    return res.status(400).json({status: 400, message: "Student creation was not successful"})
     }
 }
 
 exports.getStudents = async function (req, res) {
-
-    const page = req.query.page ? req.query.page : 1
-    const limit = req.query.limit ? req.query.limit : 10;
-    var options = {
-        page,
-        limit
-    }
     try {
-    const Students = await Estudiante.paginate({}, options)
-    return res.status(200).json({status: 200, data: Students, message: "Succesfully Students Recieved"});
+    const Students = await Estudiante.find({}).populate('usuarios')
+    return res.status(200).json({status: 200, data: Students, message: "Students successfully received"});
     } catch (e) {
     return res.status(400).json({status: 400, message: e.message});
     }
@@ -40,7 +33,7 @@ exports.getStudentById = async function (req, res) {
     console.log(identifier);
     try {
     const Student = await Estudiante.findOne(identifier);
-    return res.status(200).json({status: 200, data: Student, message: "Succesfully Students Recieved"});
+    return res.status(200).json({status: 200, data: Student, message: "Student successfully received"});
     } catch (e) {
     return res.status(400).json({status: 400, message: e.message});
     }
@@ -50,7 +43,7 @@ exports.removeStudent = async function (req, res) {
     const identifier= {_id: ObjectId(req.params.id)}
     try {
     const studentDeleted = await Estudiante.remove(identifier)
-    return res.status(200).json({status: 200, data: studentDeleted, message: "Succesfully Deleted... "})
+    return res.status(200).json({status: 200, data: studentDeleted, message: "Student successfully deleted"})
     } catch (e) {
     return res.status(400).json({status: 400, message: e.message})
     }

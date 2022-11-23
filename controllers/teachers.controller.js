@@ -11,24 +11,17 @@ exports.createTeacher = async function (req, res) {
     })
     try {
     const createdTeacher = await nuevoProfesor.save();
-    return res.status(201).json({createdTeacher, message: "Succesfully Created Teacher"})
+    return res.status(201).json({createdTeacher, message: "Successfully created teacher"})
     } catch (e) {
     console.log(e)
-    return res.status(400).json({status: 400, message: "Teacher Creation was Unsuccesfull"})
+    return res.status(400).json({status: 400, message: "Teacher creation was unsuccessful"})
     }
 }
 
 exports.getTeachers = async function (req, res) {
-
-    const page = req.query.page ? req.query.page : 1
-    const limit = req.query.limit ? req.query.limit : 10;
-    var options = {
-        page,
-        limit
-    }
     try {
-    const Teachers = await Profesor.paginate({}, options)
-    return res.status(200).json({status: 200, data: Teachers, message: "Succesfully Teachers Recieved"});
+    const Teachers = await Profesor.find({}).populate('usuarios')
+    return res.status(200).json({status: 200, data: Teachers, message: "Successfully received teachers"});
     } catch (e) {
     return res.status(400).json({status: 400, message: e.message});
     }
@@ -39,7 +32,7 @@ exports.getTeacherById = async function (req, res) {
     console.log(identifier);
     try {
     const Teacher = await Profesor.findOne(identifier);
-    return res.status(200).json({status: 200, data: Teacher, message: "Succesfully Teacher Recieved"});
+    return res.status(200).json({status: 200, data: Teacher, message: "Teacher successfully received"});
     } catch (e) {
     return res.status(400).json({status: 400, message: e.message});
     }
@@ -47,15 +40,9 @@ exports.getTeacherById = async function (req, res) {
 
 exports.getTeachersByExp = async function (req, res) {
     const teacher_experience= {experiencia: req.params.exp}
-    const page = req.query.page ? req.query.page : 1
-    const limit = req.query.limit ? req.query.limit : 10;
-    var options = {
-        page,
-        limit
-    }
     try {
-    const Teachers = await Profesor.paginate(teacher_experience, options)
-    return res.status(200).json({status: 200, data: Teachers, message: "Succesfully Teachers Recieved"});
+    const Teachers = await Profesor.find(teacher_experience).populate('usuarios')
+    return res.status(200).json({status: 200, data: Teachers, message: "Successfully received teachers"});
     } catch (e) {
     return res.status(400).json({status: 400, message: e.message});
     }
@@ -65,7 +52,7 @@ exports.removeTeacher = async function (req, res) {
     const identifier= {_id: ObjectId(req.params.id)}
     try {
     const teacherDeleted = await Usuario.remove(identifier)
-    return res.status(200).json({status: 200, data: teacherDeleted, message: "Succesfully Deleted... "})
+    return res.status(200).json({status: 200, data: teacherDeleted, message: "Successfully deleted teacher"})
     } catch (e) {
     return res.status(400).json({status: 400, message: e.message})
     }
