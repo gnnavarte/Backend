@@ -5,8 +5,8 @@ _this = this;
 
 exports.createHiring = async function (req, res) {
     const nuevaContratacion = new Contratacion({
-    clase: '',
-    usuario: '',
+    clase: req.body.clase,
+    usuario: req.user_identifier,
     motivo: req.body.motivo,
     estado: req.body.estado,
     horarioReferencia: req.body.horarioReferencia
@@ -22,7 +22,15 @@ exports.createHiring = async function (req, res) {
 
 exports.getHirings = async function (req, res) {
     try {
-    const Users = await Contratacion.find({}).populate('clases').populate('usuarios')
+    const Users = await Contratacion.find({}
+        ).populate('clases',{
+            _id: 0,
+            nombre: 1
+        }).populate('usuarios',{
+            _id: 0,
+            nombre: 1,
+            apellido: 1
+        })
     return res.status(200).json({status: 200, data: Users, message: "Successfully received hirings"});
     } catch (e) {
     return res.status(400).json({status: 400, message: e.message});

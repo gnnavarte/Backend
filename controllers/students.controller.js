@@ -5,7 +5,7 @@ _this = this;
 
 exports.createStudent = async function (req, res) {
     const nuevoEstudiante = new Estudiante({
-    usuario: req.body.usuario,
+    usuario: req.user_identifier,
     fechaNacimiento: req.body.fechaNacimiento,
     mayorEstudioCursado: req.body.mayorEstudioCursado,
     mayorEstudioFinalizado: req.body.mayorEstudioCursado,
@@ -21,7 +21,12 @@ exports.createStudent = async function (req, res) {
 
 exports.getStudents = async function (req, res) {
     try {
-    const Students = await Estudiante.find({}).populate('usuarios')
+    const Students = await Estudiante.find({}
+        ).populate('usuarios',{
+            _id: 0,
+            nombre: 1,
+            apellido: 1
+        })
     return res.status(200).json({status: 200, data: Students, message: "Students successfully received"});
     } catch (e) {
     return res.status(400).json({status: 400, message: e.message});

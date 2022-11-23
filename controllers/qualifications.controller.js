@@ -5,10 +5,9 @@ _this = this;
 
 exports.createQualification = async function (req, res) {
     const nuevaCalificacion = new Calificacion({
-    usuario: req.body.usuario,
-    fechaNacimiento: req.body.fechaNacimiento,
-    mayorEstudioCursado: req.body.mayorEstudioCursado,
-    mayorEstudioFinalizado: req.body.mayorEstudioCursado,
+        clase: req.body.clase,
+        estudiante: req.user_identifier,
+        valor: req.body.valor
     })
     try {
     const createdQualification = await nuevaCalificacion.save();
@@ -21,7 +20,13 @@ exports.createQualification = async function (req, res) {
 
 exports.getQualifications = async function (req, res) {
     try {
-    const Qualifications = await Calificacion.find({}).populate('clases').populate('estudiantes')
+    const Qualifications = await Calificacion.find({}
+        ).populate('clases',{
+            _id: 0,
+            nombre: 1
+        }).populate('estudiantes',{
+            _id: 0
+        })
     return res.status(200).json({status: 200, data: Qualifications, message: "Qualifications successfully received"});
     } catch (e) {
     return res.status(400).json({status: 400, message: e.message});

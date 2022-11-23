@@ -30,7 +30,11 @@ exports.createUser = async function (req, res) {
 
 exports.getUsers = async function (req, res) {
     try {
-    const Users = await Usuario.find({}).populate('clases')
+    const Users = await Usuario.find({}
+        ).populate('clases',{
+            _id: 0,
+            nombre: 1
+        })
     return res.status(200).json({status: 200, data: Users, message: "Successfully received users"});
     } catch (e) {
     return res.status(400).json({status: 400, message: e.message});
@@ -106,6 +110,7 @@ exports.loginUser = async function (req, res) {
 
     const userForToken={
         id:user._id,
+        rol: user.rol,
         email:user.email
     }
 

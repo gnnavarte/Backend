@@ -1,14 +1,15 @@
 const express = require('express')
 const router = express.Router()
+const Authorization = require('../auth/authorization');
 const HiringController = require('../controllers/hirings.controller');
 
 router.get('/test', function(req, res) {
     res.send('Llegaste a la ruta de contrataciones');
   });
-router.post('/', HiringController.createHiring)
+router.post('/',Authorization , HiringController.createHiring)
 router.get('/', HiringController.getHirings)
 router.get('/:id', HiringController.getHiringById)
-router.put('/update', HiringController.updateHiring)
-router.delete('/:id', HiringController.removeHiring)
+router.put('/update',Authorization , HiringController.updateHiring)
+router.delete('/:id',Authorization , HiringController.removeHiring)
 
 module.exports = router;

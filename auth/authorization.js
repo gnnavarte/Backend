@@ -11,6 +11,7 @@ const authorization = function (req, res, next) {
             return res.status(400).json({message: "Missing or invalid token"})
         }
         req.user_identifier = decoded_token.id
+        req.user_role = decoded_token.rol
         next()
     } catch (error) {
         return res.status(400).json({status: 400., message: error.message})

@@ -5,10 +5,10 @@ _this = this;
 
 exports.createComment = async function (req, res) {
     const nuevoComentario = new Comentario({
-    usuario: req.body.usuario,
-    fechaNacimiento: req.body.fechaNacimiento,
-    mayorEstudioCursado: req.body.mayorEstudioCursado,
-    mayorEstudioFinalizado: req.body.mayorEstudioCursado,
+    clase: req.body.clase,
+    usuario: req.user_identifier,
+    descripcion: req.body.descripcion,
+    bloqueado: req.body.bloqueado
     })
     try {
     const createdComment = await nuevoComentario.save();
@@ -21,7 +21,16 @@ exports.createComment = async function (req, res) {
 
 exports.getComments = async function (req, res) {
     try {
-    const Comments = await Comentario.find({}).populate('clases').populate('usuarios')
+    const Comments = await Comentario.find({}
+        ).populate('clases', {
+            _id: 0,
+            nombre: 1
+        }
+        ).populate('usuarios', {
+            _id: 0,
+            nombre: 1,
+            apellido: 1
+        })
     return res.status(200).json({status: 200, data: Comments, message: "Comments successfully received"});
     } catch (e) {
     return res.status(400).json({status: 400, message: e.message});
