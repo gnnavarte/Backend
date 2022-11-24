@@ -14,34 +14,34 @@ Content-Type: application/json
 #   "clases": "6365a2b2a84e9259f2af82fa9" 
 # }
 
+{
+  "nombre": "Matias",
+  "apellido": "Viola",
+  "avatar": "https://media-exp1.licdn.com/dms/image/C5603AQGo2IkYrcinbw/profile-displayphoto-shrink_800_800/0/1660079656684?e=1670457600&v=beta&t=-pogSYcHUL19tnJOGkvoF6lbskO0PpeHYzFwckTUDRw",
+  "telofono": "1120221115",
+  "email": "mati@gmail.com",
+  "password": "mati123",
+  "preguntaVerificacion": "¿Como se llama tu papa?",
+  "respuestaVerificacion": "Miguel Angel",
+  "rol": "profesor",
+  "clases": "6365a2b2a84e9259f2af82fa9" 
+}
+
+#  {
+#    "nombre": "Martin",
+#    "apellido": "Fustiniana",
+#    "avatar": "https://avatars.githubusercontent.com/u/1561955?v=4",
+#    "telofono": "1120221117",
+#    "email": "martin@gmail.com",
+#    "password": "fusti123",
+#    "preguntaVerificacion": "¿Como se llama tu papa?",
+#    "respuestaVerificacion": "Miguel Angel",
+#    "rol": "estudiante",
+#    "clases": "6365a2b2a84e9259f2af82fa9" 
+#  }
+
+
 # {
-#   "nombre": "Matias",
-#   "apellido": "Viola",
-#   "avatar": "https://media-exp1.licdn.com/dms/image/C5603AQGo2IkYrcinbw/profile-displayphoto-shrink_800_800/0/1660079656684?e=1670457600&v=beta&t=-pogSYcHUL19tnJOGkvoF6lbskO0PpeHYzFwckTUDRw",
-#   "telofono": "1120221115",
-#   "email": "mati@gmail.com",
-#   "password": "mati123",
-#   "preguntaVerificacion": "¿Como se llama tu papa?",
-#   "respuestaVerificacion": "Miguel Angel",
-#   "rol": "estudiante",
-#   "clases": "6365a2b2a84e9259f2af82fa9" 
-# }
-
- {
-   "nombre": "Martin",
-   "apellido": "Fustiniana",
-   "avatar": "https://avatars.githubusercontent.com/u/1561955?v=4",
-   "telofono": "1120221117",
-   "email": "martin@gmail.com",
-   "password": "fusti123",
-   "preguntaVerificacion": "¿Como se llama tu papa?",
-   "respuestaVerificacion": "Miguel Angel",
-   "rol": "estudiante",
-   "clases": "6365a2b2a84e9259f2af82fa9" 
- }
-
-
-#{
 #  "nombre": "Gonzalo",
 #  "apellido": "Navarte",
 #  "avatar": "https://avatars.githubusercontent.com/u/1561955?v=4",
@@ -51,7 +51,7 @@ Content-Type: application/json
 #  "preguntaVerificacion": "¿Como se llama tu papa?",
 #  "respuestaVerificacion": "Eduardo",
 #  "rol": "estudiante"
-#}
+# }
 
 ############################################################
 
@@ -59,7 +59,7 @@ GET http://localhost:4000/users/
 
 ############################################################
 
-GET http://localhost:4000/users/637977e96f05c7199dca5802
+GET http://localhost:4000/users/637ab01925727ff98e7ea31d
 
 ############################################################
 
@@ -69,7 +69,7 @@ GET http://localhost:4000/users/userByEmail/miguelito@gmail.com
 
 PUT http://localhost:4000/users/updateUser
 Content-Type: application/json
-Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzNzk3N2U5NmYwNWM3MTk5ZGNhNTgwMiIsImlhdCI6MTY2ODk4MDI1MiwiZXhwIjoxNjY5MDY2NjUyfQ.PacZ1Eaf7liFPaxYh_wzrjECLNiEqmO5JqdTOp2lIGA
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzN2FiMDE5MjU3MjdmZjk4ZTdlYTMxZCIsImVtYWlsIjoiZ29uemFsb0BnbWFpbC5jb20iLCJpYXQiOjE2NjkyNTQwMjV9.YDUVwBtBJMRmCyn-hNmwIIKQhK8Zn8u65M4fQLbd8NA
 
 {
   "nombre": "Gonzalito",
@@ -78,7 +78,7 @@ Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzNzk3N2U5NmYwNWM3
 
 ############################################################
 
-DELETE http://localhost:4000/users/63753c4177d38efc5acd4c9b
+DELETE http://localhost:4000/users/637ab01925727ff98e7ea31d
 
 ############################################################
 
@@ -88,4 +88,14 @@ Content-Type: application/json
 {
   "email": "gonzalo@gmail.com",
   "password": "gonzalo123"
+}
+
+############################################################
+
+POST http://localhost:4000/users/login
+Content-Type: application/json
+
+{
+  "email": "mati@gmail.com",
+  "password": "mati123"
 }

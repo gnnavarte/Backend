@@ -1,17 +1,22 @@
 const Comentario = require('../models/Comentario.model')
+const Clase = require('../models/Clase.model');
+const { findOne } = require('../models/Comentario.model');
 const ObjectId = require('mongodb').ObjectId;
 
 _this = this;
 
 exports.createComment = async function (req, res) {
+    try {
+    const claseComentada = await Clase.findOne(req.body.clase)
     const nuevoComentario = new Comentario({
-    clase: req.body.clase,
+    clase: claseComentada._id,
     usuario: req.user_identifier,
     descripcion: req.body.descripcion,
     bloqueado: req.body.bloqueado
     })
-    try {
     const createdComment = await nuevoComentario.save();
+    claseComentada.comentarios = claseComentada.comentarios.concat(createdComment._id)
+    await claseComentada.save()
     return res.status(201).json({createdComment, message: "Comment successfully created"})
     } catch (e) {
     console.log(e)
@@ -51,6 +56,11 @@ exports.getCommentById = async function (req, res) {
 exports.removeComment = async function (req, res) {
     const identifier= {_id: ObjectId(req.params.id)}
     try {
+    const commentToDelete = await findOne(identifier)
+    const claseComentada = await Clase.findOne(commentToDelete.clase)
+    const indexToDelete = claseComentada.comentarios.indexOf(req.params.id)
+    claseComentada.comentarios = claseComentada.comentarios.splice(indexToDelete, 1)
+    await claseComentada.save()
     const commentDeleted = await Comentario.remove(identifier)
     return res.status(200).json({status: 200, data: commentDeleted, message: "Comment successfully deleted"})
     } catch (e) {

@@ -1,10 +1,12 @@
-const Clase = require('../models/Clase.model')
+const Clase = require('../models/Clase.model');
+const Usuario = require('../models/Usuario.model');
 const ObjectId = require('mongodb').ObjectId;
 
 _this = this;
 
 exports.createClass = async function (req, res) {
-    if (req.user_rol == "profesor") {
+    if (req.user_role == "profesor") {
+        try {
         const nuevaClase = new Clase({
             nombre: req.body.nombre,
             descripcion: req.body.descripcion,
@@ -16,10 +18,16 @@ exports.createClass = async function (req, res) {
             imagen: req.body.imagen,
             calificaciones: [],
             comentarios: [],
-            profesor: req._id
-            })
-        try {
+            profesor: req.user_identifier
+        })
         const createdClass = await nuevaClase.save();
+
+        const identifier= {_id: ObjectId(req.user_identifier)}
+        console.log(identifier)
+        const User = await Usuario.findOne(identifier);
+        User.clases = User.clases.concat(createdClass._id)
+        await User.save()
+
         return res.status(201).json({createdClass, message: "Successfully created class"})
         } catch (e) {
         console.log(e)
@@ -42,11 +50,12 @@ exports.getClasses = async function (req, res) {
             _id: 0,
             descripcion: 1
         }
-        ).populate('profesores', {
-            _id: 0,
-            titulo: 1,
-            experiencia: 1
-        })
+        )
+        // .populate('profesores', {
+        //     _id: 0,
+        //     titulo: 1,
+        //     experiencia: 1
+        // })
     return res.status(200).json({status: 200, data: Classes, message: "Classes successfully received"});
     } catch (e) {
     return res.status(400).json({status: 400, message: e.message});
@@ -75,7 +84,7 @@ exports.getClassByCategory = async function (req, res) {
 }
 
 exports.updateClass = async function (req, res) {
-    if (req.user_rol == "profesor") {
+    if (req.user_role == "profesor") {
         try {
             const identifier= {_id: ObjectId(req.user_identifier)}
             var oldClass = await Clase.findOne(identifier);
@@ -99,7 +108,7 @@ exports.updateClass = async function (req, res) {
 }
 
 exports.removeClass = async function (req, res, next) {
-    if (req.user_rol == "profesor") {
+    if (req.user_role == "profesor") {
         const identifier= {_id: ObjectId(req.params.id)}
         try {
         const classDeleted = await Clase.remove(identifier)

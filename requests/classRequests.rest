@@ -1,13 +1,22 @@
-GET http://localhost:3001/api/clases
-
-##################
-
-GET http://localhost:3001/api/clases/6365a2b2a84e9259f2af82f9
-
-###############################
-POST http://localhost:3001/api/clases
-Content-Type: application/json 
+POST http://localhost:4000/classes/
+Content-Type: application/json
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzN2VjYzlhNDgyNTg5YzY2NTVhMjczMCIsInJvbCI6InByb2Zlc29yIiwiZW1haWwiOiJtYXRpQGdtYWlsLmNvbSIsImlhdCI6MTY2OTI1NTMzNn0.VPQEe7qofv8Rx-fxeLm8IjkWC3zQZTSTkcdfBUNRRsU
 
 {
-    "nombre":"clase de programacion"
+    "nombre": "Guitarra basico",
+    "descripcion": "Curso introductorio de guitarra",
+    "tipo": "Presencial",
+    "categoria": "Musica",
+    "frecuencia": "Diario",
+    "duracion": "2 horas",
+    "costo": "2500",
+    "imagen": "imagen de guitarrista"
 }
+
+#########################################
+GET http://localhost:4000/classes/
+
+#########################################
+DELETE http://localhost:4000/classes/637ed131f82641a148bb4240
+Content-Type: application/json
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzN2VjYzlhNDgyNTg5YzY2NTVhMjczMCIsInJvbCI6InByb2Zlc29yIiwiZW1haWwiOiJtYXRpQGdtYWlsLmNvbSIsImlhdCI6MTY2OTI1NTMzNn0.VPQEe7qofv8Rx-fxeLm8IjkWC3zQZTSTkcdfBUNRRsU
