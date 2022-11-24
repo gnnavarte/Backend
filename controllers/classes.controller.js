@@ -45,15 +45,15 @@ exports.unrollStudent = async function (req, res) {
     if (req.user_role == "profesor") {
         try {
             //Borra la clase de la lista de clases del alumno.
-            const student = await Estudiante.findOne({usuario: req.body.usuario})
+            const student = await Estudiante.findOne({_id: req.body.estudiante})
             const student_user = Usuario.findOne(student.id)
-            const indexToDelete = student_user.clases.indexOf(req.body.id)
+            const indexToDelete = student_user.clases.indexOf(req.params.id)
             if (indexToDelete != -1) {
                 student_user.clases.splice(indexToDelete, 1)
                 await student_user.save()
 
                 //Borra al alumno de la lista de alumnos activos de la clase.
-                const identifier= {_id: ObjectId(req.body.id)}
+                const identifier= {_id: ObjectId(req.params.id)}
                 const target_class = await Clase.findOne(identifier)
                 const index = target_class.estudiantes.indexOf(student.id)
                 if (index != -1) {
@@ -113,7 +113,7 @@ exports.getClassByCategory = async function (req, res) {
 exports.updateClass = async function (req, res) {
     if (req.user_role == "profesor") {
         try {
-            const identifier= {_id: ObjectId(req.user_identifier)}
+            const identifier= {_id: ObjectId(req.params.id)}
             var oldClass = await Clase.findOne(identifier);
             //Edit the User Object
             oldClass.nombre = req.body.nombre,
@@ -134,19 +134,21 @@ exports.updateClass = async function (req, res) {
     }
 }
 
-exports.removeClass = async function (req, res, next) {
+exports.removeClass = async function (req, res) {
     if (req.user_role == "profesor") {
         const identifier= {_id: ObjectId(req.params.id)}
         try {
 
         const classToDelete = await Clase.findOne(identifier)
-
+        
+        //Borra la clase del listado de clases del profesor
         const teacher = await Profesor.findOne(classToDelete.profesor)
         const teacher_user = await Usuario.findOne(teacher.id)
         const indexToDelete = teacher_user.clases.indexOf(classToDelete._id)
         teacher_user.clases.splice(indexToDelete, 1)
         await teacher_user.save()
 
+        //Borra la clase del listado de clases de cada alumno inscripto
         classToDelete.estudiantes.forEach(element => {
             const student = Estudiante.findOne(element)
             const student_user = Usuario.findOne(student.id)

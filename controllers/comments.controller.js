@@ -7,7 +7,7 @@ _this = this;
 
 exports.createComment = async function (req, res) {
     try {
-    const claseComentada = await Clase.findOne(req.body.clase)
+    const claseComentada = await Clase.findOne(req.body.claseId)
     const nuevoComentario = new Comentario({
     clase: claseComentada._id,
     usuario: req.user_identifier,
