@@ -2,6 +2,8 @@ const Clase = require('../models/Clase.model');
 const Usuario = require('../models/Usuario.model');
 const Profesor = require('../models/Profesor.model')
 const Estudiante = require('../models/Estudiante.model')
+const Comentario = require('../models/Comentario.model')
+const Calificacion = require('../models/Calificacion.model')
 const ObjectId = require('mongodb').ObjectId;
 
 _this = this;
@@ -157,6 +159,16 @@ exports.removeClass = async function (req, res) {
             student_user.save()
         });
         
+        //Borra el comentario de la coleccion
+        classToDelete.comentarios.forEach(element => {
+            Comentario.remove(element)
+        });
+
+        //Borra la calificacion de la coleccion
+        classToDelete.calificaciones.forEach(element => {
+            Calificacion.remove(element)
+        });
+
         const classDeleted = await Clase.remove(identifier)
         return res.status(200).json({status: 200, data: classDeleted, message: "Class successfully deleted"})
         } catch (e) {

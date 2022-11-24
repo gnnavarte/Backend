@@ -10,10 +10,7 @@ router.post('/',Authorization , ClassController.createClass)
 router.get('/', ClassController.getClasses)
 router.get('/:id', ClassController.getClassById)
 router.get('/category/:category', ClassController.getClassByCategory)
-router.put('/:id',Authorization , ClassController.updateClass)
+// router.put('/:id',Authorization , ClassController.updateClass)
 router.delete('/:id',Authorization , ClassController.removeClass)
 
 module.exports = router;
-
-
-

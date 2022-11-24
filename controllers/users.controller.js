@@ -6,25 +6,30 @@ require('dotenv').config()
 _this = this;
 
 exports.createUser = async function (req, res) {
-    const nuevoUsuario = new Usuario({
-    nombre: req.body.nombre,
-    apellido: req.body.apellido,
-    avatar: req.body.avatar,
-    telofono: req.body.telofono,
-    email: req.body.email,
-    password: bcrypt.hashSync(req.body.password, 8),
-    preguntaVerificacion: req.body.preguntaVerificacion,
-    respuestaVerificacion: bcrypt.hashSync(req.body.respuestaVerificacion, 8),
-    rol: req.body.rol,
-    clases: []
-    })
     try {
-    const createdUser = await nuevoUsuario.save();
-    console.log(createdUser)
-    return res.status(201).json({createdUser, message: "User successfully created"})
+        const user_email= {email: req.body.email}
+        const User = await Usuario.findOne(user_email);
+    if (!User){
+        const nuevoUsuario = new Usuario({
+            nombre: req.body.nombre,
+            apellido: req.body.apellido,
+            avatar: req.body.avatar,
+            telofono: req.body.telofono,
+            email: req.body.email,
+            password: bcrypt.hashSync(req.body.password, 8),
+            preguntaVerificacion: req.body.preguntaVerificacion,
+            respuestaVerificacion: bcrypt.hashSync(req.body.respuestaVerificacion, 8),
+            rol: req.body.rol,
+            clases: []
+            })
+            const createdUser = await nuevoUsuario.save();
+            console.log(createdUser)
+            return res.status(201).json({createdUser, message: "User successfully created"})
+    } else {
+        return res.status(400).json({status: 400, message: "User creation was unsuccessful, the entered email already exists"})
+    }
     } catch (e) {
-    console.log(e)
-    return res.status(400).json({status: 400, message: "User creation was unsuccessful"})
+        return res.status(400).json({status: 400, message: "User creation was unsuccessful"})
     }
 }
 
