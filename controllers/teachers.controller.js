@@ -33,9 +33,8 @@ exports.getTeachers = async function (req, res) {
 }
 
 exports.getTeacherById = async function (req, res) {
-    const identifier= {_id: ObjectId(req.params.id)}
-    console.log(identifier);
     try {
+    const identifier= {_id: ObjectId(req.params.id)}
     const Teacher = await Profesor.findOne(identifier);
     return res.status(200).json({status: 200, data: Teacher, message: "Teacher successfully received"});
     } catch (e) {

@@ -21,6 +21,10 @@ const claseSchema = new Schema({
       type:Schema.Types.ObjectId,
       ref:'Profesor'
     },
+    estudiantes:[{
+      type:Schema.Types.ObjectId,
+      ref: 'Estudiante'
+    }]
 })
 
 claseSchema.set('toJSON', {

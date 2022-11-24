@@ -12,7 +12,7 @@ exports.createComment = async function (req, res) {
     clase: claseComentada._id,
     usuario: req.user_identifier,
     descripcion: req.body.descripcion,
-    bloqueado: req.body.bloqueado
+    bloqueado: false
     })
     const createdComment = await nuevoComentario.save();
     claseComentada.comentarios = claseComentada.comentarios.concat(createdComment._id)
@@ -24,18 +24,23 @@ exports.createComment = async function (req, res) {
     }
 }
 
+exports.blockComment = async function (req, res) {
+    try {
+    const identifier= {_id: ObjectId(req.params.id)}
+    const Comment = await Comentario.findOne(identifier);
+    Comment.bloqueado = req.body.bloqueado
+    await Comment.save()
+    return res.status(200).json({status: 200, data: Comments, message: "Comments successfully received"});
+    } catch (e) {
+    return res.status(400).json({status: 400, message: e.message});
+    }
+}
+
 exports.getComments = async function (req, res) {
     try {
     const Comments = await Comentario.find({}
-        ).populate('clases', {
-            _id: 0,
-            nombre: 1
-        }
-        ).populate('usuarios', {
-            _id: 0,
-            nombre: 1,
-            apellido: 1
-        })
+        ).populate('clase'
+        ).populate('usuario')
     return res.status(200).json({status: 200, data: Comments, message: "Comments successfully received"});
     } catch (e) {
     return res.status(400).json({status: 400, message: e.message});
@@ -43,10 +48,11 @@ exports.getComments = async function (req, res) {
 }
 
 exports.getCommentById = async function (req, res) {
-    const identifier= {_id: ObjectId(req.params.id)}
-    console.log(identifier);
     try {
-    const Comment = await Comentario.findOne(identifier);
+    const identifier= {_id: ObjectId(req.params.id)}
+    const Comment = await Comentario.findOne(identifier
+        ).populate('clase'
+        ).populate('usuario')
     return res.status(200).json({status: 200, data: Comment, message: "Comment successfully received"});
     } catch (e) {
     return res.status(400).json({status: 400, message: e.message});
@@ -54,8 +60,8 @@ exports.getCommentById = async function (req, res) {
 }
 
 exports.removeComment = async function (req, res) {
-    const identifier= {_id: ObjectId(req.params.id)}
     try {
+    const identifier= {_id: ObjectId(req.params.id)}
     const commentToDelete = await findOne(identifier)
     const claseComentada = await Clase.findOne(commentToDelete.clase)
     const indexToDelete = claseComentada.comentarios.indexOf(req.params.id)

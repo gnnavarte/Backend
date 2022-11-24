@@ -1,5 +1,7 @@
 const Clase = require('../models/Clase.model');
 const Usuario = require('../models/Usuario.model');
+const Profesor = require('../models/Profesor.model')
+const Estudiante = require('../models/Estudiante.model')
 const ObjectId = require('mongodb').ObjectId;
 
 _this = this;
@@ -7,6 +9,7 @@ _this = this;
 exports.createClass = async function (req, res) {
     if (req.user_role == "profesor") {
         try {
+        const teacher = await Profesor.findOne({usuario: req.user_identifier})
         const nuevaClase = new Clase({
             nombre: req.body.nombre,
             descripcion: req.body.descripcion,
@@ -18,12 +21,11 @@ exports.createClass = async function (req, res) {
             imagen: req.body.imagen,
             calificaciones: [],
             comentarios: [],
-            profesor: req.user_identifier
+            profesor: teacher.id
         })
         const createdClass = await nuevaClase.save();
 
         const identifier= {_id: ObjectId(req.user_identifier)}
-        console.log(identifier)
         const User = await Usuario.findOne(identifier);
         User.clases = User.clases.concat(createdClass._id)
         await User.save()
@@ -39,23 +41,51 @@ exports.createClass = async function (req, res) {
 
 }
 
+exports.enrollStudent = async function (req, res) {
+    if (req.user_role == "profesor") {
+
+    } else {
+        return res.status(400).json({status: 400, message: "User does not have the required role"})
+    }
+}
+
+// exports.unrollStudent = async function (req, res) {
+//     if (req.user_role == "profesor") {
+//         try {
+//             //Borra la clase de la lista de clases del alumno.
+//             const student = await Estudiante.findOne({usuario: req.user_identifier})
+//             const student_user = Usuario.findOne(student.id)
+//             const indexToDelete = student_user.clases.indexOf(req.body.id)
+//             if (indexToDelete != -1) {
+//                 student_user.clases.splice(indexToDelete, 1)
+//                 await student_user.save()
+
+//                 //Borra al alumno de la lista de alumnos activos de la clase.
+//                 const identifier= {_id: ObjectId(req.body.id)}
+//                 const target_class = await Clase.findOne(identifier)
+//                 const index = target_class.estudiantes.indexOf(student.id)
+//                 if (index != -1) {
+//                     target_class.estudiantes.splice(index, 1)
+//                     await target_class.save()
+//                 }
+//                 return res.status(200).json({status: 200, data: student_user, message: "Student successfully unrolled"});
+//             } else {
+//                 return res.status(400).json({status: 400, message: "Student successfully unrolled"})
+//             } 
+//         } catch (e) {
+//             return res.status(400).json({status: 400, message: e.message});
+//         }        
+//     } else {
+//         return res.status(400).json({status: 400, message: "User does not have the required role"})
+//     }
+// }
+
 exports.getClasses = async function (req, res) {
     try {
     const Classes = await Clase.find({}
-        ).populate('calificaciones', {
-            _id: 0,
-            valor: 1
-        }
-        ).populate('comentarios', {
-            _id: 0,
-            descripcion: 1
-        }
-        )
-        // .populate('profesores', {
-        //     _id: 0,
-        //     titulo: 1,
-        //     experiencia: 1
-        // })
+        ).populate({path: 'profesor', populate: {path: 'usuario'}}
+        ).populate('calificaciones'
+        ).populate('comentarios')
     return res.status(200).json({status: 200, data: Classes, message: "Classes successfully received"});
     } catch (e) {
     return res.status(400).json({status: 400, message: e.message});
@@ -64,9 +94,11 @@ exports.getClasses = async function (req, res) {
 
 exports.getClassById = async function (req, res) {
     const identifier= {_id: ObjectId(req.params.id)}
-    console.log(identifier);
     try {
-    const Class = await Clase.findOne(identifier);
+    const Class = await Clase.findOne(identifier
+        ).populate({path: 'profesor', populate: {path: 'usuario'}}
+        ).populate('calificaciones'
+        ).populate('comentarios')
     return res.status(200).json({status: 200, data: Class, message: "Class successfully received"});
     } catch (e) {
     return res.status(400).json({status: 400, message: e.message});
@@ -76,7 +108,10 @@ exports.getClassById = async function (req, res) {
 exports.getClassByCategory = async function (req, res) {
     const class_category= {category: req.params.category}
     try {
-    const Class = await Clase.findOne(class_category);
+    const Class = await Clase.findOne(class_category
+        ).populate({path: 'profesor', populate: {path: 'usuario'}}
+        ).populate('calificaciones'
+        ).populate('comentarios')
     return res.status(200).json({status: 200, data: Class, message: "Class successfully received"});
     } catch (e) {
     return res.status(400).json({status: 400, message: e.message});
@@ -111,6 +146,23 @@ exports.removeClass = async function (req, res, next) {
     if (req.user_role == "profesor") {
         const identifier= {_id: ObjectId(req.params.id)}
         try {
+
+        const classToDelete = await Clase.findOne(identifier)
+
+        const teacher = await Profesor.findOne(classToDelete.profesor)
+        const teacher_user = await Usuario.findOne(teacher.id)
+        const indexToDelete = teacher_user.clases.indexOf(classToDelete._id)
+        teacher_user.clases.splice(indexToDelete, 1)
+        await teacher_user.save()
+
+        classToDelete.estudiantes.forEach(element => {
+            const student = Estudiante.findOne(element)
+            const student_user = Usuario.findOne(student.id)
+            const indexToDelete = student_user.clases.indexOf(classToDelete._id)
+            student_user.clases.splice(indexToDelete, 1)
+            student_user.save()
+        });
+        
         const classDeleted = await Clase.remove(identifier)
         return res.status(200).json({status: 200, data: classDeleted, message: "Class successfully deleted"})
         } catch (e) {

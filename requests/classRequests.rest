@@ -1,6 +1,6 @@
 POST http://localhost:4000/classes/
 Content-Type: application/json
-Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzN2VjYzlhNDgyNTg5YzY2NTVhMjczMCIsInJvbCI6InByb2Zlc29yIiwiZW1haWwiOiJtYXRpQGdtYWlsLmNvbSIsImlhdCI6MTY2OTI1NTMzNn0.VPQEe7qofv8Rx-fxeLm8IjkWC3zQZTSTkcdfBUNRRsU
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzN2VlOTVjODhkNzQ0ZmM0Mzk3YmQzNSIsInJvbCI6InByb2Zlc29yIiwiZW1haWwiOiJtYXRpQGdtYWlsLmNvbSIsImlhdCI6MTY2OTI2MTgyMn0.Q10FKJcQ2Og7ihr1eEuCJZVBPTgmHoS4XPkGNCT647g
 
 {
     "nombre": "Guitarra basico",
@@ -17,6 +17,9 @@ Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzN2VjYzlhNDgyNTg5
 GET http://localhost:4000/classes/
 
 #########################################
-DELETE http://localhost:4000/classes/637ed131f82641a148bb4240
+GET http://localhost:4000/classes/637ee294f2546ab21ac0ea04
+
+#########################################
+DELETE http://localhost:4000/classes/637ee22622f01fc88255a189
 Content-Type: application/json
-Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzN2VjYzlhNDgyNTg5YzY2NTVhMjczMCIsInJvbCI6InByb2Zlc29yIiwiZW1haWwiOiJtYXRpQGdtYWlsLmNvbSIsImlhdCI6MTY2OTI1NTMzNn0.VPQEe7qofv8Rx-fxeLm8IjkWC3zQZTSTkcdfBUNRRsU
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzN2VlMjA4MjJmMDFmYzg4MjU1YTE4NiIsInJvbCI6InByb2Zlc29yIiwiZW1haWwiOiJtYXRpQGdtYWlsLmNvbSIsImlhdCI6MTY2OTI1OTc4OX0.ZmGYvxm8IGmblycYrG_taCdRCFTEPPs_8KWLu9eBVJs
