@@ -28,7 +28,7 @@ exports.blockComment = async function (req, res) {
     try {
     const identifier= {_id: ObjectId(req.params.id)}
     const Comment = await Comentario.findOne(identifier);
-    Comment.bloqueado = req.body.bloqueado
+    Comment.bloqueado = true
     await Comment.save()
     return res.status(200).json({status: 200, data: Comments, message: "Comments successfully received"});
     } catch (e) {
