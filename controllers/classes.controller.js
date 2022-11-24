@@ -41,44 +41,36 @@ exports.createClass = async function (req, res) {
 
 }
 
-exports.enrollStudent = async function (req, res) {
+exports.unrollStudent = async function (req, res) {
     if (req.user_role == "profesor") {
+        try {
+            //Borra la clase de la lista de clases del alumno.
+            const student = await Estudiante.findOne({usuario: req.body.usuario})
+            const student_user = Usuario.findOne(student.id)
+            const indexToDelete = student_user.clases.indexOf(req.body.id)
+            if (indexToDelete != -1) {
+                student_user.clases.splice(indexToDelete, 1)
+                await student_user.save()
 
+                //Borra al alumno de la lista de alumnos activos de la clase.
+                const identifier= {_id: ObjectId(req.body.id)}
+                const target_class = await Clase.findOne(identifier)
+                const index = target_class.estudiantes.indexOf(student.id)
+                if (index != -1) {
+                    target_class.estudiantes.splice(index, 1)
+                    await target_class.save()
+                }
+                return res.status(200).json({status: 200, data: student_user, message: "Student successfully unrolled"});
+            } else {
+                return res.status(400).json({status: 400, message: "Student successfully unrolled"})
+            } 
+        } catch (e) {
+            return res.status(400).json({status: 400, message: e.message});
+        }        
     } else {
         return res.status(400).json({status: 400, message: "User does not have the required role"})
     }
 }
-
-// exports.unrollStudent = async function (req, res) {
-//     if (req.user_role == "profesor") {
-//         try {
-//             //Borra la clase de la lista de clases del alumno.
-//             const student = await Estudiante.findOne({usuario: req.user_identifier})
-//             const student_user = Usuario.findOne(student.id)
-//             const indexToDelete = student_user.clases.indexOf(req.body.id)
-//             if (indexToDelete != -1) {
-//                 student_user.clases.splice(indexToDelete, 1)
-//                 await student_user.save()
-
-//                 //Borra al alumno de la lista de alumnos activos de la clase.
-//                 const identifier= {_id: ObjectId(req.body.id)}
-//                 const target_class = await Clase.findOne(identifier)
-//                 const index = target_class.estudiantes.indexOf(student.id)
-//                 if (index != -1) {
-//                     target_class.estudiantes.splice(index, 1)
-//                     await target_class.save()
-//                 }
-//                 return res.status(200).json({status: 200, data: student_user, message: "Student successfully unrolled"});
-//             } else {
-//                 return res.status(400).json({status: 400, message: "Student successfully unrolled"})
-//             } 
-//         } catch (e) {
-//             return res.status(400).json({status: 400, message: e.message});
-//         }        
-//     } else {
-//         return res.status(400).json({status: 400, message: "User does not have the required role"})
-//     }
-// }
 
 exports.getClasses = async function (req, res) {
     try {

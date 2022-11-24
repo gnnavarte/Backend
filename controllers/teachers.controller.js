@@ -21,11 +21,7 @@ exports.createTeacher = async function (req, res) {
 exports.getTeachers = async function (req, res) {
     try {
     const Teachers = await Profesor.find({}
-        ).populate('usuarios',{
-            _id: 0,
-            nombre: 1,
-            apellido: 1
-        })
+        ).populate('usuario')
     return res.status(200).json({status: 200, data: Teachers, message: "Successfully received teachers"});
     } catch (e) {
     return res.status(400).json({status: 400, message: e.message});
