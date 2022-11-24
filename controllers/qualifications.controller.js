@@ -6,10 +6,10 @@ _this = this;
 
 exports.createQualification = async function (req, res) {
     try {
-    const claseCalificada = await Clase.findOne(req.body.clase)
+    const claseCalificada = await Clase.findOne(req.body.claseId)
     const nuevaCalificacion = new Calificacion({
-        clase: req.body.clase,
-        estudiante: req.user_identifier,
+        clase: claseCalificada.id,
+        usuario: req.user_identifier,
         valor: req.body.valor
     })
     const createdQualification = await nuevaCalificacion.save();

@@ -5,9 +5,9 @@ const calificacionSchema = new Schema({
         type:Schema.Types.ObjectId,
         ref:'Clase'
     },
-    estudiante:{
+    usuario:{
         type:Schema.Types.ObjectId,
-        ref:'Estudiante'
+        ref:'Usuario'
     },
     valor: Number,
 })

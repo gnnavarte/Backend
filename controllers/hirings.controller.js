@@ -8,7 +8,7 @@ _this = this;
 exports.createHiring = async function (req, res) {
     if (req.user_role == "estudiante") {
         try {
-            const identifier= {_id: ObjectId(req.params.id)}
+            const identifier= {_id: ObjectId(req.body.claseId)}
             const Class = await Clase.findOne(identifier)
     
             const nuevaContratacion = new Contratacion({
@@ -60,7 +60,7 @@ exports.getHiringById = async function (req, res) {
 exports.approveHiring = async function (req, res) {
     if (req.user_role == "profesor") {
         try {
-            const identifier= {_id: ObjectId(req.user_identifier)}
+            const identifier= {_id: ObjectId(req.body.contratacionId)}
             const oldHiring = await Contratacion.findOne(identifier);
             oldHiring.estado = "aceptada"
             await oldHiring.save()
@@ -68,13 +68,12 @@ exports.approveHiring = async function (req, res) {
             //Agrega la clase a la lista de clases del alumno.
             const student = await Estudiante.findOne({usuario: req.user_identifier})
             const student_user = Usuario.findOne(student.id)
-            if (student_user.clases.indexOf(req.body.id) != -1) {
-            student_user.clases = student_user.clases.concat(req.body.id)
+            if (student_user.clases.indexOf(oldHiring.clase) != -1) {
+            student_user.clases = student_user.clases.concat(oldHiring.clase)
             await student_user.save()
     
             //Agrega al alumno a la lista de alumnos activos de la clase.
-            const identifier= {_id: ObjectId(req.body.id)}
-            const target_class = await Clase.findOne(identifier)
+            const target_class = await Clase.findOne(oldHiring.clase)
             target_class.estudiantes = target_class.estudiantes.concat(student.id)
             await target_class.save()
     
