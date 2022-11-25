@@ -5,10 +5,10 @@ const profesorSchema = new Schema({
       type:Schema.Types.ObjectId,
       ref:'Usuario'
     },
-    contrataciones:{
+    contrataciones:[{
       type:Schema.Types.ObjectId,
       ref:'Contratacion'
-    },
+    }],
     titulo: String,
     experiencia: String,
 })

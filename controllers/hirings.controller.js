@@ -1,4 +1,5 @@
 const Contratacion = require('../models/Contratacion.model');
+const Usuario = require('../models/Usuario.model');
 const Profesor = require('../models/Profesor.model')
 const Clase = require('../models/Clase.model');
 const ObjectId = require('mongodb').ObjectId;
@@ -6,11 +7,11 @@ const ObjectId = require('mongodb').ObjectId;
 _this = this;
 
 exports.createHiring = async function (req, res) {
-    if (req.user_role == "alumno") {
-        try {
+    try {
+        if (req.user_role == "alumno") {
             const identifier= {_id: ObjectId(req.body.claseId)}
             const Class = await Clase.findOne(identifier)
-    
+
             const nuevaContratacion = new Contratacion({
             clase: Class._id,
             usuario: req.user_identifier,
@@ -22,15 +23,16 @@ exports.createHiring = async function (req, res) {
             const createdHiring = await nuevaContratacion.save();
     
             const Teacher = await Profesor.findOne(Class.profesor);
+            console.log(Teacher)
             Teacher.contrataciones = Teacher.contrataciones.concat(createdHiring._id)
-            await User.save()
+            await Teacher.save()
             return res.status(201).json({createdHiring, message: "Hiring successfully created"})
-        } catch (e) {
-        console.log(e)
-        return res.status(400).json({status: 400, message: "Hiring creation was unsuccessful"})
-        }       
-    } else {
-        return res.status(400).json({status: 400, message: "User does not have the required role"})
+        } else {
+            return res.status(400).json({status: 400, message: "User does not have the required role"})
+        }
+    } catch (e) {
+    console.log(e)
+    return res.status(400).json({status: 400, message: "Hiring creation was unsuccessful"})
     }
 }
 
@@ -58,32 +60,31 @@ exports.getHiringById = async function (req, res) {
 }
 
 exports.approveHiring = async function (req, res) {
-    if (req.user_role == "profesor") {
-        try {
+    try {
+        if (req.user_role == "profesor") {
             const identifier= {_id: ObjectId(req.body.contratacionId)}
             const oldHiring = await Contratacion.findOne(identifier);
             oldHiring.estado = "aceptada"
             await oldHiring.save()
     
             //Agrega la clase a la lista de clases del alumno.
-            const student = await Estudiante.findOne({usuario: req.user_identifier})
-            const student_user = Usuario.findOne(student.id)
+            const student_user = Usuario.findOne(oldHiring.usuario)
             if (student_user.clases.indexOf(oldHiring.clase) != -1) {
             student_user.clases = student_user.clases.concat(oldHiring.clase)
             await student_user.save()
     
             //Agrega al alumno a la lista de alumnos activos de la clase.
             const target_class = await Clase.findOne(oldHiring.clase)
-            target_class.estudiantes = target_class.estudiantes.concat(student.id)
+            target_class.estudiantes = target_class.estudiantes.concat(student_user.id)
             await target_class.save()
     
             } 
             return res.status(200).json({status: 200, data: Classes, message: "Hiring accepted, student successfully enrolled"});
-        } catch (e) {
-            return res.status(400).json({status: 400., message: e.message})
+        } else {
+            return res.status(400).json({status: 400, message: "User does not have the required role"})
         }
-    } else {
-        return res.status(400).json({status: 400, message: "User does not have the required role"})
+    } catch (e) {
+        return res.status(400).json({status: 400., message: e.message})
     }
 }
 

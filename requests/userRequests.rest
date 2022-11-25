@@ -2,14 +2,14 @@ POST http://localhost:4000/users/
 Content-Type: application/json
 
 {
-  "nombre": "Miguel Angel",
-  "apellido": "Duran",
-  "avatar": "https://octuweb.com/wp-content/uploads/miguel_angel_duran.jpg",
-  "telofono": "1120221114",
-  "email": "miguel@gmail.com",
-  "password": "miguel123",
+  "nombre": "Claudio",
+  "apellido": "Godio",
+  "avatar": "https://images.pexels.com/photos/842980/pexels-photo-842980.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+  "telofono": "1128221114",
+  "email": "claudio@gmail.com",
+  "password": "claudio123",
   "preguntaVerificacion": "¿Cual era tu apodo en la secundaria?",
-  "respuestaVerificacion": "Midu",
+  "respuestaVerificacion": "Godi",
   "rol": "profesor"
 }
 
@@ -95,6 +95,6 @@ POST http://localhost:4000/users/login
 Content-Type: application/json
 
 {
-  "email": "isadora@gmail.com",
-  "password": "isadora123"
+  "email": "claudio@gmail.com",
+  "password": "claudio123"
 }

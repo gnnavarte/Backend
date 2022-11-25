@@ -8,7 +8,8 @@ exports.createTeacher = async function (req, res) {
         const nuevoProfesor = new Profesor({
             usuario: req.user_identifier,
             titulo: req.body.titulo,
-            experiencia: req.body.experiencia,
+            contrataciones: [],
+            experiencia: req.body.experiencia
             })
         const createdTeacher = await nuevoProfesor.save();
         return res.status(201).json({createdTeacher, message: "Successfully created teacher"})
@@ -19,7 +20,8 @@ exports.createTeacher = async function (req, res) {
 
 exports.getTeachers = async function (req, res) {
     try {
-        const Teachers = await Profesor.find({}).populate('usuario')
+        const Teachers = await Profesor.find({})
+        // .populate('usuario')
         return res.status(200).json({status: 200, data: Teachers, message: "Successfully received teachers"});
     } catch (e) {
         return res.status(400).json({status: 400, message: e.message});

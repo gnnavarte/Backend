@@ -1,16 +1,16 @@
 POST http://localhost:4000/classes/
 Content-Type: application/json
-Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzODAyMjdhZGNlY2VmZDQyNzE5MDBkZCIsInJvbCI6InByb2Zlc29yIiwiZW1haWwiOiJhbmliYWxAZ21haWwuY29tIiwiaWF0IjoxNjY5MzU2NjQ4fQ.qtZrvAG4yQgEYqq7quXchJSaPOT0bvguB6WERq-Jc9Y
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzODBlM2IxMmQ1MzI0MWEwYzg5YmUxZSIsInJvbCI6InByb2Zlc29yIiwiZW1haWwiOiJjbGF1ZGlvQGdtYWlsLmNvbSIsImlhdCI6MTY2OTM5MjAwOX0.OV5Qon7pD69oCsK-NCWY1uxHRKOTbNx8uD2RkNyr_zY
 
 {
-    "nombre": "Calculo diferencial e integral: aprende desde cero",
-    "descripcion": "Conviertete en un genio del calculo matematico: Funciones, Estudio, Derivadas, Integrales… Y Mucho mas",
-    "tipo": "Individual",
+    "nombre": "Marketing Digital: Community Manager & Publicidad",
+    "descripcion": "Aprenderás cómo crear un plan de Marketing Digital, y también a utilizar las principales herramientas de gestión para negocios digitales",
+    "tipo": "Grupal",
     "categoria": "0",
     "frecuencia": "Semanal",
-    "duracion": "1.5",
-    "costo": "800",
-    "imagen": "http://img.youtube.com/vi/wuI5MFhvgsY/0.jpg"
+    "duracion": "2",
+    "costo": "1800",
+    "imagen": "https://tecreview.tec.mx/wp-content/uploads/2021/02/iStock-1222811180.jpg"
 }
 
 #########################################

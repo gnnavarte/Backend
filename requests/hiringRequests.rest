@@ -1,0 +1,23 @@
+POST http://localhost:4000/hirings
+Content-Type: application/json
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzODAzNDM2NmVkN2JkZDFkM2NjZDYzNiIsInJvbCI6ImFsdW1ubyIsImVtYWlsIjoiaXNhZG9yYUBnbWFpbC5jb20iLCJpYXQiOjE2NjkzODgwNjV9.DRvaaxffSm00hn2VrLQOyyN5g7qMy7Oo6T2cjSdjJY0
+
+{
+    "claseId": "6380e6a32d53241a0c89be26",
+    "motivo": "Quisiera lograr que mi emprendimiento sea visible por mas gente",
+    "horarioReferencia": "13-16"
+}
+
+#########################################
+
+GET http://localhost:4000/hirings
+
+#########################################
+
+PUT http://localhost:4000/hirings/approve
+Content-Type: application/json
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzODBlM2IxMmQ1MzI0MWEwYzg5YmUxZSIsInJvbCI6InByb2Zlc29yIiwiZW1haWwiOiJjbGF1ZGlvQGdtYWlsLmNvbSIsImlhdCI6MTY2OTM5Mzc3Mn0.Yo-HABMHOmcuTch2wTvGf3VnVDGTM2Gn-M7ICUistgI
+
+{
+    "contratacionId": "6380e9604caf216da4e8611b"
+}
