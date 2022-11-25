@@ -33,11 +33,8 @@
         }
       }
     },
-    "/users/registration": {
+    "/users/": {
       "post": {
-        "tags": [
-          "Usuarios"
-        ],
         "description": "",
         "parameters": [
           {
@@ -46,6 +43,9 @@
             "schema": {
               "type": "object",
               "properties": {
+                "email": {
+                  "example": "any"
+                },
                 "nombre": {
                   "example": "any"
                 },
@@ -56,9 +56,6 @@
                   "example": "any"
                 },
                 "telofono": {
-                  "example": "any"
-                },
-                "email": {
                   "example": "any"
                 },
                 "password": {
@@ -85,26 +82,10 @@
             "description": "Bad Request"
           }
         }
-      }
-    },
-    "/users/": {
+      },
       "get": {
-        "tags": [
-          "Usuarios"
-        ],
         "description": "",
-        "parameters": [
-          {
-            "name": "page",
-            "in": "query",
-            "type": "string"
-          },
-          {
-            "name": "limit",
-            "in": "query",
-            "type": "string"
-          }
-        ],
+        "parameters": [],
         "responses": {
           "200": {
             "description": "OK"
@@ -117,9 +98,6 @@
     },
     "/users/{id}": {
       "get": {
-        "tags": [
-          "Usuarios"
-        ],
         "description": "",
         "parameters": [
           {
@@ -139,9 +117,6 @@
         }
       },
       "delete": {
-        "tags": [
-          "Usuarios"
-        ],
         "description": "",
         "parameters": [
           {
@@ -161,11 +136,8 @@
         }
       }
     },
-    "/users/userByEmail/{email}": {
+    "/users/email/{email}": {
       "get": {
-        "tags": [
-          "Usuarios"
-        ],
         "description": "",
         "parameters": [
           {
@@ -185,19 +157,13 @@
         }
       }
     },
-    "/users/updateUser/{id}": {
+    "/users/update": {
       "put": {
         "tags": [
           "Usuarios"
         ],
         "description": "",
         "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "required": true,
-            "type": "string"
-          },
           {
             "name": "body",
             "in": "body",
@@ -235,33 +201,11 @@
     },
     "/users/login": {
       "post": {
-        "tags": [
-          "Usuarios"
-        ],
         "description": "",
-        "parameters": [
-          {
-            "name": "body",
-            "in": "body",
-            "schema": {
-              "type": "object",
-              "properties": {
-                "email": {
-                  "example": "any"
-                },
-                "password": {
-                  "example": "any"
-                }
-              }
-            }
-          }
-        ],
+        "parameters": [],
         "responses": {
-          "201": {
-            "description": "Created"
-          },
-          "400": {
-            "description": "Bad Request"
+          "200": {
+            "description": "OK"
           }
         }
       }
@@ -277,7 +221,7 @@
         }
       }
     },
-    "/teachers/registration": {
+    "/teachers/": {
       "post": {
         "tags": [
           "Profesores"
@@ -311,13 +255,8 @@
             "description": "Bad Request"
           }
         }
-      }
-    },
-    "/teachers/": {
+      },
       "get": {
-        "tags": [
-          "Profesores"
-        ],
         "description": "",
         "parameters": [
           {
@@ -343,9 +282,6 @@
     },
     "/teachers/{id}": {
       "get": {
-        "tags": [
-          "Profesores"
-        ],
         "description": "",
         "parameters": [
           {
@@ -365,9 +301,6 @@
         }
       },
       "delete": {
-        "tags": [
-          "Profesores"
-        ],
         "description": "",
         "parameters": [
           {
@@ -387,15 +320,12 @@
         }
       }
     },
-    "/teachers/userByEmail/{email}": {
+    "/teachers/experience/{experience}": {
       "get": {
-        "tags": [
-          "Profesores"
-        ],
         "description": "",
         "parameters": [
           {
-            "name": "email",
+            "name": "experience",
             "in": "path",
             "required": true,
             "type": "string"
@@ -432,11 +362,8 @@
         }
       }
     },
-    "/students/registration": {
+    "/students/": {
       "post": {
-        "tags": [
-          "Estudiantes"
-        ],
         "description": "",
         "parameters": [
           {
@@ -445,9 +372,6 @@
             "schema": {
               "type": "object",
               "properties": {
-                "usuario": {
-                  "example": "any"
-                },
                 "fechaNacimiento": {
                   "example": "any"
                 },
@@ -466,26 +390,10 @@
             "description": "Bad Request"
           }
         }
-      }
-    },
-    "/students/": {
+      },
       "get": {
-        "tags": [
-          "Estudiantes"
-        ],
         "description": "",
-        "parameters": [
-          {
-            "name": "page",
-            "in": "query",
-            "type": "string"
-          },
-          {
-            "name": "limit",
-            "in": "query",
-            "type": "string"
-          }
-        ],
+        "parameters": [],
         "responses": {
           "200": {
             "description": "OK"
@@ -498,9 +406,6 @@
     },
     "/students/{id}": {
       "get": {
-        "tags": [
-          "Estudiantes"
-        ],
         "description": "",
         "parameters": [
           {
@@ -520,9 +425,6 @@
         }
       },
       "delete": {
-        "tags": [
-          "Estudiantes"
-        ],
         "description": "",
         "parameters": [
           {
@@ -553,7 +455,7 @@
         }
       }
     },
-    "/classes/add": {
+    "/classes/": {
       "post": {
         "tags": [
           "Clases"
@@ -589,12 +491,6 @@
                 },
                 "imagen": {
                   "example": "any"
-                },
-                "calificaciones": {
-                  "example": "any"
-                },
-                "comentarios": {
-                  "example": "any"
                 }
               }
             }
@@ -608,26 +504,13 @@
             "description": "Bad Request"
           }
         }
-      }
-    },
-    "/classes/": {
+      },
       "get": {
         "tags": [
           "Clases"
         ],
         "description": "",
-        "parameters": [
-          {
-            "name": "page",
-            "in": "query",
-            "type": "string"
-          },
-          {
-            "name": "limit",
-            "in": "query",
-            "type": "string"
-          }
-        ],
+        "parameters": [],
         "responses": {
           "200": {
             "description": "OK"
@@ -661,10 +544,59 @@
           }
         }
       },
-      "delete": {
-        "tags": [
-          "Clases"
+      "put": {
+        "description": "",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "nombre": {
+                  "example": "any"
+                },
+                "descripcion": {
+                  "example": "any"
+                },
+                "tipo": {
+                  "example": "any"
+                },
+                "categoria": {
+                  "example": "any"
+                },
+                "frecuencia": {
+                  "example": "any"
+                },
+                "duracion": {
+                  "example": "any"
+                },
+                "costo": {
+                  "example": "any"
+                },
+                "imagen": {
+                  "example": "any"
+                }
+              }
+            }
+          }
         ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request"
+          }
+        }
+      },
+      "delete": {
         "description": "",
         "parameters": [
           {
@@ -684,7 +616,7 @@
         }
       }
     },
-    "/classes/userByEmail/{email}": {
+    "/classes/category/{category}": {
       "get": {
         "tags": [
           "Clases"
@@ -692,31 +624,7 @@
         "description": "",
         "parameters": [
           {
-            "name": "email",
-            "in": "path",
-            "required": true,
-            "type": "string"
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "OK"
-          },
-          "400": {
-            "description": "Bad Request"
-          }
-        }
-      }
-    },
-    "/classes/updateUser/{id}": {
-      "put": {
-        "tags": [
-          "Clases"
-        ],
-        "description": "",
-        "parameters": [
-          {
-            "name": "id",
+            "name": "category",
             "in": "path",
             "required": true,
             "type": "string"
@@ -743,11 +651,8 @@
         }
       }
     },
-    "/comments/registration": {
+    "/comments/": {
       "post": {
-        "tags": [
-          "Comentarios"
-        ],
         "description": "",
         "parameters": [
           {
@@ -756,13 +661,10 @@
             "schema": {
               "type": "object",
               "properties": {
-                "usuario": {
+                "claseId": {
                   "example": "any"
                 },
-                "fechaNacimiento": {
-                  "example": "any"
-                },
-                "mayorEstudioCursado": {
+                "descripcion": {
                   "example": "any"
                 }
               }
@@ -777,26 +679,10 @@
             "description": "Bad Request"
           }
         }
-      }
-    },
-    "/comments/": {
+      },
       "get": {
-        "tags": [
-          "Comentarios"
-        ],
         "description": "",
-        "parameters": [
-          {
-            "name": "page",
-            "in": "query",
-            "type": "string"
-          },
-          {
-            "name": "limit",
-            "in": "query",
-            "type": "string"
-          }
-        ],
+        "parameters": [],
         "responses": {
           "200": {
             "description": "OK"
@@ -809,9 +695,25 @@
     },
     "/comments/{id}": {
       "get": {
-        "tags": [
-          "Comentarios"
+        "description": "",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
         ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request"
+          }
+        }
+      },
+      "put": {
         "description": "",
         "parameters": [
           {
@@ -831,9 +733,6 @@
         }
       },
       "delete": {
-        "tags": [
-          "Comentarios"
-        ],
         "description": "",
         "parameters": [
           {
@@ -864,11 +763,8 @@
         }
       }
     },
-    "/qualifications/registration": {
+    "/qualifications/": {
       "post": {
-        "tags": [
-          "Calificaciones"
-        ],
         "description": "",
         "parameters": [
           {
@@ -877,13 +773,10 @@
             "schema": {
               "type": "object",
               "properties": {
-                "usuario": {
+                "claseId": {
                   "example": "any"
                 },
-                "fechaNacimiento": {
-                  "example": "any"
-                },
-                "mayorEstudioCursado": {
+                "valor": {
                   "example": "any"
                 }
               }
@@ -898,26 +791,10 @@
             "description": "Bad Request"
           }
         }
-      }
-    },
-    "/qualifications/": {
+      },
       "get": {
-        "tags": [
-          "Calificaciones"
-        ],
         "description": "",
-        "parameters": [
-          {
-            "name": "page",
-            "in": "query",
-            "type": "string"
-          },
-          {
-            "name": "limit",
-            "in": "query",
-            "type": "string"
-          }
-        ],
+        "parameters": [],
         "responses": {
           "200": {
             "description": "OK"
@@ -930,9 +807,6 @@
     },
     "/qualifications/{id}": {
       "get": {
-        "tags": [
-          "Calificaciones"
-        ],
         "description": "",
         "parameters": [
           {
@@ -952,9 +826,6 @@
         }
       },
       "delete": {
-        "tags": [
-          "Calificaciones"
-        ],
         "description": "",
         "parameters": [
           {
@@ -962,6 +833,129 @@
             "in": "path",
             "required": true,
             "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request"
+          }
+        }
+      }
+    },
+    "/hirings/test": {
+      "get": {
+        "description": "",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/hirings/": {
+      "post": {
+        "description": "",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "claseId": {
+                  "example": "any"
+                },
+                "motivo": {
+                  "example": "any"
+                },
+                "horarioReferencia": {
+                  "example": "any"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Created"
+          },
+          "400": {
+            "description": "Bad Request"
+          }
+        }
+      },
+      "get": {
+        "description": "",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request"
+          }
+        }
+      }
+    },
+    "/hirings/{id}": {
+      "get": {
+        "description": "",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request"
+          }
+        }
+      },
+      "delete": {
+        "description": "",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request"
+          }
+        }
+      }
+    },
+    "/hirings/approve": {
+      "put": {
+        "description": "",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "contratacionId": {
+                  "example": "any"
+                }
+              }
+            }
           }
         ],
         "responses": {

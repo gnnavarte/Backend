@@ -5,17 +5,6 @@ const ObjectId = require('mongodb').ObjectId;
 _this = this;
 
 exports.createQualification = async function (req, res) {
-<<<<<<< HEAD
-    // #swagger.tags = ['Calificaciones'];
-	// #swagger.description = ''
-    const nuevaCalificacion = new Calificacion({
-    usuario: req.body.usuario,
-    fechaNacimiento: req.body.fechaNacimiento,
-    mayorEstudioCursado: req.body.mayorEstudioCursado,
-    mayorEstudioFinalizado: req.body.mayorEstudioCursado,
-    })
-=======
->>>>>>> 66285bbd7ad875069001a82de8b4fb3e9232035b
     try {
         const claseCalificada = await Clase.findOne(req.body.claseId)
         const nuevaCalificacion = new Calificacion({
@@ -33,17 +22,6 @@ exports.createQualification = async function (req, res) {
 }
 
 exports.getQualifications = async function (req, res) {
-<<<<<<< HEAD
-    // #swagger.tags = ['Calificaciones'];
-	// #swagger.description = ''
-    const page = req.query.page ? req.query.page : 1
-    const limit = req.query.limit ? req.query.limit : 10;
-    var options = {
-        page,
-        limit
-    }
-=======
->>>>>>> 66285bbd7ad875069001a82de8b4fb3e9232035b
     try {
         const Qualifications = await Calificacion.find({}
             ).populate('clase'
@@ -55,13 +33,6 @@ exports.getQualifications = async function (req, res) {
 }
 
 exports.getQualificationById = async function (req, res) {
-<<<<<<< HEAD
-    // #swagger.tags = ['Calificaciones'];
-	// #swagger.description = ''
-    const identifier= {_id: ObjectId(req.params.id)}
-    console.log(identifier);
-=======
->>>>>>> 66285bbd7ad875069001a82de8b4fb3e9232035b
     try {
         const identifier= {_id: ObjectId(req.params.id)}
         const Qualification = await Calificacion.findOne(identifier
@@ -74,12 +45,6 @@ exports.getQualificationById = async function (req, res) {
 }
 
 exports.removeQualification = async function (req, res) {
-<<<<<<< HEAD
-    // #swagger.tags = ['Calificaciones'];
-	// #swagger.description = ''
-    const identifier= {_id: ObjectId(req.params.id)}
-=======
->>>>>>> 66285bbd7ad875069001a82de8b4fb3e9232035b
     try {
         const identifier= {_id: ObjectId(req.params.id)}
         const qualificationToDelete = await findOne(identifier)

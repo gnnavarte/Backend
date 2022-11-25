@@ -6,17 +6,6 @@ const ObjectId = require('mongodb').ObjectId;
 _this = this;
 
 exports.createComment = async function (req, res) {
-<<<<<<< HEAD
-    // #swagger.tags = ['Comentarios'];
-	// #swagger.description = ''
-    const nuevoComentario = new Comentario({
-    usuario: req.body.usuario,
-    fechaNacimiento: req.body.fechaNacimiento,
-    mayorEstudioCursado: req.body.mayorEstudioCursado,
-    mayorEstudioFinalizado: req.body.mayorEstudioCursado,
-    })
-=======
->>>>>>> 66285bbd7ad875069001a82de8b4fb3e9232035b
     try {
         const claseComentada = await Clase.findOne(req.body.claseId)
         const nuevoComentario = new Comentario({
@@ -47,17 +36,6 @@ exports.blockComment = async function (req, res) {
 }
 
 exports.getComments = async function (req, res) {
-<<<<<<< HEAD
-    // #swagger.tags = ['Comentarios'];
-	// #swagger.description = ''
-    const page = req.query.page ? req.query.page : 1
-    const limit = req.query.limit ? req.query.limit : 10;
-    var options = {
-        page,
-        limit
-    }
-=======
->>>>>>> 66285bbd7ad875069001a82de8b4fb3e9232035b
     try {
         const Comments = await Comentario.find({}
             ).populate('clase'
@@ -69,13 +47,6 @@ exports.getComments = async function (req, res) {
 }
 
 exports.getCommentById = async function (req, res) {
-<<<<<<< HEAD
-    // #swagger.tags = ['Comentarios'];
-	// #swagger.description = ''
-    const identifier= {_id: ObjectId(req.params.id)}
-    console.log(identifier);
-=======
->>>>>>> 66285bbd7ad875069001a82de8b4fb3e9232035b
     try {
         const identifier= {_id: ObjectId(req.params.id)}
         const Comment = await Comentario.findOne(identifier
@@ -88,12 +59,6 @@ exports.getCommentById = async function (req, res) {
 }
 
 exports.removeComment = async function (req, res) {
-<<<<<<< HEAD
-    // #swagger.tags = ['Comentarios'];
-	// #swagger.description = ''
-    const identifier= {_id: ObjectId(req.params.id)}
-=======
->>>>>>> 66285bbd7ad875069001a82de8b4fb3e9232035b
     try {
         const identifier= {_id: ObjectId(req.params.id)}
         const commentToDelete = await findOne(identifier)
