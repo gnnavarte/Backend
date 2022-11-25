@@ -9,7 +9,7 @@ router.get('/test', function(req, res) {
 router.post('/',Authorization , CommentController.createComment)
 router.get('/', CommentController.getComments)
 router.get('/:id', CommentController.getCommentById)
-// router.put('/:id',Authorization , CommentController.blockComment)
+router.put('/:id',Authorization , CommentController.blockComment)
 router.delete('/:id',Authorization , CommentController.removeComment)
 
 module.exports = router;
