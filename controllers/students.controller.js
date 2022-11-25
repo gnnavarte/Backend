@@ -4,6 +4,8 @@ const ObjectId = require('mongodb').ObjectId;
 _this = this;
 
 exports.createStudent = async function (req, res) {
+    // #swagger.tags = ['Estudiantes'];
+    // #swagger.description = ''
     try {
         const nuevoEstudiante = new Estudiante({
             usuario: req.user_identifier,
@@ -19,6 +21,8 @@ exports.createStudent = async function (req, res) {
 }
 
 exports.getStudents = async function (req, res) {
+    // #swagger.tags = ['Estudiantes'];
+    // #swagger.description = ''
     try {
         const Students = await Estudiante.find({}).populate('usuario')
         return res.status(200).json({status: 200, data: Students, message: "Students successfully received"});
@@ -28,6 +32,8 @@ exports.getStudents = async function (req, res) {
 }
 
 exports.getStudentById = async function (req, res) {
+    // #swagger.tags = ['Estudiantes'];
+    // #swagger.description = ''
     try {
         const identifier= {_id: ObjectId(req.params.id)}
         const Student = await Estudiante.findOne(identifier).populate('usuario');
@@ -38,6 +44,8 @@ exports.getStudentById = async function (req, res) {
 }
 
 exports.removeStudent = async function (req, res) {
+    // #swagger.tags = ['Estudiantes'];
+    // #swagger.description = ''
     try {
         const identifier= {_id: ObjectId(req.params.id)}
         const studentDeleted = await Estudiante.remove(identifier)

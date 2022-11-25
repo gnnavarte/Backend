@@ -35,6 +35,9 @@
     },
     "/users/": {
       "post": {
+        "tags": [
+          "Usuarios"
+        ],
         "description": "",
         "parameters": [
           {
@@ -84,6 +87,9 @@
         }
       },
       "get": {
+        "tags": [
+          "Usuarios"
+        ],
         "description": "",
         "parameters": [],
         "responses": {
@@ -98,6 +104,9 @@
     },
     "/users/{id}": {
       "get": {
+        "tags": [
+          "Usuarios"
+        ],
         "description": "",
         "parameters": [
           {
@@ -117,6 +126,9 @@
         }
       },
       "delete": {
+        "tags": [
+          "Usuarios"
+        ],
         "description": "",
         "parameters": [
           {
@@ -138,6 +150,9 @@
     },
     "/users/email/{email}": {
       "get": {
+        "tags": [
+          "Usuarios"
+        ],
         "description": "",
         "parameters": [
           {
@@ -159,6 +174,9 @@
     },
     "/users/update": {
       "put": {
+        "tags": [
+          "Usuarios"
+        ],
         "description": "",
         "parameters": [
           {
@@ -198,6 +216,9 @@
     },
     "/users/login": {
       "post": {
+        "tags": [
+          "Usuarios"
+        ],
         "description": "",
         "parameters": [],
         "responses": {
@@ -220,6 +241,9 @@
     },
     "/teachers/": {
       "post": {
+        "tags": [
+          "Profesores"
+        ],
         "description": "",
         "parameters": [
           {
@@ -248,6 +272,9 @@
         }
       },
       "get": {
+        "tags": [
+          "Profesores"
+        ],
         "description": "",
         "parameters": [],
         "responses": {
@@ -262,6 +289,9 @@
     },
     "/teachers/{id}": {
       "get": {
+        "tags": [
+          "Profesores"
+        ],
         "description": "",
         "parameters": [
           {
@@ -281,6 +311,9 @@
         }
       },
       "delete": {
+        "tags": [
+          "Profesores"
+        ],
         "description": "",
         "parameters": [
           {
@@ -302,6 +335,9 @@
     },
     "/teachers/experience/{experience}": {
       "get": {
+        "tags": [
+          "Profesores"
+        ],
         "description": "",
         "parameters": [
           {
@@ -334,6 +370,9 @@
     },
     "/students/": {
       "post": {
+        "tags": [
+          "Estudiantes"
+        ],
         "description": "",
         "parameters": [
           {
@@ -365,6 +404,9 @@
         }
       },
       "get": {
+        "tags": [
+          "Estudiantes"
+        ],
         "description": "",
         "parameters": [],
         "responses": {
@@ -379,6 +421,9 @@
     },
     "/students/{id}": {
       "get": {
+        "tags": [
+          "Estudiantes"
+        ],
         "description": "",
         "parameters": [
           {
@@ -398,6 +443,9 @@
         }
       },
       "delete": {
+        "tags": [
+          "Estudiantes"
+        ],
         "description": "",
         "parameters": [
           {
@@ -430,6 +478,9 @@
     },
     "/classes/": {
       "post": {
+        "tags": [
+          "Clases"
+        ],
         "description": "",
         "parameters": [
           {
@@ -476,6 +527,9 @@
         }
       },
       "get": {
+        "tags": [
+          "Clases"
+        ],
         "description": "",
         "parameters": [],
         "responses": {
@@ -490,6 +544,9 @@
     },
     "/classes/{id}": {
       "get": {
+        "tags": [
+          "Clases"
+        ],
         "description": "",
         "parameters": [
           {
@@ -509,6 +566,9 @@
         }
       },
       "put": {
+        "tags": [
+          "Clases"
+        ],
         "description": "",
         "parameters": [
           {
@@ -561,6 +621,9 @@
         }
       },
       "delete": {
+        "tags": [
+          "Clases"
+        ],
         "description": "",
         "parameters": [
           {
@@ -582,6 +645,9 @@
     },
     "/classes/category/{category}": {
       "get": {
+        "tags": [
+          "Clases"
+        ],
         "description": "",
         "parameters": [
           {
@@ -614,6 +680,9 @@
     },
     "/comments/": {
       "post": {
+        "tags": [
+          "Comentarios"
+        ],
         "description": "",
         "parameters": [
           {
@@ -642,6 +711,9 @@
         }
       },
       "get": {
+        "tags": [
+          "Comentarios"
+        ],
         "description": "",
         "parameters": [],
         "responses": {
@@ -656,6 +728,9 @@
     },
     "/comments/{id}": {
       "get": {
+        "tags": [
+          "Comentarios"
+        ],
         "description": "",
         "parameters": [
           {
@@ -675,6 +750,9 @@
         }
       },
       "put": {
+        "tags": [
+          "Comentarios"
+        ],
         "description": "",
         "parameters": [
           {
@@ -694,6 +772,9 @@
         }
       },
       "delete": {
+        "tags": [
+          "Comentarios"
+        ],
         "description": "",
         "parameters": [
           {
@@ -726,6 +807,9 @@
     },
     "/qualifications/": {
       "post": {
+        "tags": [
+          "Calificaciones"
+        ],
         "description": "",
         "parameters": [
           {
@@ -754,6 +838,9 @@
         }
       },
       "get": {
+        "tags": [
+          "Calificaciones"
+        ],
         "description": "",
         "parameters": [],
         "responses": {
@@ -768,6 +855,9 @@
     },
     "/qualifications/{id}": {
       "get": {
+        "tags": [
+          "Calificaciones"
+        ],
         "description": "",
         "parameters": [
           {
@@ -787,6 +877,9 @@
         }
       },
       "delete": {
+        "tags": [
+          "Calificaciones"
+        ],
         "description": "",
         "parameters": [
           {
@@ -819,6 +912,9 @@
     },
     "/hirings/": {
       "post": {
+        "tags": [
+          "Contrataciones"
+        ],
         "description": "",
         "parameters": [
           {
@@ -850,6 +946,9 @@
         }
       },
       "get": {
+        "tags": [
+          "Contrataciones"
+        ],
         "description": "",
         "parameters": [],
         "responses": {
@@ -864,6 +963,9 @@
     },
     "/hirings/{id}": {
       "get": {
+        "tags": [
+          "Contrataciones"
+        ],
         "description": "",
         "parameters": [
           {
@@ -883,6 +985,9 @@
         }
       },
       "delete": {
+        "tags": [
+          "Contrataciones"
+        ],
         "description": "",
         "parameters": [
           {
@@ -904,6 +1009,9 @@
     },
     "/hirings/approve": {
       "put": {
+        "tags": [
+          "Contrataciones"
+        ],
         "description": "",
         "parameters": [
           {

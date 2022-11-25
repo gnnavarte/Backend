@@ -6,6 +6,8 @@ const ObjectId = require('mongodb').ObjectId;
 _this = this;
 
 exports.createComment = async function (req, res) {
+    // #swagger.tags = ['Comentarios'];
+    // #swagger.description = ''
     try {
         const identifier= {_id: ObjectId(req.body.claseId)}
         const claseComentada = await Clase.findOne(identifier)
@@ -25,6 +27,8 @@ exports.createComment = async function (req, res) {
 }
 
 exports.blockComment = async function (req, res) {
+    // #swagger.tags = ['Comentarios'];
+    // #swagger.description = ''
     try {
         const identifier= {_id: ObjectId(req.params.id)}
         const Comment = await Comentario.findOne(identifier);
@@ -37,6 +41,8 @@ exports.blockComment = async function (req, res) {
 }
 
 exports.getComments = async function (req, res) {
+    // #swagger.tags = ['Comentarios'];
+    // #swagger.description = ''
     try {
         const Comments = await Comentario.find({}
             ).populate('clase'
@@ -48,6 +54,8 @@ exports.getComments = async function (req, res) {
 }
 
 exports.getCommentById = async function (req, res) {
+    // #swagger.tags = ['Comentarios'];
+    // #swagger.description = ''
     try {
         const identifier= {_id: ObjectId(req.params.id)}
         const Comment = await Comentario.findOne(identifier
@@ -60,6 +68,8 @@ exports.getCommentById = async function (req, res) {
 }
 
 exports.removeComment = async function (req, res) {
+    // #swagger.tags = ['Comentarios'];
+    // #swagger.description = ''
     try {
         const identifier= {_id: ObjectId(req.params.id)}
         const commentToDelete = await findOne(identifier)

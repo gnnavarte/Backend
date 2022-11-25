@@ -4,6 +4,8 @@ const ObjectId = require('mongodb').ObjectId;
 _this = this;
 
 exports.createTeacher = async function (req, res) {
+    // #swagger.tags = ['Profesores'];
+    // #swagger.description = ''
     try {
         const nuevoProfesor = new Profesor({
             usuario: req.user_identifier,
@@ -19,6 +21,8 @@ exports.createTeacher = async function (req, res) {
 }
 
 exports.getTeachers = async function (req, res) {
+    // #swagger.tags = ['Profesores'];
+    // #swagger.description = ''
     try {
         const Teachers = await Profesor.find({})
         // .populate('usuario')
@@ -29,6 +33,8 @@ exports.getTeachers = async function (req, res) {
 }
 
 exports.getTeacherById = async function (req, res) {
+    // #swagger.tags = ['Profesores'];
+    // #swagger.description = ''
     try {
         const identifier= {_id: ObjectId(req.params.id)}
         const Teacher = await Profesor.findOne(identifier);
@@ -39,6 +45,8 @@ exports.getTeacherById = async function (req, res) {
 }
 
 exports.getTeachersByExp = async function (req, res) {
+    // #swagger.tags = ['Profesores'];
+    // #swagger.description = ''
     try {
         const teacher_experience= {experiencia: req.params.exp}
         const Teachers = await Profesor.find(teacher_experience).populate('usuarios')
@@ -49,6 +57,8 @@ exports.getTeachersByExp = async function (req, res) {
 }
 
 exports.removeTeacher = async function (req, res) {
+    // #swagger.tags = ['Profesores'];
+    // #swagger.description = ''
     try {
         const identifier= {_id: ObjectId(req.params.id)}
         const teacherDeleted = await Usuario.remove(identifier)
