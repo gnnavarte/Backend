@@ -7,7 +7,7 @@ _this = this;
 
 exports.createComment = async function (req, res) {
     // #swagger.tags = ['Comentarios'];
-    // #swagger.description = ''
+    // #swagger.description = 'Crea un nuevo comentario'
     try {
         const identifier= {_id: ObjectId(req.body.claseId)}
         const claseComentada = await Clase.findOne(identifier)
@@ -28,7 +28,7 @@ exports.createComment = async function (req, res) {
 
 exports.blockComment = async function (req, res) {
     // #swagger.tags = ['Comentarios'];
-    // #swagger.description = ''
+    // #swagger.description = 'Establece un comentario como bloqueado'
     try {
         const identifier= {_id: ObjectId(req.params.id)}
         const Comment = await Comentario.findOne(identifier);
@@ -42,7 +42,7 @@ exports.blockComment = async function (req, res) {
 
 exports.getComments = async function (req, res) {
     // #swagger.tags = ['Comentarios'];
-    // #swagger.description = ''
+    // #swagger.description = 'Consulta todos los comentarios'
     try {
         const Comments = await Comentario.find({}
             ).populate('clase'
@@ -55,7 +55,7 @@ exports.getComments = async function (req, res) {
 
 exports.getCommentById = async function (req, res) {
     // #swagger.tags = ['Comentarios'];
-    // #swagger.description = ''
+    // #swagger.description = 'Consulta un comentario por su id'
     try {
         const identifier= {_id: ObjectId(req.params.id)}
         const Comment = await Comentario.findOne(identifier
@@ -69,7 +69,7 @@ exports.getCommentById = async function (req, res) {
 
 exports.removeComment = async function (req, res) {
     // #swagger.tags = ['Comentarios'];
-    // #swagger.description = ''
+    // #swagger.description = 'Elimina un comentario'
     try {
         const identifier= {_id: ObjectId(req.params.id)}
         const commentToDelete = await findOne(identifier)

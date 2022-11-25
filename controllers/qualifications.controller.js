@@ -6,7 +6,7 @@ _this = this;
 
 exports.createQualification = async function (req, res) {
     // #swagger.tags = ['Calificaciones'];
-    // #swagger.description = ''
+    // #swagger.description = 'Crea una nueva calificación'
     try {
         const claseCalificada = await Clase.findOne(req.body.claseId)
         const nuevaCalificacion = new Calificacion({
@@ -25,7 +25,7 @@ exports.createQualification = async function (req, res) {
 
 exports.getQualifications = async function (req, res) {
     // #swagger.tags = ['Calificaciones'];
-    // #swagger.description = ''
+    // #swagger.description = 'Consulta todas las calificaciones'
     try {
         const Qualifications = await Calificacion.find({}
             ).populate('clase'
@@ -38,7 +38,7 @@ exports.getQualifications = async function (req, res) {
 
 exports.getQualificationById = async function (req, res) {
     // #swagger.tags = ['Calificaciones'];
-    // #swagger.description = ''
+    // #swagger.description = 'Consulta una calificación por su id'
     try {
         const identifier= {_id: ObjectId(req.params.id)}
         const Qualification = await Calificacion.findOne(identifier
@@ -52,7 +52,7 @@ exports.getQualificationById = async function (req, res) {
 
 exports.removeQualification = async function (req, res) {
     // #swagger.tags = ['Calificaciones'];
-    // #swagger.description = ''
+    // #swagger.description = 'Elimina las calificaciones'
     try {
         const identifier= {_id: ObjectId(req.params.id)}
         const qualificationToDelete = await findOne(identifier)
