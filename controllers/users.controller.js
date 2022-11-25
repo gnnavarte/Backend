@@ -22,9 +22,8 @@ exports.createUser = async function (req, res) {
                 rol: req.body.rol,
                 clases: []
                 })
-                const createdUser = await nuevoUsuario.save();
-                console.log(createdUser)
-                return res.status(201).json({createdUser, message: "User successfully created"})
+            const createdUser = await nuevoUsuario.save();
+            return res.status(201).json({createdUser, message: "User successfully created"})
         } else {
             return res.status(400).json({status: 400, message: "User creation was unsuccessful, the entered email already exists"})
         }

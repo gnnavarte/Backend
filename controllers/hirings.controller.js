@@ -6,7 +6,7 @@ const ObjectId = require('mongodb').ObjectId;
 _this = this;
 
 exports.createHiring = async function (req, res) {
-    if (req.user_role == "estudiante") {
+    if (req.user_role == "alumno") {
         try {
             const identifier= {_id: ObjectId(req.body.claseId)}
             const Class = await Clase.findOne(identifier)

@@ -13,17 +13,17 @@ exports.createClass = async function (req, res) {
         if (req.user_role == "profesor") {
             const teacher = await Profesor.findOne({usuario: req.user_identifier})
             const nuevaClase = new Clase({
-            nombre: req.body.nombre,
-            descripcion: req.body.descripcion,
-            tipo: req.body.tipo,
-            categoria: req.body.categoria,
-            frecuencia: req.body.frecuencia,
-            duracion: req.body.duracion,
-            costo: req.body.costo,
-            imagen: req.body.imagen,
-            calificaciones: [],
-            comentarios: [],
-            profesor: teacher.id
+                nombre: req.body.nombre,
+                descripcion: req.body.descripcion,
+                tipo: req.body.tipo,
+                categoria: req.body.categoria,
+                frecuencia: req.body.frecuencia,
+                duracion: req.body.duracion,
+                costo: req.body.costo,
+                imagen: req.body.imagen,
+                calificaciones: [],
+                comentarios: [],
+                profesor: teacher.id
             })
             const createdClass = await nuevaClase.save();
 
