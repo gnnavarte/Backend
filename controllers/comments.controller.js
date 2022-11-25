@@ -4,6 +4,8 @@ const ObjectId = require('mongodb').ObjectId;
 _this = this;
 
 exports.createComment = async function (req, res) {
+    // #swagger.tags = ['Comentarios'];
+	// #swagger.description = ''
     const nuevoComentario = new Comentario({
     usuario: req.body.usuario,
     fechaNacimiento: req.body.fechaNacimiento,
@@ -20,7 +22,8 @@ exports.createComment = async function (req, res) {
 }
 
 exports.getComments = async function (req, res) {
-
+    // #swagger.tags = ['Comentarios'];
+	// #swagger.description = ''
     const page = req.query.page ? req.query.page : 1
     const limit = req.query.limit ? req.query.limit : 10;
     var options = {
@@ -36,6 +39,8 @@ exports.getComments = async function (req, res) {
 }
 
 exports.getCommentById = async function (req, res) {
+    // #swagger.tags = ['Comentarios'];
+	// #swagger.description = ''
     const identifier= {_id: ObjectId(req.params.id)}
     console.log(identifier);
     try {
@@ -47,6 +52,8 @@ exports.getCommentById = async function (req, res) {
 }
 
 exports.removeComment = async function (req, res) {
+    // #swagger.tags = ['Comentarios'];
+	// #swagger.description = ''
     const identifier= {_id: ObjectId(req.params.id)}
     try {
     const commentDeleted = await Comentario.remove(identifier)

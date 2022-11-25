@@ -4,6 +4,8 @@ const ObjectId = require('mongodb').ObjectId;
 _this = this;
 
 exports.createQualification = async function (req, res) {
+    // #swagger.tags = ['Calificaciones'];
+	// #swagger.description = ''
     const nuevaCalificacion = new Calificacion({
     usuario: req.body.usuario,
     fechaNacimiento: req.body.fechaNacimiento,
@@ -20,7 +22,8 @@ exports.createQualification = async function (req, res) {
 }
 
 exports.getQualifications = async function (req, res) {
-
+    // #swagger.tags = ['Calificaciones'];
+	// #swagger.description = ''
     const page = req.query.page ? req.query.page : 1
     const limit = req.query.limit ? req.query.limit : 10;
     var options = {
@@ -36,6 +39,8 @@ exports.getQualifications = async function (req, res) {
 }
 
 exports.getQualificationById = async function (req, res) {
+    // #swagger.tags = ['Calificaciones'];
+	// #swagger.description = ''
     const identifier= {_id: ObjectId(req.params.id)}
     console.log(identifier);
     try {
@@ -47,6 +52,8 @@ exports.getQualificationById = async function (req, res) {
 }
 
 exports.removeQualification = async function (req, res) {
+    // #swagger.tags = ['Calificaciones'];
+	// #swagger.description = ''
     const identifier= {_id: ObjectId(req.params.id)}
     try {
     const qualificationDeleted = await Calificacion.remove(identifier)

@@ -4,6 +4,8 @@ const ObjectId = require('mongodb').ObjectId;
 _this = this;
 
 exports.createStudent = async function (req, res) {
+    // #swagger.tags = ['Estudiantes'];
+	// #swagger.description = ''
     const nuevoEstudiante = new Estudiante({
     usuario: req.body.usuario,
     fechaNacimiento: req.body.fechaNacimiento,
@@ -20,7 +22,8 @@ exports.createStudent = async function (req, res) {
 }
 
 exports.getStudents = async function (req, res) {
-
+    // #swagger.tags = ['Estudiantes'];
+	// #swagger.description = ''
     const page = req.query.page ? req.query.page : 1
     const limit = req.query.limit ? req.query.limit : 10;
     var options = {
@@ -36,6 +39,8 @@ exports.getStudents = async function (req, res) {
 }
 
 exports.getStudentById = async function (req, res) {
+    // #swagger.tags = ['Estudiantes'];
+	// #swagger.description = ''
     const identifier= {_id: ObjectId(req.params.id)}
     console.log(identifier);
     try {
@@ -47,6 +52,8 @@ exports.getStudentById = async function (req, res) {
 }
 
 exports.removeStudent = async function (req, res) {
+    // #swagger.tags = ['Estudiantes'];
+	// #swagger.description = ''
     const identifier= {_id: ObjectId(req.params.id)}
     try {
     const studentDeleted = await Estudiante.remove(identifier)

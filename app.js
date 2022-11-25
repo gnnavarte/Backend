@@ -4,6 +4,11 @@ const cookieParser = require('cookie-parser');
 const bluebird = require('bluebird');
 const cors = require('cors');
 
+// Swagger needs
+const swaggerUi = require('swagger-ui-express')
+const swaggerFile = require('./swagger.json');
+const basicAuth = require('express-basic-auth');
+
 //instancio el servidor
 const app = express();
 
@@ -23,16 +28,31 @@ const classRouter = require('./routes/classes.route');
 const commentRouter = require('./routes/comments.route');
 const qualificationRouter = require('./routes/qualifications.route');
 
+/****************
+ * SWAGGER
+ ****************/
+var swaggerUiOptions = {
+	explorer: false,
+	operationsSorter: 'alpha',
+}
+
+// Swagger basic Auth 
+app.use('/docs', basicAuth({
+	users: {
+		'admin': 'admin'
+	},
+	challenge: true,
+}), swaggerUi.serve, swaggerUi.setup(swaggerFile, swaggerUiOptions));
+
 //Indico las rutas de los endpoint
 app.use('/', indexRouter);
 app.use('/users', userRouter);
-/*
 app.use('/teachers', teacherRouter);
 app.use('/students', studentRouter);
 app.use('/classes', classRouter);
 app.use('/comments', commentRouter);
 app.use('/qualifications', qualificationRouter);
-*/
+
 
 if (process.env.NODE_ENV === 'Development') {
   require('./config').config();

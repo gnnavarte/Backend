@@ -4,6 +4,8 @@ const ObjectId = require('mongodb').ObjectId;
 _this = this;
 
 exports.createClass = async function (req, res) {
+    // #swagger.tags = ['Clases'];
+	// #swagger.description = ''
     console.log("llegue al controller",req.body)
     const nuevaClase = new Clase({
     nombre: req.body.nombre,
@@ -27,7 +29,8 @@ exports.createClass = async function (req, res) {
 }
 
 exports.getClasses = async function (req, res) {
-
+    // #swagger.tags = ['Clases'];
+	// #swagger.description = ''
     const page = req.query.page ? req.query.page : 1
     const limit = req.query.limit ? req.query.limit : 10;
     var options = {
@@ -43,6 +46,8 @@ exports.getClasses = async function (req, res) {
 }
 
 exports.getClassById = async function (req, res) {
+    // #swagger.tags = ['Clases'];
+	// #swagger.description = ''
     const identifier= {_id: ObjectId(req.params.id)}
     console.log(identifier);
     try {
@@ -54,6 +59,8 @@ exports.getClassById = async function (req, res) {
 }
 
 exports.getClassByCategory = async function (req, res) {
+    // #swagger.tags = ['Clases'];
+	// #swagger.description = ''
     const user_email= {email: req.params.email}
     console.log(email);
     try {
@@ -65,7 +72,8 @@ exports.getClassByCategory = async function (req, res) {
 }
 
 exports.updateClass = async function (req, res) {
-
+    // #swagger.tags = ['Clases'];
+	// #swagger.description = ''    
     const identifier= {_id: ObjectId(req.params.id)}
     console.log(identifier)
     try {
@@ -99,6 +107,8 @@ exports.updateClass = async function (req, res) {
 }
 
 exports.removeClass = async function (req, res, next) {
+    // #swagger.tags = ['Clases'];
+	// #swagger.description = ''
     const identifier= {_id: ObjectId(req.params.id)}
     try {
     const classDeleted = await Clase.remove(identifier)

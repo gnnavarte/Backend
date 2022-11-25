@@ -6,6 +6,8 @@ const jwt = require('jsonwebtoken');
 _this = this;
 
 exports.createUser = async function (req, res) {
+    // #swagger.tags = ['Usuarios'];
+	// #swagger.description = ''
     console.log("llegue al controller",req.body)
     const nuevoUsuario = new Usuario({
     nombre: req.body.nombre,
@@ -30,6 +32,8 @@ exports.createUser = async function (req, res) {
 }
 
 exports.getUsers = async function (req, res) {
+    // #swagger.tags = ['Usuarios'];
+	// #swagger.description = ''
     const page = req.query.page ? req.query.page : 1
     const limit = req.query.limit ? req.query.limit : 10;
     var options = {
@@ -45,6 +49,8 @@ exports.getUsers = async function (req, res) {
 }
 
 exports.getUserById = async function (req, res) {
+    // #swagger.tags = ['Usuarios'];
+	// #swagger.description = ''
     const identifier= {_id: ObjectId(req.params.id)}
     console.log(identifier);
     try {
@@ -56,6 +62,8 @@ exports.getUserById = async function (req, res) {
 }
 
 exports.getUserByEmail = async function (req, res) {
+    // #swagger.tags = ['Usuarios'];
+	// #swagger.description = ''
     const user_email= {email: req.params.email}
     console.log(email);
     try {
@@ -67,6 +75,8 @@ exports.getUserByEmail = async function (req, res) {
 }
 
 exports.updateUser = async function (req, res) {
+    // #swagger.tags = ['Usuarios'];
+	// #swagger.description = ''
     try {
         const identifier= {_id: ObjectId(req.params.id)}
         var oldUser = await Usuario.findOne(identifier);
@@ -84,6 +94,8 @@ exports.updateUser = async function (req, res) {
 }
 
 exports.removeUser = async function (req, res, next) {
+    // #swagger.tags = ['Usuarios'];
+	// #swagger.description = ''
     const identifier= {_id: ObjectId(req.params.id)}
     try {
     const userDeleted = await Usuario.remove(identifier)
@@ -94,6 +106,8 @@ exports.removeUser = async function (req, res, next) {
 }
 
 exports.loginUser = async function (req, res) {
+    // #swagger.tags = ['Usuarios'];
+	// #swagger.description = ''
     const user_email= {email: req.body.email}
     const user_password= req.body.password
     try {

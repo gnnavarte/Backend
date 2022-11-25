@@ -4,6 +4,8 @@ const ObjectId = require('mongodb').ObjectId;
 _this = this;
 
 exports.createTeacher = async function (req, res) {
+    // #swagger.tags = ['Profesores'];
+	// #swagger.description = ''
     const nuevoProfesor = new Profesor({
     usuario: req.body.usuario,
     titulo: req.body.titulo,
@@ -19,7 +21,8 @@ exports.createTeacher = async function (req, res) {
 }
 
 exports.getTeachers = async function (req, res) {
-
+    // #swagger.tags = ['Profesores'];
+	// #swagger.description = ''
     const page = req.query.page ? req.query.page : 1
     const limit = req.query.limit ? req.query.limit : 10;
     var options = {
@@ -35,6 +38,8 @@ exports.getTeachers = async function (req, res) {
 }
 
 exports.getTeacherById = async function (req, res) {
+    // #swagger.tags = ['Profesores'];
+	// #swagger.description = ''
     const identifier= {_id: ObjectId(req.params.id)}
     console.log(identifier);
     try {
@@ -46,6 +51,8 @@ exports.getTeacherById = async function (req, res) {
 }
 
 exports.getTeachersByExp = async function (req, res) {
+    // #swagger.tags = ['Profesores'];
+	// #swagger.description = ''
     const teacher_experience= {experiencia: req.params.exp}
     const page = req.query.page ? req.query.page : 1
     const limit = req.query.limit ? req.query.limit : 10;
@@ -62,6 +69,8 @@ exports.getTeachersByExp = async function (req, res) {
 }
 
 exports.removeTeacher = async function (req, res) {
+    // #swagger.tags = ['Profesores'];
+	// #swagger.description = ''
     const identifier= {_id: ObjectId(req.params.id)}
     try {
     const teacherDeleted = await Usuario.remove(identifier)
