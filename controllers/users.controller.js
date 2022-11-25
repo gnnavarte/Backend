@@ -6,6 +6,8 @@ require('dotenv').config()
 _this = this;
 
 exports.createUser = async function (req, res) {
+    // #swagger.tags = ['Usuarios'];
+    // #swagger.description = ''
     try {
         const user_email= {email: req.body.email}
         const User = await Usuario.findOne(user_email);
@@ -33,6 +35,8 @@ exports.createUser = async function (req, res) {
 }
 
 exports.getUsers = async function (req, res) {
+    // #swagger.tags = ['Usuarios'];
+    // #swagger.description = ''
     try {
         const Users = await Usuario.find({}).populate('clases')
         return res.status(200).json({status: 200, data: Users, message: "Successfully received users"});
@@ -42,6 +46,8 @@ exports.getUsers = async function (req, res) {
 }
 
 exports.getUserById = async function (req, res) {
+    // #swagger.tags = ['Usuarios'];
+    // #swagger.description = ''
     try {
         const identifier= {_id: ObjectId(req.params.id)}
         console.log(identifier);
@@ -53,6 +59,8 @@ exports.getUserById = async function (req, res) {
 }
 
 exports.getUserByEmail = async function (req, res) {
+    // #swagger.tags = ['Usuarios'];
+    // #swagger.description = ''
     try {
         const user_email= {email: req.params.email}
         const User = await Usuario.findOne(user_email).populate('clases');
@@ -63,6 +71,8 @@ exports.getUserByEmail = async function (req, res) {
 }
 
 exports.updateUser = async function (req, res) {
+    // #swagger.tags = ['Usuarios'];
+    // #swagger.description = ''
     try {
         const identifier= {_id: ObjectId(req.user_identifier)}
         var oldUser = await Usuario.findOne(identifier);
@@ -80,6 +90,8 @@ exports.updateUser = async function (req, res) {
 }
 
 exports.removeUser = async function (req, res, next) {
+    // #swagger.tags = ['Usuarios'];
+    // #swagger.description = ''
     try {
         const identifier= {_id: ObjectId(req.params.id)}
         const userDeleted = await Usuario.remove(identifier)
@@ -90,6 +102,8 @@ exports.removeUser = async function (req, res, next) {
 }
 
 exports.loginUser = async function (req, res) {
+    // #swagger.tags = ['Usuarios'];
+    // #swagger.description = ''
     const {body}=req
     const {email,password}=body
 
