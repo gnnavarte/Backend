@@ -1,0 +1,13 @@
+POST http://localhost:4000/students
+Content-Type: application/json
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzODAzNDM2NmVkN2JkZDFkM2NjZDYzNiIsInJvbCI6ImFsdW1ubyIsImVtYWlsIjoiaXNhZG9yYUBnbWFpbC5jb20iLCJpYXQiOjE2NjkzNTgyNzF9.tmrMagv3CW70BBKMMFVGaPEVSgjYFTeHcoHkPL1h2H8
+
+{
+    "fechaNacimiento": "03/07/1997",
+    "mayorEstudioCursado": "Universitarios",
+    "mayorEstudioFinalizado": "Secundarios"
+}
+
+#####################################
+
+GET http://localhost:4000/students
