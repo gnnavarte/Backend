@@ -70,10 +70,10 @@ exports.approveHiring = async function (req, res) {
             //Agrega la clase a la lista de clases del alumno.
             console.log(oldHiring.usuario)
             const User = await Usuario.findOne(oldHiring.usuario)
-            console.log("Este seria el usuario")
-            console.log(User)
+            console.log("Esta serian las clases del usuario")
+            console.log(User.clases)
             console.log("el de arriba")
-            if (User.clases.indexOf(oldHiring.clase) != -1) {
+            if (User.clases.indexOf(oldHiring.clase) == -1) {
                 User.clases = User.clases.concat(oldHiring.clase)
             await User.save()
     
@@ -83,7 +83,7 @@ exports.approveHiring = async function (req, res) {
             await target_class.save()
     
             } 
-            return res.status(200).json({status: 200, data: Classes, message: "Hiring accepted, student successfully enrolled"});
+            return res.status(200).json({status: 200, data: oldHiring, message: "Hiring accepted, student successfully enrolled"});
         } else {
             return res.status(400).json({status: 400, message: "User does not have the required role"})
         }
