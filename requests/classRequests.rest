@@ -17,9 +17,19 @@ Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzODBlM2IxMmQ1MzI0
 GET http://localhost:4000/classes/
 
 #########################################
-GET http://localhost:4000/classes/637ee294f2546ab21ac0ea04
+GET http://localhost:4000/classes/63803b746ed7bdd1d3ccd63d
 
 #########################################
 DELETE http://localhost:4000/classes/637ee22622f01fc88255a189
 Content-Type: application/json
 Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzN2VlMjA4MjJmMDFmYzg4MjU1YTE4NiIsInJvbCI6InByb2Zlc29yIiwiZW1haWwiOiJtYXRpQGdtYWlsLmNvbSIsImlhdCI6MTY2OTI1OTc4OX0.ZmGYvxm8IGmblycYrG_taCdRCFTEPPs_8KWLu9eBVJs
+
+#########################################
+
+PUT http://localhost:4000/classes/unrollStudent/6380e6a32d53241a0c89be26
+Content-Type: application/json
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzODBlM2IxMmQ1MzI0MWEwYzg5YmUxZSIsInJvbCI6InByb2Zlc29yIiwiZW1haWwiOiJjbGF1ZGlvQGdtYWlsLmNvbSIsImlhdCI6MTY2OTM5MjAwOX0.OV5Qon7pD69oCsK-NCWY1uxHRKOTbNx8uD2RkNyr_zY
+
+{
+    "estudianteId": "638034366ed7bdd1d3ccd636"
+}
