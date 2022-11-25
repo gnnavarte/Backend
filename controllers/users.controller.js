@@ -63,8 +63,6 @@ exports.getUserByEmail = async function (req, res) {
 }
 
 exports.updateUser = async function (req, res) {
-    // #swagger.tags = ['Usuarios'];
-	// #swagger.description = ''
     try {
         const identifier= {_id: ObjectId(req.user_identifier)}
         var oldUser = await Usuario.findOne(identifier);

@@ -4,29 +4,20 @@ const ObjectId = require('mongodb').ObjectId;
 _this = this;
 
 exports.createTeacher = async function (req, res) {
-    // #swagger.tags = ['Profesores'];
-	// #swagger.description = ''
     try {
         const nuevoProfesor = new Profesor({
-            usuario: req.body.usuario,
+            usuario: req.user_identifier,
             titulo: req.body.titulo,
             experiencia: req.body.experiencia,
             })
-    const createdTeacher = await nuevoProfesor.save();
-    return res.status(201).json({createdTeacher, message: "Succesfully Created Teacher"})
+        const createdTeacher = await nuevoProfesor.save();
+        return res.status(201).json({createdTeacher, message: "Successfully created teacher"})
     } catch (e) {
         return res.status(400).json({status: 400, message: "Teacher creation was unsuccessful"})
     }
 }
 
 exports.getTeachers = async function (req, res) {
-
-    const page = req.query.page ? req.query.page : 1
-    const limit = req.query.limit ? req.query.limit : 10;
-    var options = {
-        page,
-        limit
-    }
     try {
         const Teachers = await Profesor.find({}).populate('usuario')
         return res.status(200).json({status: 200, data: Teachers, message: "Successfully received teachers"});
@@ -36,8 +27,6 @@ exports.getTeachers = async function (req, res) {
 }
 
 exports.getTeacherById = async function (req, res) {
-    const identifier= {_id: ObjectId(req.params.id)}
-    console.log(identifier);
     try {
         const identifier= {_id: ObjectId(req.params.id)}
         const Teacher = await Profesor.findOne(identifier);
@@ -48,13 +37,6 @@ exports.getTeacherById = async function (req, res) {
 }
 
 exports.getTeachersByExp = async function (req, res) {
-    const teacher_experience= {experiencia: req.params.exp}
-    const page = req.query.page ? req.query.page : 1
-    const limit = req.query.limit ? req.query.limit : 10;
-    var options = {
-        page,
-        limit
-    }
     try {
         const teacher_experience= {experiencia: req.params.exp}
         const Teachers = await Profesor.find(teacher_experience).populate('usuarios')
@@ -65,7 +47,6 @@ exports.getTeachersByExp = async function (req, res) {
 }
 
 exports.removeTeacher = async function (req, res) {
-    const identifier= {_id: ObjectId(req.params.id)}
     try {
         const identifier= {_id: ObjectId(req.params.id)}
         const teacherDeleted = await Usuario.remove(identifier)

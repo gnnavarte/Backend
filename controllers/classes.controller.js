@@ -9,10 +9,8 @@ const ObjectId = require('mongodb').ObjectId;
 _this = this;
 
 exports.createClass = async function (req, res) {
-    // #swagger.tags = ['Clases'];
-	// #swagger.description = ''
     try {
-    if (req.user_role == "profesor") {
+        if (req.user_role == "profesor") {
             const teacher = await Profesor.findOne({usuario: req.user_identifier})
             const nuevaClase = new Clase({
                 nombre: req.body.nombre,
@@ -77,8 +75,6 @@ exports.unrollStudent = async function (req, res) {
 }
 
 exports.getClasses = async function (req, res) {
-    // #swagger.tags = ['Clases'];
-	// #swagger.description = ''
     try {
         const Classes = await Clase.find({}
         ).populate({path: 'profesor', populate: {path: 'usuario'}}
@@ -91,8 +87,6 @@ exports.getClasses = async function (req, res) {
 }
 
 exports.getClassById = async function (req, res) {
-    // #swagger.tags = ['Clases'];
-	// #swagger.description = ''
     try {
         const identifier= {_id: ObjectId(req.params.id)}
         const Class = await Clase.findOne(identifier
@@ -106,8 +100,6 @@ exports.getClassById = async function (req, res) {
 }
 
 exports.getClassByCategory = async function (req, res) {
-    // #swagger.tags = ['Clases'];
-	// #swagger.description = ''
     try {
         const class_category= {category: req.params.category}
         const Class = await Clase.findOne(class_category

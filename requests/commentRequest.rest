@@ -1,0 +1,18 @@
+POST http://localhost:4000/comments
+Content-Type: application/json
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzODAzNGNhNmVkN2JkZDFkM2NjZDYzOSIsInJvbCI6ImFsdW1ubyIsImVtYWlsIjoicGFtZWxhQGdtYWlsLmNvbSIsImlhdCI6MTY2OTM1MTU4M30.wpiUjjJIeMWVce5EfFcFZd6C4-UBVKn2_oFEAZYxa2k
+{
+  "claseId": "",
+  "descripcion": ""
+}
+
+###################################
+
+GET http://localhost:4000/comments
+
+###################################
+Content-Type: application/json
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzODAzNGNhNmVkN2JkZDFkM2NjZDYzOSIsInJvbCI6ImFsdW1ubyIsImVtYWlsIjoicGFtZWxhQGdtYWlsLmNvbSIsImlhdCI6MTY2OTM1MTU4M30.wpiUjjJIeMWVce5EfFcFZd6C4-UBVKn2_oFEAZYxa2k
+
+PUT http://localhost:4000/comments/"el id del comentario que quieras"
+
