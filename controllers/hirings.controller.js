@@ -88,11 +88,11 @@ exports.approveHiring = async function (req, res) {
 }
 
 exports.removeHiring = async function (req, res, next) {
-    const identifier= {_id: ObjectId(req.params.id)}
     try {
-    const hiringDeleted = await Contratacion.remove(identifier)
-    return res.status(200).json({status: 200, data: hiringDeleted, message: "Hiring successfully deleted"})
+        const identifier= {_id: ObjectId(req.params.id)}
+        const hiringDeleted = await Contratacion.remove(identifier)
+        return res.status(200).json({status: 200, data: hiringDeleted, message: "Hiring successfully deleted"})
     } catch (e) {
-    return res.status(400).json({status: 400, message: e.message})
+        return res.status(400).json({status: 400, message: e.message})
     }
 }

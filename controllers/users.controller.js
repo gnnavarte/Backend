@@ -9,25 +9,25 @@ exports.createUser = async function (req, res) {
     try {
         const user_email= {email: req.body.email}
         const User = await Usuario.findOne(user_email);
-    if (!User){
-        const nuevoUsuario = new Usuario({
-            nombre: req.body.nombre,
-            apellido: req.body.apellido,
-            avatar: req.body.avatar,
-            telofono: req.body.telofono,
-            email: req.body.email,
-            password: bcrypt.hashSync(req.body.password, 8),
-            preguntaVerificacion: req.body.preguntaVerificacion,
-            respuestaVerificacion: bcrypt.hashSync(req.body.respuestaVerificacion, 8),
-            rol: req.body.rol,
-            clases: []
-            })
-            const createdUser = await nuevoUsuario.save();
-            console.log(createdUser)
-            return res.status(201).json({createdUser, message: "User successfully created"})
-    } else {
-        return res.status(400).json({status: 400, message: "User creation was unsuccessful, the entered email already exists"})
-    }
+        if (!User){
+            const nuevoUsuario = new Usuario({
+                nombre: req.body.nombre,
+                apellido: req.body.apellido,
+                avatar: req.body.avatar,
+                telofono: req.body.telofono,
+                email: req.body.email,
+                password: bcrypt.hashSync(req.body.password, 8),
+                preguntaVerificacion: req.body.preguntaVerificacion,
+                respuestaVerificacion: bcrypt.hashSync(req.body.respuestaVerificacion, 8),
+                rol: req.body.rol,
+                clases: []
+                })
+                const createdUser = await nuevoUsuario.save();
+                console.log(createdUser)
+                return res.status(201).json({createdUser, message: "User successfully created"})
+        } else {
+            return res.status(400).json({status: 400, message: "User creation was unsuccessful, the entered email already exists"})
+        }
     } catch (e) {
         return res.status(400).json({status: 400, message: "User creation was unsuccessful"})
     }
@@ -35,36 +35,31 @@ exports.createUser = async function (req, res) {
 
 exports.getUsers = async function (req, res) {
     try {
-    const Users = await Usuario.find({}
-        ).populate('clases',{
-            _id: 0,
-            nombre: 1
-        })
-    return res.status(200).json({status: 200, data: Users, message: "Successfully received users"});
+        const Users = await Usuario.find({}).populate('clases')
+        return res.status(200).json({status: 200, data: Users, message: "Successfully received users"});
     } catch (e) {
-    return res.status(400).json({status: 400, message: e.message});
+        return res.status(400).json({status: 400, message: e.message});
     }
 }
 
 exports.getUserById = async function (req, res) {
-    const identifier= {_id: ObjectId(req.params.id)}
-    console.log(identifier);
     try {
-    const User = await Usuario.findOne(identifier);
-    return res.status(200).json({status: 200, data: User, message: "User successfully received"});
+        const identifier= {_id: ObjectId(req.params.id)}
+        console.log(identifier);
+        const User = await Usuario.findOne(identifier).populate('clases');
+        return res.status(200).json({status: 200, data: User, message: "User successfully received"});
     } catch (e) {
-    return res.status(400).json({status: 400, message: e.message});
+        return res.status(400).json({status: 400, message: e.message});
     }
 }
 
 exports.getUserByEmail = async function (req, res) {
-    const user_email= {email: req.params.email}
-    console.log(email);
     try {
-    const User = await Usuario.findOne(user_email);
-    return res.status(200).json({status: 200, data: User, message: "User successfully received"});
+        const user_email= {email: req.params.email}
+        const User = await Usuario.findOne(user_email).populate('clases');
+        return res.status(200).json({status: 200, data: User, message: "User successfully received"});
     } catch (e) {
-    return res.status(400).json({status: 400, message: e.message});
+        return res.status(400).json({status: 400, message: e.message});
     }
 }
 
@@ -86,12 +81,12 @@ exports.updateUser = async function (req, res) {
 }
 
 exports.removeUser = async function (req, res, next) {
-    const identifier= {_id: ObjectId(req.params.id)}
     try {
-    const userDeleted = await Usuario.remove(identifier)
-    return res.status(200).json({status: 200, data: userDeleted, message: "User successfully deleted"})
+        const identifier= {_id: ObjectId(req.params.id)}
+        const userDeleted = await Usuario.remove(identifier)
+        return res.status(200).json({status: 200, data: userDeleted, message: "User successfully deleted"})
     } catch (e) {
-    return res.status(400).json({status: 400, message: e.message})
+        return res.status(400).json({status: 400, message: e.message})
     }
 }
 
