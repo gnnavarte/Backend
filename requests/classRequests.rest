@@ -1,16 +1,16 @@
 POST http://localhost:4000/classes/
 Content-Type: application/json
-Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzODAwNzcyNGY5ZmI5YTQ5YjIxMjczZCIsInJvbCI6InByb2Zlc29yIiwiZW1haWwiOiJtYXRpQGdtYWlsLmNvbSIsImlhdCI6MTY2OTMzNTE5Mn0.hpUeMOwdw0jOTTZetk_8StFNVuw7crGBf0WiPI_lGLo
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzODAxZjk5ZGNlY2VmZDQyNzE5MDBkMSIsInJvbCI6InByb2Zlc29yIiwiZW1haWwiOiJhbmFAZ21haWwuY29tIiwiaWF0IjoxNjY5MzUzMDgxfQ.kQjQ5vL9NIoldbE2Vis5ns3qqRycY7MCPKAoJ16b4Bc
 
 {
-    "nombre": "Guitarra basico",
-    "descripcion": "Curso introductorio de guitarra",
-    "tipo": "Presencial",
-    "categoria": "Musica",
-    "frecuencia": "Diario",
-    "duracion": "2 horas",
-    "costo": "2500",
-    "imagen": "imagen de guitarrista"
+    "nombre": "Gestiona tu nutricion",
+    "descripcion": "Consigue tus objetivos con planes nutricionales",
+    "tipo": "Grupal",
+    "categoria": "3",
+    "frecuencia": "Mensual",
+    "duracion": "1.5",
+    "costo": "700",
+    "imagen": "https://concepto.de/wp-content/uploads/2015/03/nutricion-1-e1550713407666-800x400.jpg"
 }
 
 #########################################
