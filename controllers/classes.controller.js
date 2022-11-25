@@ -10,7 +10,7 @@ _this = this;
 
 exports.createClass = async function (req, res) {
     // #swagger.tags = ['Clases'];
-    // #swagger.description = ''
+    // #swagger.description = 'Crear una nueva clase'
     try {
         if (req.user_role == "profesor") {
             const teacher = await Profesor.findOne({usuario: req.user_identifier})
@@ -47,7 +47,7 @@ exports.createClass = async function (req, res) {
 
 exports.unrollStudent = async function (req, res) {
     // #swagger.tags = ['Clases'];
-    // #swagger.description = ''
+    // #swagger.description = 'Saca a un alumno de una clase'
     try {
         if (req.user_role == "profesor") {
             //Borra la clase de la lista de clases del alumno.
@@ -80,7 +80,7 @@ exports.unrollStudent = async function (req, res) {
 
 exports.getClasses = async function (req, res) {
     // #swagger.tags = ['Clases'];
-    // #swagger.description = ''
+    // #swagger.description = 'Consulta todas las clases'
     try {
         const Classes = await Clase.find({}
         ).populate({path: 'profesor', populate: {path: 'usuario'}}
@@ -94,7 +94,7 @@ exports.getClasses = async function (req, res) {
 
 exports.getClassById = async function (req, res) {
     // #swagger.tags = ['Clases'];
-    // #swagger.description = ''
+    // #swagger.description = 'Consulta una clase ingresando su id'
     try {
         const identifier= {_id: ObjectId(req.params.id)}
         const Class = await Clase.findOne(identifier
@@ -109,7 +109,7 @@ exports.getClassById = async function (req, res) {
 
 exports.getClassByCategory = async function (req, res) {
     // #swagger.tags = ['Clases'];
-    // #swagger.description = ''
+    // #swagger.description = 'Consulta las clases de una determinada categoria'
     try {
         const class_category= {category: req.params.category}
         const Class = await Clase.findOne(class_category
@@ -124,7 +124,7 @@ exports.getClassByCategory = async function (req, res) {
 
 exports.updateClass = async function (req, res) {
     // #swagger.tags = ['Clases'];
-    // #swagger.description = ''
+    // #swagger.description = 'Actualiza una clase existente'
     try {
         if (req.user_role == "profesor") {
             const identifier= {_id: ObjectId(req.params.id)}
@@ -151,7 +151,7 @@ exports.updateClass = async function (req, res) {
 
 exports.removeClass = async function (req, res) {
     // #swagger.tags = ['Clases'];
-    // #swagger.description = ''
+    // #swagger.description = 'Elimina una clase'
     try {
         if (req.user_role == "profesor") {
             const identifier= {_id: ObjectId(req.params.id)}

@@ -5,7 +5,7 @@ _this = this;
 
 exports.createTeacher = async function (req, res) {
     // #swagger.tags = ['Profesores'];
-    // #swagger.description = ''
+    // #swagger.description = 'Crea un profesor nuevo'
     try {
         const nuevoProfesor = new Profesor({
             usuario: req.user_identifier,
@@ -22,7 +22,7 @@ exports.createTeacher = async function (req, res) {
 
 exports.getTeachers = async function (req, res) {
     // #swagger.tags = ['Profesores'];
-    // #swagger.description = ''
+    // #swagger.description = 'Consulta todos los profesores'
     try {
         const Teachers = await Profesor.find({})
         // .populate('usuario')
@@ -34,7 +34,7 @@ exports.getTeachers = async function (req, res) {
 
 exports.getTeacherById = async function (req, res) {
     // #swagger.tags = ['Profesores'];
-    // #swagger.description = ''
+    // #swagger.description = 'Consulta un profesor por su id'
     try {
         const identifier= {_id: ObjectId(req.params.id)}
         const Teacher = await Profesor.findOne(identifier);
@@ -58,7 +58,7 @@ exports.getTeachersByExp = async function (req, res) {
 
 exports.removeTeacher = async function (req, res) {
     // #swagger.tags = ['Profesores'];
-    // #swagger.description = ''
+    // #swagger.description = 'Elimina un profesor'
     try {
         const identifier= {_id: ObjectId(req.params.id)}
         const teacherDeleted = await Usuario.remove(identifier)

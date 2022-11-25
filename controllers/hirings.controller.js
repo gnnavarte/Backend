@@ -8,7 +8,7 @@ _this = this;
 
 exports.createHiring = async function (req, res) {
     // #swagger.tags = ['Contrataciones'];
-    // #swagger.description = ''
+    // #swagger.description = 'Crea una nueva contratación'
     try {
         if (req.user_role == "alumno") {
             const identifier= {_id: ObjectId(req.body.claseId)}
@@ -40,7 +40,7 @@ exports.createHiring = async function (req, res) {
 
 exports.getHirings = async function (req, res) {
     // #swagger.tags = ['Contrataciones'];
-    // #swagger.description = ''
+    // #swagger.description = 'Consulta todas las contrataciones'
     try {
         const Users = await Contratacion.find({}
         ).populate('clase'
@@ -53,7 +53,7 @@ exports.getHirings = async function (req, res) {
 
 exports.getHiringById = async function (req, res) {
     // #swagger.tags = ['Contrataciones'];
-    // #swagger.description = ''
+    // #swagger.description = 'Consulta una contratación por su id'
     try {
         const identifier= {_id: ObjectId(req.params.id)}
         const User = await Contratacion.findOne(identifier
@@ -67,7 +67,7 @@ exports.getHiringById = async function (req, res) {
 
 exports.approveHiring = async function (req, res) {
     // #swagger.tags = ['Contrataciones'];
-    // #swagger.description = ''
+    // #swagger.description = 'Establece el estado de una contratación como aprobada'
     try {
         if (req.user_role == "profesor") {
             const identifier= {_id: ObjectId(req.body.contratacionId)}
@@ -102,7 +102,7 @@ exports.approveHiring = async function (req, res) {
 
 exports.removeHiring = async function (req, res, next) {
     // #swagger.tags = ['Contrataciones'];
-    // #swagger.description = ''
+    // #swagger.description = 'Elimina una contratación'
     try {
         const identifier= {_id: ObjectId(req.params.id)}
         const hiringDeleted = await Contratacion.remove(identifier)

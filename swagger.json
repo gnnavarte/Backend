@@ -38,7 +38,7 @@
         "tags": [
           "Usuarios"
         ],
-        "description": "",
+        "description": "Crea un nuevo usuario",
         "parameters": [
           {
             "name": "body",
@@ -90,7 +90,7 @@
         "tags": [
           "Usuarios"
         ],
-        "description": "",
+        "description": "Consulta todos los usuarios",
         "parameters": [],
         "responses": {
           "200": {
@@ -107,7 +107,7 @@
         "tags": [
           "Usuarios"
         ],
-        "description": "",
+        "description": "Consulta un usuario por su id",
         "parameters": [
           {
             "name": "id",
@@ -129,7 +129,7 @@
         "tags": [
           "Usuarios"
         ],
-        "description": "",
+        "description": "Elimina un usuario",
         "parameters": [
           {
             "name": "id",
@@ -153,7 +153,7 @@
         "tags": [
           "Usuarios"
         ],
-        "description": "",
+        "description": "Consulta un usuario por su email",
         "parameters": [
           {
             "name": "email",
@@ -177,7 +177,7 @@
         "tags": [
           "Usuarios"
         ],
-        "description": "",
+        "description": "Actualiza los datos de un usuario",
         "parameters": [
           {
             "name": "body",
@@ -219,7 +219,7 @@
         "tags": [
           "Usuarios"
         ],
-        "description": "",
+        "description": "Loguea un usuario",
         "parameters": [],
         "responses": {
           "200": {
@@ -244,7 +244,7 @@
         "tags": [
           "Profesores"
         ],
-        "description": "",
+        "description": "Crea un profesor nuevo",
         "parameters": [
           {
             "name": "body",
@@ -275,7 +275,7 @@
         "tags": [
           "Profesores"
         ],
-        "description": "",
+        "description": "Consulta todos los profesores",
         "parameters": [],
         "responses": {
           "200": {
@@ -292,7 +292,7 @@
         "tags": [
           "Profesores"
         ],
-        "description": "",
+        "description": "Consulta un profesor por su id",
         "parameters": [
           {
             "name": "id",
@@ -314,7 +314,7 @@
         "tags": [
           "Profesores"
         ],
-        "description": "",
+        "description": "Elimina un profesor",
         "parameters": [
           {
             "name": "id",
@@ -373,7 +373,7 @@
         "tags": [
           "Estudiantes"
         ],
-        "description": "",
+        "description": "Crea un estudiante nuevo",
         "parameters": [
           {
             "name": "body",
@@ -407,7 +407,7 @@
         "tags": [
           "Estudiantes"
         ],
-        "description": "",
+        "description": "Consulta todos los estudiantes",
         "parameters": [],
         "responses": {
           "200": {
@@ -424,7 +424,7 @@
         "tags": [
           "Estudiantes"
         ],
-        "description": "",
+        "description": "Consulta un estudiante por su id",
         "parameters": [
           {
             "name": "id",
@@ -446,7 +446,7 @@
         "tags": [
           "Estudiantes"
         ],
-        "description": "",
+        "description": "Elimina un estudiante",
         "parameters": [
           {
             "name": "id",
@@ -481,7 +481,7 @@
         "tags": [
           "Clases"
         ],
-        "description": "",
+        "description": "Crear una nueva clase",
         "parameters": [
           {
             "name": "body",
@@ -530,7 +530,7 @@
         "tags": [
           "Clases"
         ],
-        "description": "",
+        "description": "Consulta todas las clases",
         "parameters": [],
         "responses": {
           "200": {
@@ -547,7 +547,7 @@
         "tags": [
           "Clases"
         ],
-        "description": "",
+        "description": "Consulta una clase ingresando su id",
         "parameters": [
           {
             "name": "id",
@@ -569,7 +569,7 @@
         "tags": [
           "Clases"
         ],
-        "description": "",
+        "description": "Actualiza una clase existente",
         "parameters": [
           {
             "name": "id",
@@ -624,7 +624,7 @@
         "tags": [
           "Clases"
         ],
-        "description": "",
+        "description": "Elimina una clase",
         "parameters": [
           {
             "name": "id",
@@ -648,7 +648,7 @@
         "tags": [
           "Clases"
         ],
-        "description": "",
+        "description": "Consulta las clases de una determinada categoria",
         "parameters": [
           {
             "name": "category",
@@ -683,7 +683,7 @@
         "tags": [
           "Comentarios"
         ],
-        "description": "",
+        "description": "Crea un nuevo comentario",
         "parameters": [
           {
             "name": "body",
@@ -714,7 +714,7 @@
         "tags": [
           "Comentarios"
         ],
-        "description": "",
+        "description": "Consulta todos los comentarios",
         "parameters": [],
         "responses": {
           "200": {
@@ -731,7 +731,7 @@
         "tags": [
           "Comentarios"
         ],
-        "description": "",
+        "description": "Consulta un comentario por su id",
         "parameters": [
           {
             "name": "id",
@@ -753,7 +753,7 @@
         "tags": [
           "Comentarios"
         ],
-        "description": "",
+        "description": "Establece un comentario como bloqueado",
         "parameters": [
           {
             "name": "id",
@@ -775,7 +775,7 @@
         "tags": [
           "Comentarios"
         ],
-        "description": "",
+        "description": "Elimina un comentario",
         "parameters": [
           {
             "name": "id",
@@ -810,7 +810,7 @@
         "tags": [
           "Calificaciones"
         ],
-        "description": "",
+        "description": "Crea una nueva calificación",
         "parameters": [
           {
             "name": "body",
@@ -841,7 +841,7 @@
         "tags": [
           "Calificaciones"
         ],
-        "description": "",
+        "description": "Consulta todas las calificaciones",
         "parameters": [],
         "responses": {
           "200": {
@@ -858,7 +858,7 @@
         "tags": [
           "Calificaciones"
         ],
-        "description": "",
+        "description": "Consulta una calificación por su id",
         "parameters": [
           {
             "name": "id",
@@ -880,7 +880,7 @@
         "tags": [
           "Calificaciones"
         ],
-        "description": "",
+        "description": "Elimina las calificaciones",
         "parameters": [
           {
             "name": "id",
@@ -915,7 +915,7 @@
         "tags": [
           "Contrataciones"
         ],
-        "description": "",
+        "description": "Crea una nueva contratación",
         "parameters": [
           {
             "name": "body",
@@ -949,7 +949,7 @@
         "tags": [
           "Contrataciones"
         ],
-        "description": "",
+        "description": "Consulta todas las contrataciones",
         "parameters": [],
         "responses": {
           "200": {
@@ -966,7 +966,7 @@
         "tags": [
           "Contrataciones"
         ],
-        "description": "",
+        "description": "Consulta una contratación por su id",
         "parameters": [
           {
             "name": "id",
@@ -988,7 +988,7 @@
         "tags": [
           "Contrataciones"
         ],
-        "description": "",
+        "description": "Elimina una contratación",
         "parameters": [
           {
             "name": "id",
@@ -1012,7 +1012,7 @@
         "tags": [
           "Contrataciones"
         ],
-        "description": "",
+        "description": "Establece el estado de una contratación como aprobada",
         "parameters": [
           {
             "name": "body",
