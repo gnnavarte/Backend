@@ -13,7 +13,6 @@ Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzODAzNDM2NmVkN2Jk
 GET http://localhost:4000/hirings
 
 #########################################
-
 PUT http://localhost:4000/hirings/approve
 Content-Type: application/json
 Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzODBlM2IxMmQ1MzI0MWEwYzg5YmUxZSIsInJvbCI6InByb2Zlc29yIiwiZW1haWwiOiJjbGF1ZGlvQGdtYWlsLmNvbSIsImlhdCI6MTY2OTM5Mzc3Mn0.Yo-HABMHOmcuTch2wTvGf3VnVDGTM2Gn-M7ICUistgI
