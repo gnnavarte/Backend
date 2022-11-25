@@ -1,14 +1,15 @@
 const express = require('express')
 const router = express.Router()
+const Authorization = require('../auth/authorization');
 const StudentController = require('../controllers/students.controller');
 
 router.get('/test', function(req, res) {
-    res.send('Llegaste a la ruta de users');
+    res.send('Llegaste a la ruta de estudiantes');
   });
-router.post('/registration', StudentController.createStudent)
+router.post('/',Authorization , StudentController.createStudent)
 router.get('/', StudentController.getStudents)
 router.get('/:id', StudentController.getStudentById)
-router.delete('/:id', StudentController.removeStudent)
+router.delete('/:id',Authorization , StudentController.removeStudent)
 
 module.exports = router;
 

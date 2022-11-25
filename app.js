@@ -27,6 +27,23 @@ const studentRouter = require('./routes/students.route');
 const classRouter = require('./routes/classes.route');
 const commentRouter = require('./routes/comments.route');
 const qualificationRouter = require('./routes/qualifications.route');
+const hiringRouter = require('./routes/hirings.route')
+
+/****************
+ * SWAGGER
+ ****************/
+var swaggerUiOptions = {
+	explorer: false,
+	operationsSorter: 'alpha',
+}
+
+// Swagger basic Auth 
+app.use('/docs', basicAuth({
+	users: {
+		'admin': 'admin'
+	},
+	challenge: true,
+}), swaggerUi.serve, swaggerUi.setup(swaggerFile, swaggerUiOptions));
 
 /****************
  * SWAGGER
@@ -52,12 +69,14 @@ app.use('/students', studentRouter);
 app.use('/classes', classRouter);
 app.use('/comments', commentRouter);
 app.use('/qualifications', qualificationRouter);
+app.use('/hirings', hiringRouter)
 
 
 if (process.env.NODE_ENV === 'Development') {
   require('./config').config();
 }
 
+const URL= 'mongodb+srv://matias:matigonza@cluster0.wrjdamk.mongodb.net/TusClases?retryWrites=true&w=majority'
 
 //Database connection --
 const mongoose = require('mongoose')
@@ -70,7 +89,7 @@ let opts = {
   useUnifiedTopology: true
   };
 
-mongoose.connect(url,opts)
+mongoose.connect(URL,opts)
   .then(() => {
     console.log(`Succesfully Connected to theMongodb Database..`)
   })

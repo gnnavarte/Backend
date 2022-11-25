@@ -1,19 +1,16 @@
 const {Schema, model} = require("mongoose")
-const mongoosePaginate = require('mongoose-paginate-v2');
 
 const calificacionSchema = new Schema({
     clase:{
         type:Schema.Types.ObjectId,
         ref:'Clase'
     },
-    estudiante:{
+    usuario:{
         type:Schema.Types.ObjectId,
-        ref:'Estudiante'
+        ref:'Usuario'
     },
     valor: Number,
 })
-
-calificacionSchema.plugin(mongoosePaginate);
 
 calificacionSchema.set('toJSON', {
     transform: (document, returnedObject) => {

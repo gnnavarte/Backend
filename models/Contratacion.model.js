@@ -1,5 +1,4 @@
 const {Schema, model} = require("mongoose")
-const mongoosePaginate = require('mongoose-paginate-v2');
 
 const contratacionSchema = new Schema({
     clase:{
@@ -14,8 +13,6 @@ const contratacionSchema = new Schema({
     estado: String,
     horarioReferencia: String,
 })
-
-contratacionSchema.plugin(mongoosePaginate);
 
 contratacionSchema.set('toJSON', {
     transform: (document, returnedObject) => {
