@@ -1,16 +1,16 @@
 POST http://localhost:4000/classes/
 Content-Type: application/json
-Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzODAxZjk5ZGNlY2VmZDQyNzE5MDBkMSIsInJvbCI6InByb2Zlc29yIiwiZW1haWwiOiJhbmFAZ21haWwuY29tIiwiaWF0IjoxNjY5MzUzMDgxfQ.kQjQ5vL9NIoldbE2Vis5ns3qqRycY7MCPKAoJ16b4Bc
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzODAyMjdhZGNlY2VmZDQyNzE5MDBkZCIsInJvbCI6InByb2Zlc29yIiwiZW1haWwiOiJhbmliYWxAZ21haWwuY29tIiwiaWF0IjoxNjY5MzU2NjQ4fQ.qtZrvAG4yQgEYqq7quXchJSaPOT0bvguB6WERq-Jc9Y
 
 {
-    "nombre": "Nutricion para definicion muscular",
-    "descripcion": "Aprende los metodos mas efectivos y actuales para perder peso",
-    "tipo": "Grupal",
-    "categoria": "3",
+    "nombre": "Calculo diferencial e integral: aprende desde cero",
+    "descripcion": "Conviertete en un genio del calculo matematico: Funciones, Estudio, Derivadas, Integrales… Y Mucho mas",
+    "tipo": "Individual",
+    "categoria": "0",
     "frecuencia": "Semanal",
     "duracion": "1.5",
-    "costo": "900",
-    "imagen": "https://www.sport.es/labolsadelcorredor/wp-content/uploads/2020/05/volumen-o-definicion-gimnasio.jpg"
+    "costo": "800",
+    "imagen": "http://img.youtube.com/vi/wuI5MFhvgsY/0.jpg"
 }
 
 #########################################

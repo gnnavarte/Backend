@@ -5,7 +5,7 @@ const estudianteSchema = new Schema({
       type:Schema.Types.ObjectId,
       ref:'Usuario'
     },
-    fechaNacimiento: Date,
+    fechaNacimiento: String,
     mayorEstudioCursado: String,
     mayorEstudioFinalizado: String,
 })

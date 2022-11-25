@@ -9,7 +9,7 @@ exports.createStudent = async function (req, res) {
             usuario: req.user_identifier,
             fechaNacimiento: req.body.fechaNacimiento,
             mayorEstudioCursado: req.body.mayorEstudioCursado,
-            mayorEstudioFinalizado: req.body.mayorEstudioCursado,
+            mayorEstudioFinalizado: req.body.mayorEstudioFinalizado,
             })
         const createdStudent = await nuevoEstudiante.save();
         return res.status(201).json({createdStudent, message: "Student successfully created"})
@@ -20,7 +20,7 @@ exports.createStudent = async function (req, res) {
 
 exports.getStudents = async function (req, res) {
     try {
-        const Students = await Estudiante.find({}).populate('usuarios')
+        const Students = await Estudiante.find({}).populate('usuario')
         return res.status(200).json({status: 200, data: Students, message: "Students successfully received"});
     } catch (e) {
         return res.status(400).json({status: 400, message: e.message});
@@ -30,7 +30,7 @@ exports.getStudents = async function (req, res) {
 exports.getStudentById = async function (req, res) {
     try {
         const identifier= {_id: ObjectId(req.params.id)}
-        const Student = await Estudiante.findOne(identifier).populate('usuarios');
+        const Student = await Estudiante.findOne(identifier).populate('usuario');
         return res.status(200).json({status: 200, data: Student, message: "Student successfully received"});
     } catch (e) {
         return res.status(400).json({status: 400, message: e.message});
