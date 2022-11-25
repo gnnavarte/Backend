@@ -1,9 +1,10 @@
 POST http://localhost:4000/comments
 Content-Type: application/json
-Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzODAzNGNhNmVkN2JkZDFkM2NjZDYzOSIsInJvbCI6ImFsdW1ubyIsImVtYWlsIjoicGFtZWxhQGdtYWlsLmNvbSIsImlhdCI6MTY2OTM1MTU4M30.wpiUjjJIeMWVce5EfFcFZd6C4-UBVKn2_oFEAZYxa2k
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzODAzMjZiNmVkN2JkZDFkM2NjZDYzMyIsInJvbCI6ImFsdW1ubyIsImVtYWlsIjoiZmFjdW5kb0BnbWFpbC5jb20iLCJpYXQiOjE2NjkzNTM3ODZ9.kMNOwcwIE3vOBoyt34LGZ7xOf4wV96L9XfPshQ0gxaY
+
 {
-  "claseId": "",
-  "descripcion": ""
+  "claseId": "63803b746ed7bdd1d3ccd63d",
+  "descripcion": "Se entiende todo perfectamente, muy contento con la clase!"
 }
 
 ###################################
