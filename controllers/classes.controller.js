@@ -50,26 +50,29 @@ exports.unrollStudent = async function (req, res) {
     // #swagger.description = ''
     try {
         if (req.user_role == "profesor") {
+
             //Borra la clase de la lista de clases del alumno.
-            const student = await Estudiante.findOne({_id: req.body.estudiante})
-            const student_user = Usuario.findOne(student.id)
+            const user_identifier= {_id: ObjectId(req.body.estudianteId)}
+            const student = await Estudiante.findOne(user_identifier)
+            const student_user = await Usuario.findOne(student.usuario)
             const indexToDelete = student_user.clases.indexOf(req.params.id)
             if (indexToDelete != -1) {
                 student_user.clases.splice(indexToDelete, 1)
                 await student_user.save()
-
-                //Borra al alumno de la lista de alumnos activos de la clase.
-                const identifier= {_id: ObjectId(req.params.id)}
-                const target_class = await Clase.findOne(identifier)
-                const index = target_class.estudiantes.indexOf(student.id)
-                if (index != -1) {
-                target_class.estudiantes.splice(index, 1)
-                await target_class.save()
-                }
-                return res.status(200).json({status: 200, data: student_user, message: "Student successfully unrolled"});
-            } else {
-                return res.status(400).json({status: 400, message: "Student successfully unrolled"})
-            }     
+            } 
+            //Borra al alumno de la lista de alumnos activos de la clase.
+            const class_identifier= {_id: ObjectId(req.params.id)}
+            const target_class = await Clase.findOne(class_identifier)
+            console.log(target_class)
+            console.log("################################")
+            console.log(student._id)
+            const index = target_class.estudiantes.indexOf(student._id)
+            console.log(index)
+            if (index != -1) {
+            target_class.estudiantes.splice(index, 1)
+            await target_class.save()
+            }
+            return res.status(200).json({status: 200, data: target_class, message: "Student successfully unrolled"});
         } else {
             return res.status(400).json({status: 400, message: "User does not have the required role"})
         }

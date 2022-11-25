@@ -76,18 +76,15 @@ exports.approveHiring = async function (req, res) {
             await oldHiring.save()
     
             //Agrega la clase a la lista de clases del alumno.
-            console.log(oldHiring.usuario)
             const User = await Usuario.findOne(oldHiring.usuario)
-            console.log("Esta serian las clases del usuario")
-            console.log(User.clases)
-            console.log("el de arriba")
+
             if (User.clases.indexOf(oldHiring.clase) == -1) {
                 User.clases = User.clases.concat(oldHiring.clase)
             await User.save()
     
             //Agrega al alumno a la lista de alumnos activos de la clase.
             const target_class = await Clase.findOne(oldHiring.clase)
-            target_class.estudiantes = target_class.estudiantes.concat(student_user.id)
+            target_class.estudiantes = target_class.estudiantes.concat(User.id)
             await target_class.save()
     
             } 
