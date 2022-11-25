@@ -117,6 +117,7 @@ exports.loginUser = async function (req, res) {
 
     res.send({
         id:user.id,
+        rol: user.rol,
         token
     })
 }
