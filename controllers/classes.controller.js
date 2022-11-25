@@ -66,7 +66,7 @@ exports.unrollStudent = async function (req, res) {
             console.log(target_class)
             console.log("################################")
             console.log(student._id)
-            const index = target_class.estudiantes.indexOf(student._id)
+            const index = target_class.estudiantes.indexOf(student_user.id)
             console.log(index)
             if (index != -1) {
             target_class.estudiantes.splice(index, 1)

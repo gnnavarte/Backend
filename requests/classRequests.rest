@@ -28,8 +28,8 @@ Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzN2VlMjA4MjJmMDFm
 
 PUT http://localhost:4000/classes/unrollStudent/6380e6a32d53241a0c89be26
 Content-Type: application/json
-Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzODBlM2IxMmQ1MzI0MWEwYzg5YmUxZSIsInJvbCI6InByb2Zlc29yIiwiZW1haWwiOiJjbGF1ZGlvQGdtYWlsLmNvbSIsImlhdCI6MTY2OTM5MjAwOX0.OV5Qon7pD69oCsK-NCWY1uxHRKOTbNx8uD2RkNyr_zY
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzODBlM2IxMmQ1MzI0MWEwYzg5YmUxZSIsInJvbCI6InByb2Zlc29yIiwiZW1haWwiOiJjbGF1ZGlvQGdtYWlsLmNvbSIsImlhdCI6MTY2OTQwNjc1OH0.BcA17bx_3YwQSemc0HbRPN_6JPDd_Qm2q0svIU8Y7Dw
 
 {
-    "estudianteId": "638034366ed7bdd1d3ccd636"
+    "estudianteId": "638062a7be641a4ded3405bf"
 }
