@@ -1,6 +1,6 @@
 POST http://localhost:4000/hirings
 Content-Type: application/json
-Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzODAzNDM2NmVkN2JkZDFkM2NjZDYzNiIsInJvbCI6ImFsdW1ubyIsImVtYWlsIjoiaXNhZG9yYUBnbWFpbC5jb20iLCJpYXQiOjE2NjkzODgwNjV9.DRvaaxffSm00hn2VrLQOyyN5g7qMy7Oo6T2cjSdjJY0
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzODAzNGNhNmVkN2JkZDFkM2NjZDYzOSIsInJvbCI6ImFsdW1ubyIsImVtYWlsIjoicGFtZWxhQGdtYWlsLmNvbSIsImlhdCI6MTY2OTQwNjM4OX0.HaY0vuW7ATwrixkgCJT8w8p-odXijDJWb0M1bJmz0Vw
 
 {
     "claseId": "6380e6a32d53241a0c89be26",
@@ -15,8 +15,8 @@ GET http://localhost:4000/hirings
 #########################################
 PUT http://localhost:4000/hirings/approve
 Content-Type: application/json
-Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzODBlM2IxMmQ1MzI0MWEwYzg5YmUxZSIsInJvbCI6InByb2Zlc29yIiwiZW1haWwiOiJjbGF1ZGlvQGdtYWlsLmNvbSIsImlhdCI6MTY2OTM5Mzc3Mn0.Yo-HABMHOmcuTch2wTvGf3VnVDGTM2Gn-M7ICUistgI
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzODBlM2IxMmQ1MzI0MWEwYzg5YmUxZSIsInJvbCI6InByb2Zlc29yIiwiZW1haWwiOiJjbGF1ZGlvQGdtYWlsLmNvbSIsImlhdCI6MTY2OTQwNjQ1Nn0.kQ1zknkQW8bjq4g-OUUgeIC4TQKyMoJf6ZzCAxONDps
 
 {
-    "contratacionId": "6380f49a89ff876456a69b52"
+    "contratacionId": "63811ed1dc3c89cba8aa2d90"
 }
