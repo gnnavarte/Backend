@@ -1,12 +1,13 @@
 POST http://localhost:4000/teachers
 Content-Type: application/json
-Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzODBlM2IxMmQ1MzI0MWEwYzg5YmUxZSIsInJvbCI6InByb2Zlc29yIiwiZW1haWwiOiJjbGF1ZGlvQGdtYWlsLmNvbSIsImlhdCI6MTY2OTM5MTYzOH0.tJGiEbmdXfncpDQkR2rccO9EcFNuLesFeyD7jOQuWnI
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzODAyMjdhZGNlY2VmZDQyNzE5MDBkZCIsInJvbCI6InByb2Zlc29yIiwiZW1haWwiOiJhbmliYWxAZ21haWwuY29tIiwiaWF0IjoxNjY5NDA0MjI3fQ.07ZjvocJA31up8K9YtI0c6rlW2mvDz3R4NqyK4-T0ZM
 
 {
-    "titulo": "Licenciado en marketing",
-    "experiencia": "Mas de cuatro años de experiencia en la profesion"
+    "titulo": "Personal trainer",
+    "experiencia": "10 años de trayectoria preparando y acompañando a clientes de alta categoría"
 }
 
 #####################################
 
 GET http://localhost:4000/teachers
+
