@@ -9,6 +9,7 @@ router.get('/test', function(req, res) {
 router.post('/',Authorization , QualificationController.createQualification)
 router.get('/', QualificationController.getQualifications)
 router.get('/:id', QualificationController.getQualificationById)
+router.put('/:id', QualificationController.updateQualification)
 router.delete('/:id',Authorization , QualificationController.removeQualification)
 
 module.exports = router;
