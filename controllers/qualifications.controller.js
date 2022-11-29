@@ -50,6 +50,22 @@ exports.getQualificationById = async function (req, res) {
     }
 }
 
+exports.updateQualification = async function (req, res) {
+    // #swagger.tags = ['Clases'];
+    // #swagger.description = 'Actualiza una clase existente'
+    try {
+        const identifier= {_id: ObjectId(req.params.id)}
+        var oldQualification = await Calificacion.findOne(identifier);
+        //Edit the User Object
+        oldQualification.valor = req.body.valor
+        const updatedQualification = await oldQualification.save()
+        return res.status(200).json({status: 200, data: updatedQualification, message: "Qualification successfully updated"})
+    }
+    catch (e) {
+        return res.status(400).json({status: 400., message: e.message})
+    }
+}
+
 exports.removeQualification = async function (req, res) {
     // #swagger.tags = ['Calificaciones'];
     // #swagger.description = 'Elimina las calificaciones'
