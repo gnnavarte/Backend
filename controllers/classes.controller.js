@@ -85,10 +85,28 @@ exports.getClasses = async function (req, res) {
     // #swagger.tags = ['Clases'];
     // #swagger.description = 'Consulta todas las clases'
     try {
-        const Classes = await Clase.find({}
+        let Classes = await Clase.find({}
         ).populate({path: 'profesor', populate: {path: 'usuario'}}
         ).populate('calificaciones'
         ).populate('comentarios')
+        
+        for (let index = 0; index < Classes.length; index++) {
+            let total = 0
+            let contador = 0
+            if (!Classes.calificaciones.length == 0) {
+                Classes.calificaciones.forEach(element => {
+                    total = total + Classes.calificaciones.valor
+                    contador = contador + 1
+                });
+                Classes[index] = {
+                    ...Classes[index], 
+                    calificacionPromedio: {
+                        sumCalificaciones : total, 
+                        cantCalificaciones: contador,
+                        promedioCalculado: total/contador
+                    }};
+            }
+        }
         return res.status(200).json({status: 200, data: Classes, message: "Classes successfully received"});
     } catch (e) {
         return res.status(400).json({status: 400, message: e.message});
