@@ -9,7 +9,7 @@ router.get('/test', function(req, res) {
 router.post('/',Authorization , HiringController.createHiring)
 router.get('/', HiringController.getHirings)
 router.get('/:id', HiringController.getHiringsById)
-router.put('/approve',Authorization , HiringController.approveHiring)
+router.put('/approve/:id',Authorization , HiringController.approveHiring)
 router.delete('/:id',Authorization , HiringController.removeHiring)
 
 module.exports = router;
