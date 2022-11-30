@@ -28,6 +28,7 @@ const classRouter = require('./routes/classes.route');
 const commentRouter = require('./routes/comments.route');
 const qualificationRouter = require('./routes/qualifications.route');
 const hiringRouter = require('./routes/hirings.route')
+const emailRouter = require('./routes/email.route')
 
 /****************
  * SWAGGER
@@ -70,7 +71,7 @@ app.use('/classes', classRouter);
 app.use('/comments', commentRouter);
 app.use('/qualifications', qualificationRouter);
 app.use('/hirings', hiringRouter)
-
+app.use('/emails', emailRouter)
 
 if (process.env.NODE_ENV === 'Development') {
   require('./config').config();
