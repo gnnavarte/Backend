@@ -73,8 +73,8 @@ exports.approveHiring = async function (req, res) {
     // #swagger.tags = ['Contrataciones'];
     // #swagger.description = 'Establece el estado de una contratación como aprobada'
     try {
-        if (req.user_role == "profesor") {
-            const identifier= {_id: ObjectId(req.body.contratacionId)}
+        // if (req.user_role == "profesor") {
+            const identifier= {_id: ObjectId(req.params.id)}
             const oldHiring = await Contratacion.findOne(identifier);
             oldHiring.estado = "aceptada"
             await oldHiring.save()
@@ -93,9 +93,9 @@ exports.approveHiring = async function (req, res) {
     
             } 
             return res.status(200).json({status: 200, data: oldHiring, message: "Hiring accepted, student successfully enrolled"});
-        } else {
-            return res.status(400).json({status: 400, message: "User does not have the required role"})
-        }
+        // } else {
+        //     return res.status(400).json({status: 400, message: "User does not have the required role"})
+        // }
     } catch (e) {
         return res.status(400).json({status: 400., message: e.message})
     }
