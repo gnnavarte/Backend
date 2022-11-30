@@ -89,7 +89,7 @@ exports.getClasses = async function (req, res) {
         ).populate({path: 'profesor', populate: {path: 'usuario'}}
         ).populate('calificaciones'
         ).populate('comentarios')
-        
+        /*
         for (let index = 0; index < Classes.length; index++) {
             let total = 0
             let contador = 0
@@ -107,6 +107,7 @@ exports.getClasses = async function (req, res) {
                     }};
             }
         }
+        */
         return res.status(200).json({status: 200, data: Classes, message: "Classes successfully received"});
     } catch (e) {
         return res.status(400).json({status: 400, message: e.message});
@@ -147,7 +148,7 @@ exports.updateClass = async function (req, res) {
     // #swagger.tags = ['Clases'];
     // #swagger.description = 'Actualiza una clase existente'
     try {
-        if (req.user_role == "profesor") {
+        /*if (req.user_role == "profesor") {*/
             const identifier= {_id: ObjectId(req.params.id)}
             var oldClass = await Clase.findOne(identifier);
             //Edit the User Object
@@ -161,9 +162,9 @@ exports.updateClass = async function (req, res) {
             oldClass.imagen = req.body.imagen
             const updatedClass = await oldClass.save()
             return res.status(200).json({status: 200, data: updatedClass, message: "Class successfully updated"})
-        } else {
+        /*} else {
             return res.status(400).json({status: 400, message: "User does not have the required role"})
-        }
+        }*/
     } catch (e) {
         return res.status(400).json({status: 400., message: e.message})
     }
