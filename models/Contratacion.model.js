@@ -9,6 +9,10 @@ const contratacionSchema = new Schema({
       type:Schema.Types.ObjectId,
       ref:'Usuario'
     },
+    profesor:{
+      type:Schema.Types.ObjectId,
+      ref:'Profesor'
+    },
     motivo: String,
     estado: String,
     horarioReferencia: String,

@@ -17,6 +17,7 @@ exports.createHiring = async function (req, res) {
             const nuevaContratacion = new Contratacion({
             clase: Class._id,
             usuario: req.user_identifier,
+            profesor: Class.profesor,
             motivo: req.body.motivo,
             estado: "pendiente",
             horarioReferencia: req.body.horarioReferencia
@@ -51,15 +52,19 @@ exports.getHirings = async function (req, res) {
     }
 }
 
-exports.getHiringById = async function (req, res) {
+exports.getHiringsById = async function (req, res) {
     // #swagger.tags = ['Contrataciones'];
     // #swagger.description = 'Consulta una contratación por su id'
     try {
-        const identifier= {_id: ObjectId(req.params.id)}
-        const User = await Contratacion.findOne(identifier
+        const identifier = {usuario: req.params.id}
+        const Teacher = await Profesor.findOne(identifier)
+        const teacher_identifier = {profesor: Teacher.id}
+        // console.log(teacher_identifier)
+        const Hiring = await Contratacion.find(teacher_identifier
         ).populate('clase'
-        ).populate('usuario')
-        return res.status(200).json({status: 200, data: User, message: "Hiring successfully received"});
+        ).populate('usuario'
+        ).populate('profesor')
+        return res.status(200).json({status: 200, data: Hiring, message: "Hiring successfully received"});
     } catch (e) {
         return res.status(400).json({status: 400, message: e.message});
     }
