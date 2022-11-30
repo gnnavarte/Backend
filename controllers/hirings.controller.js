@@ -62,7 +62,7 @@ exports.getHiringsById = async function (req, res) {
         const Hirings = await Contratacion.find(teacher_identifier
         ).populate('clase'
         ).populate('usuario'
-        ).populate('profesor')
+        )
         return res.status(200).json({status: 200, data: Hirings, message: "Hiring successfully received"});
     } catch (e) {
         return res.status(400).json({status: 400, message: e.message});
