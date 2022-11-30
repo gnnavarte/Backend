@@ -24,7 +24,6 @@ exports.createHiring = async function (req, res) {
             })
     
             const createdHiring = await nuevaContratacion.save();
-    
             const Teacher = await Profesor.findOne(Class.profesor);
             console.log(Teacher)
             Teacher.contrataciones = Teacher.contrataciones.concat(createdHiring._id)
@@ -59,12 +58,12 @@ exports.getHiringsById = async function (req, res) {
         const identifier = {usuario: req.params.id}
         const Teacher = await Profesor.findOne(identifier)
         const teacher_identifier = {profesor: Teacher.id}
-        // console.log(teacher_identifier)
-        const Hiring = await Contratacion.find(teacher_identifier
+        console.log(teacher_identifier)
+        const Hirings = await Contratacion.find(teacher_identifier
         ).populate('clase'
         ).populate('usuario'
         ).populate('profesor')
-        return res.status(200).json({status: 200, data: Hiring, message: "Hiring successfully received"});
+        return res.status(200).json({status: 200, data: Hirings, message: "Hiring successfully received"});
     } catch (e) {
         return res.status(400).json({status: 400, message: e.message});
     }
