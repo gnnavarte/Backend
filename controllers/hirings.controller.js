@@ -94,7 +94,7 @@ exports.approveHiring = async function (req, res) {
     // #swagger.description = 'Establece el estado de una contratación como aprobada'
     try {
         // if (req.user_role == "profesor") {
-            const identifier= {_id: ObjectId(req.params.id)}
+            const identifier= {_id: ObjectId(req.body.id)}
             const oldHiring = await Contratacion.findOne(identifier);
             oldHiring.estado = "aceptada"
             await oldHiring.save()
