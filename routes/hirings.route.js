@@ -10,7 +10,7 @@ router.post('/',Authorization , HiringController.createHiring)
 router.get('/', HiringController.getHirings)
 router.get('/:id', HiringController.getHiringsById)
 router.get('/:usuarioId/:claseId', HiringController.getHiringUsuarioClase)
-router.put('/approve/:id',Authorization , HiringController.approveHiring)
+router.put('/approve',Authorization , HiringController.approveHiring)
 router.delete('/:id',Authorization , HiringController.removeHiring)
 
 module.exports = router;
