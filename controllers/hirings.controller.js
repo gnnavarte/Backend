@@ -70,6 +70,7 @@ exports.getHiringsById = async function (req, res) {
     }
 }
 
+
 exports.getHiringUsuarioClase = async function (req, res) {
     // #swagger.tags = ['Contrataciones'];
     // #swagger.description = 'Consulta una contratación por su id'
