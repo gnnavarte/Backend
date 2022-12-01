@@ -55,7 +55,7 @@ exports.unrollStudent = async function (req, res) {
             const user_identifier= {_id: ObjectId(req.body.estudianteId)}
             const student = await Estudiante.findOne(user_identifier)
             const student_user = await Usuario.findOne(student.usuario)
-            const indexToDelete = student_user.clases.indexOf(req.params.id)
+            const indexToDelete = student_user.clases.indexOf(req.body.classId)
             if (indexToDelete != -1) {
                 student_user.clases.splice(indexToDelete, 1)
                 await student_user.save()
