@@ -6,7 +6,7 @@ const StudentController = require('../controllers/students.controller');
 router.get('/test', function(req, res) {
     res.send('Llegaste a la ruta de estudiantes');
   });
-router.post('/',Authorization , StudentController.createStudent)
+router.post('/', StudentController.createStudent)
 router.get('/', StudentController.getStudents)
 router.get('/:id', StudentController.getStudentById)
 router.delete('/:id',Authorization , StudentController.removeStudent)

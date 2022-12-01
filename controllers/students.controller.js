@@ -8,7 +8,7 @@ exports.createStudent = async function (req, res) {
     // #swagger.description = 'Crea un estudiante nuevo'
     try {
         const nuevoEstudiante = new Estudiante({
-            usuario: req.user_identifier,
+            usuario: req.body.user_identifier,
             fechaNacimiento: req.body.fechaNacimiento,
             mayorEstudioCursado: req.body.mayorEstudioCursado,
             mayorEstudioFinalizado: req.body.mayorEstudioFinalizado,
