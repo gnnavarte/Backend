@@ -75,9 +75,11 @@ exports.getHiringUsuarioClase = async function (req, res) {
     // #swagger.tags = ['Contrataciones'];
     // #swagger.description = 'Consulta una contratación por su id'
     try {
-        const identifier = {usuario: req.params.usuarioId}
-        const wanted_class = {clase: req.params.claseId}
-        const Hiring = await Contratacion.findOne(identifier, wanted_class
+        const identifier = {
+            usuario: req.params.usuarioId,
+            clase: req.params.claseId
+        }
+        const Hiring = await Contratacion.find(identifier
         ).populate('clase'
         ).populate('usuario'
         ).populate('profesor')
