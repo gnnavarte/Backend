@@ -15,7 +15,7 @@ const contratacionSchema = new Schema({
     },
     motivo: String,
     estado: String,
-    horarioReferencia: Date
+    horarioReferencia: String
 })
 
 contratacionSchema.set('toJSON', {

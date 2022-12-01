@@ -9,8 +9,9 @@ _this = this;
 exports.createHiring = async function (req, res) {
     // #swagger.tags = ['Contrataciones'];
     // #swagger.description = 'Crea una nueva contratación'
+    console.log(req)
     try {
-        if (req.user_role == "alumno") {
+        /*if (req.user_role == "alumno") {*/
             const identifier= {_id: ObjectId(req.body.claseId)}
             const Class = await Clase.findOne(identifier)
 
@@ -29,9 +30,9 @@ exports.createHiring = async function (req, res) {
             Teacher.contrataciones = Teacher.contrataciones.concat(createdHiring._id)
             await Teacher.save()
             return res.status(201).json({createdHiring, message: "Hiring successfully created"})
-        } else {
+        /*} else {
             return res.status(400).json({status: 400, message: "User does not have the required role"})
-        }
+        }*/
     } catch (e) {
     console.log(e)
     return res.status(400).json({status: 400, message: "Hiring creation was unsuccessful"})

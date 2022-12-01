@@ -1077,7 +1077,7 @@
         }
       }
     },
-    "/hirings/approve": {
+    "/hirings/approve/{id}": {
       "put": {
         "tags": [
           "Contrataciones"
@@ -1085,12 +1085,44 @@
         "description": "Establece el estado de una contratación como aprobada",
         "parameters": [
           {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request"
+          }
+        }
+      }
+    },
+    "/emails/test": {
+      "get": {
+        "description": "",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/emails/": {
+      "post": {
+        "description": "",
+        "parameters": [
+          {
             "name": "body",
             "in": "body",
             "schema": {
               "type": "object",
               "properties": {
-                "contratacionId": {
+                "destinatario": {
                   "example": "any"
                 }
               }
