@@ -8,7 +8,7 @@ exports.createTeacher = async function (req, res) {
     // #swagger.description = 'Crea un profesor nuevo'
     try {
         const nuevoProfesor = new Profesor({
-            usuario: req.user_identifier,
+            usuario: req.body.user_identifier,
             titulo: req.body.titulo,
             contrataciones: [],
             experiencia: req.body.experiencia

@@ -70,6 +70,22 @@ exports.getHiringsById = async function (req, res) {
     }
 }
 
+exports.getHiringUsuarioClase = async function (req, res) {
+    // #swagger.tags = ['Contrataciones'];
+    // #swagger.description = 'Consulta una contratación por su id'
+    try {
+        const identifier = {usuario: req.body.usuarioId}
+        const wanted_class = {clase: req.body.claseId}
+        const Hiring = await Contratacion.findOne(identifier, wanted_class
+        ).populate('clase'
+        ).populate('usuario'
+        ).populate('profesor')
+        return res.status(200).json({status: 200, data: Hiring, message: "Hiring successfully received"});
+    } catch (e) {
+        return res.status(400).json({status: 400, message: "The hiring does not exist"});
+    }
+}
+
 exports.approveHiring = async function (req, res) {
     // #swagger.tags = ['Contrataciones'];
     // #swagger.description = 'Establece el estado de una contratación como aprobada'
