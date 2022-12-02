@@ -13,6 +13,8 @@ router.delete('/:id', UserController.removeUser)
 router.get('/email/:email', UserController.getUserByEmail)
 router.put('/update',Authorization ,UserController.updateUser)
 router.post('/login', UserController.loginUser)
+router.post('/checkAnswer', UserController.checkVerificationAnswer)
+router.put('/updatePassword', UserController.updatePassword)
 module.exports = router;
 
 

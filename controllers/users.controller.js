@@ -89,6 +89,21 @@ exports.updateUser = async function (req, res) {
     }
 }
 
+exports.updatePassword = async function (req, res) {
+    // #swagger.tags = ['Usuarios'];
+    // #swagger.description = 'Actualiza los datos de un usuario'
+    try {
+        const user_email= {email: req.body.email}
+        const user = await Usuario.findOne(user_email);
+        //Edit the User Object
+        user.password = bcrypt.hashSync(req.body.new_password, 8)
+        const updatedUser = await user.save()
+        return res.status(200).json({status: 200, data: updatedUser, message: "Successfully updated password"})
+    } catch (e) {
+        return res.status(400).json({status: 400., message: e.message})
+    }
+}
+
 exports.removeUser = async function (req, res, next) {
     // #swagger.tags = ['Usuarios'];
     // #swagger.description = 'Elimina un usuario'
@@ -134,4 +149,19 @@ exports.loginUser = async function (req, res) {
         rol: user.rol,
         token
     })
+}
+
+exports.checkVerificationAnswer = async function (req, res) {
+    try {
+        const answer = req.body.respuestaVerificacion
+        const user_email= {email: req.body.email}
+        const user = await Usuario.findOne(user_email);
+        if (bcrypt.compareSync(answer, user.respuestaVerificacion)) {
+            return res.status(200).json({status: 200, data: {condition: true}, message: "Correct answer"});    
+        } else {
+            return res.status(200).json({status: 200, data: {condition: false}, message: "Wrong answer"});
+        }
+    } catch (error) {
+        return res.status(400).json({status: 400, message: e.message});
+    }
 }
