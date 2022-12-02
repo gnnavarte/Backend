@@ -872,18 +872,26 @@
             "description": "Bad Request"
           }
         }
-      },
-      "delete": {
+      }
+    },
+    "/comments/remove": {
+      "put": {
         "tags": [
           "Comentarios"
         ],
         "description": "Elimina un comentario",
         "parameters": [
           {
-            "name": "id",
-            "in": "path",
-            "required": true,
-            "type": "string"
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "commentId": {
+                  "example": "any"
+                }
+              }
+            }
           }
         ],
         "responses": {
