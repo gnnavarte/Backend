@@ -99,7 +99,15 @@ exports.getClasses = async function (req, res) {
                         sumCalificaciones : total, 
                         cantCalificaciones: contador,
                         promedioCalculado: total/contador
-                    }};
+                }};
+            } else {
+                Classes[index]._doc = {
+                    ...Classes[index]._doc, 
+                    calificacionPromedio: {
+                        sumCalificaciones : 0, 
+                        cantCalificaciones: 0,
+                        promedioCalculado: 0
+                }};
             }
         }     
         return res.status(200).json({status: 200, data: Classes, message: "Classes successfully received"});
@@ -132,6 +140,14 @@ exports.getClassById = async function (req, res) {
                     cantCalificaciones: contador,
                     promedioCalculado: total/contador
                 }};
+        } else {
+            Class._doc = {
+                ...Class._doc, 
+                calificacionPromedio: {
+                    sumCalificaciones : 0, 
+                    cantCalificaciones: 0,
+                    promedioCalculado: 0
+            }};
         }
         return res.status(200).json({status: 200, data: Class, message: "Class successfully received"});
     } catch (e) {
