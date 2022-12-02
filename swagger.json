@@ -228,6 +228,69 @@
         }
       }
     },
+    "/users/checkAnswer": {
+      "post": {
+        "description": "",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "respuestaVerificacion": {
+                  "example": "any"
+                },
+                "email": {
+                  "example": "any"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request"
+          }
+        }
+      }
+    },
+    "/users/updatePassword": {
+      "put": {
+        "tags": [
+          "Usuarios"
+        ],
+        "description": "Actualiza los datos de un usuario",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "email": {
+                  "example": "any"
+                },
+                "new_password": {
+                  "example": "any"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request"
+          }
+        }
+      }
+    },
     "/teachers/test": {
       "get": {
         "description": "",
@@ -860,6 +923,9 @@
                 "claseId": {
                   "example": "any"
                 },
+                "userId": {
+                  "example": "any"
+                },
                 "valor": {
                   "example": "any"
                 }
@@ -1162,6 +1228,9 @@
               "type": "object",
               "properties": {
                 "destinatario": {
+                  "example": "any"
+                },
+                "motivo": {
                   "example": "any"
                 }
               }
