@@ -117,6 +117,22 @@ exports.getClassById = async function (req, res) {
         ).populate({path: 'profesor', populate: {path: 'usuario'}}
         ).populate('calificaciones'
         ).populate('comentarios')
+
+        if (!Class.calificaciones.length == 0) {
+            let total = 0
+            let contador = 0
+            Class.calificaciones.forEach(element => {
+                total = total + element.valor
+                contador = contador + 1
+            });
+            Class._doc = {
+                ...Class._doc, 
+                calificacionPromedio: {
+                    sumCalificaciones : total, 
+                    cantCalificaciones: contador,
+                    promedioCalculado: total/contador
+                }};
+        }
         return res.status(200).json({status: 200, data: Class, message: "Class successfully received"});
     } catch (e) {
         return res.status(400).json({status: 400, message: e.message});
