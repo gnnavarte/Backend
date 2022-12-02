@@ -24,7 +24,8 @@ const claseSchema = new Schema({
     estudiantes:[{
       type:Schema.Types.ObjectId,
       ref: 'Estudiante'
-    }]
+    }],
+    publicada: Boolean
 })
 
 claseSchema.set('toJSON', {
