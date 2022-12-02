@@ -49,8 +49,6 @@ exports.unrollStudent = async function (req, res) {
     // #swagger.tags = ['Clases'];
     // #swagger.description = 'Saca a un alumno de una clase'
     try {
-        if (req.user_role == "profesor") {
-
             //Borra la clase de la lista de clases del alumno.
             const user_identifier= {_id: ObjectId(req.body.estudianteId)}
             const student = await Estudiante.findOne(user_identifier)
@@ -73,9 +71,6 @@ exports.unrollStudent = async function (req, res) {
             await target_class.save()
             }
             return res.status(200).json({status: 200, data: target_class, message: "Student successfully unrolled"});
-        } else {
-            return res.status(400).json({status: 400, message: "User does not have the required role"})
-        }
     } catch (e) {
         return res.status(400).json({status: 400, message: e.message});
     }

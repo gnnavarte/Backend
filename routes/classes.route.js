@@ -12,6 +12,6 @@ router.get('/:id', ClassController.getClassById)
 router.get('/category/:category', ClassController.getClassByCategory)
 router.put('/:id',Authorization , ClassController.updateClass)
 router.delete('/:id',Authorization , ClassController.removeClass)
-router.put('/unrollStudent/:id',Authorization , ClassController.unrollStudent)
+router.put('/unrollStudent',Authorization , ClassController.unrollStudent)
 
 module.exports = router;
