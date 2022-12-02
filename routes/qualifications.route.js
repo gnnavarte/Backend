@@ -6,7 +6,7 @@ const QualificationController = require('../controllers/qualifications.controlle
 router.get('/test', function(req, res) {
     res.send('Llegaste a la ruta de calificaciones');
   });
-router.post('/',Authorization , QualificationController.createQualification)
+router.post('/', QualificationController.createQualification)
 router.get('/', QualificationController.getQualifications)
 router.get('/:id', QualificationController.getQualificationById)
 router.put('/:id', QualificationController.updateQualification)

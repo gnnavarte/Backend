@@ -1,0 +1,8 @@
+POST http://localhost:4000/qualifications
+Content-Type: application/json
+
+{
+    "userId": "638034ca6ed7bdd1d3ccd639",
+    "claseId": "63803b746ed7bdd1d3ccd63d",
+    "valor": 3
+}

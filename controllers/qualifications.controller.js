@@ -8,14 +8,15 @@ exports.createQualification = async function (req, res) {
     // #swagger.tags = ['Calificaciones'];
     // #swagger.description = 'Crea una nueva calificación'
     try {
-        const claseCalificada = await Clase.findOne(req.body.claseId)
+        const identifier= {_id: ObjectId(req.body.claseId)}
+        const claseCalificada = await Clase.findOne(identifier)
         const nuevaCalificacion = new Calificacion({
             clase: claseCalificada.id,
-            usuario: req.user_identifier,
+            usuario: req.body.userId,
             valor: req.body.valor
         })
         const createdQualification = await nuevaCalificacion.save();
-        claseCalificada.calificaciones = claseCalificada.calificaciones.concat(createdQualification._id)
+        claseCalificada.calificaciones = claseCalificada.calificaciones.concat(createdQualification.id)
         await claseCalificada.save()
         return res.status(201).json({createdQualification, message: "Qualification successfully created"})
     } catch (e) {

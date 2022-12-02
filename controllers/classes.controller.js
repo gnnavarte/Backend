@@ -93,16 +93,15 @@ exports.getClasses = async function (req, res) {
                     total = total + element.valor
                     contador = contador + 1
                 });
-                Classes[index] = {
-                    ...Classes[index], 
+                Classes[index]._doc = {
+                    ...Classes[index]._doc, 
                     calificacionPromedio: {
                         sumCalificaciones : total, 
                         cantCalificaciones: contador,
                         promedioCalculado: total/contador
                     }};
             }
-        }
-        
+        }     
         return res.status(200).json({status: 200, data: Classes, message: "Classes successfully received"});
     } catch (e) {
         return res.status(400).json({status: 400, message: e.message});
