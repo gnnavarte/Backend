@@ -19,9 +19,8 @@ exports.sendEmail = async function (req, res,) {
         const info = await transporter.sendMail({
             from: "tusclases50@gmail.com", // sender address
             to: req.body.destinatario,
-            subject: "Hello ✔", // Subject line
-            text: "Hello world?", // plain text body
-            html: "<b>Hello world?</b>", // html body
+            subject: "Comentario bloqueado", // Subject line
+            text: req.body.motivo // plain text body
         });
         return res.status(200).json({status: 200, data: info, message: "Email sent successfully"})
     } catch (error) {
