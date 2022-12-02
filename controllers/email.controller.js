@@ -24,6 +24,6 @@ exports.sendEmail = async function (req, res,) {
         });
         return res.status(200).json({status: 200, data: info, message: "Email sent successfully"})
     } catch (error) {
-        return res.status(400).json({status: 400, message: e.message})
+        return res.status(400).json({status: 400, message: error.message})
     }
 };
