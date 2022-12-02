@@ -84,13 +84,13 @@ exports.getClasses = async function (req, res) {
         ).populate({path: 'profesor', populate: {path: 'usuario'}}
         ).populate('calificaciones'
         ).populate('comentarios')
-        /*
+        
         for (let index = 0; index < Classes.length; index++) {
             let total = 0
             let contador = 0
-            if (!Classes.calificaciones.length == 0) {
-                Classes.calificaciones.forEach(element => {
-                    total = total + Classes.calificaciones.valor
+            if (!Classes[index].calificaciones.length == 0) {
+                Classes[index].calificaciones.forEach(element => {
+                    total = total + element.valor
                     contador = contador + 1
                 });
                 Classes[index] = {
@@ -102,7 +102,7 @@ exports.getClasses = async function (req, res) {
                     }};
             }
         }
-        */
+        
         return res.status(200).json({status: 200, data: Classes, message: "Classes successfully received"});
     } catch (e) {
         return res.status(400).json({status: 400, message: e.message});
