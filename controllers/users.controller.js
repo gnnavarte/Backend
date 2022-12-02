@@ -63,7 +63,7 @@ exports.getUserByEmail = async function (req, res) {
     // #swagger.description = 'Consulta un usuario por su email'
     try {
         const user_email= {email: req.params.email}
-        const User = await Usuario.findOne(user_email).populate('clases');
+        const User = await Usuario.findOne(user_email);
         return res.status(200).json({status: 200, data: User, message: "User successfully received"});
     } catch (e) {
         return res.status(400).json({status: 400, message: e.message});
