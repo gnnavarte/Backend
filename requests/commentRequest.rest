@@ -17,3 +17,8 @@ Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzODAzNGNhNmVkN2Jk
 
 PUT http://localhost:4000/comments/"el id del comentario que quieras"
 
+###################################
+
+DELETE http://localhost:4000/comments/6389587d744d893ecf23c06e
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzODAxZGY0ZmZkNDkzMzQ1YWQzNDVkMCIsInJvbCI6InByb2Zlc29yIiwiZW1haWwiOiJtYXJ0aW5AZ21haWwuY29tIiwiaWF0IjoxNjY5OTk1MTA4fQ.onN9C4SEKtWV1gPDbg03FWl-ukwNQOcmL-u2qrkLegE
+###################################

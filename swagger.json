@@ -252,6 +252,9 @@
             "schema": {
               "type": "object",
               "properties": {
+                "user_identifier": {
+                  "example": "any"
+                },
                 "titulo": {
                   "example": "any"
                 },
@@ -381,6 +384,9 @@
             "schema": {
               "type": "object",
               "properties": {
+                "user_identifier": {
+                  "example": "any"
+                },
                 "fechaNacimiento": {
                   "example": "any"
                 },
@@ -667,7 +673,7 @@
         }
       }
     },
-    "/classes/unrollStudent/{id}": {
+    "/classes/unrollStudent": {
       "put": {
         "tags": [
           "Clases"
@@ -675,18 +681,15 @@
         "description": "Saca a un alumno de una clase",
         "parameters": [
           {
-            "name": "id",
-            "in": "path",
-            "required": true,
-            "type": "string"
-          },
-          {
             "name": "body",
             "in": "body",
             "schema": {
               "type": "object",
               "properties": {
                 "estudianteId": {
+                  "example": "any"
+                },
+                "classId": {
                   "example": "any"
                 }
               }
@@ -1077,7 +1080,37 @@
         }
       }
     },
-    "/hirings/approve/{id}": {
+    "/hirings/{usuarioId}/{claseId}": {
+      "get": {
+        "tags": [
+          "Contrataciones"
+        ],
+        "description": "Consulta una contratación por su id",
+        "parameters": [
+          {
+            "name": "usuarioId",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "claseId",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request"
+          }
+        }
+      }
+    },
+    "/hirings/approve": {
       "put": {
         "tags": [
           "Contrataciones"
@@ -1085,10 +1118,16 @@
         "description": "Establece el estado de una contratación como aprobada",
         "parameters": [
           {
-            "name": "id",
-            "in": "path",
-            "required": true,
-            "type": "string"
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "id": {
+                  "example": "any"
+                }
+              }
+            }
           }
         ],
         "responses": {
