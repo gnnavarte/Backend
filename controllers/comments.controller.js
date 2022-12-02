@@ -72,10 +72,10 @@ exports.removeComment = async function (req, res) {
     // #swagger.description = 'Elimina un comentario'
     console.log('llego al baken')
     try {
-        const identifier= {_id: ObjectId(req.params.id)}
+        const identifier= {_id: ObjectId(req.body.commentId)}
         const commentToDelete = await Comentario.findOne(identifier)
         const claseComentada = await Clase.findOne(commentToDelete.clase)
-        const indexToDelete = claseComentada.comentarios.indexOf(req.params.id)
+        const indexToDelete = claseComentada.comentarios.indexOf(req.body.commentId)
         claseComentada.comentarios = claseComentada.comentarios.splice(indexToDelete, 1)
         await claseComentada.save()
         const commentDeleted = await Comentario.remove(identifier)
