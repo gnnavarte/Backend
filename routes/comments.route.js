@@ -10,7 +10,7 @@ router.post('/',Authorization , CommentController.createComment)
 router.get('/', CommentController.getComments)
 router.get('/:id', CommentController.getCommentById)
 router.put('/:id',Authorization , CommentController.blockComment)
-router.put('/remove',Authorization , CommentController.removeComment)
+router.put('/remove/:id', CommentController.removeComment)
 
 module.exports = router;
 
