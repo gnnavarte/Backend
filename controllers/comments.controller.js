@@ -70,6 +70,7 @@ exports.getCommentById = async function (req, res) {
 exports.removeComment = async function (req, res) {
     // #swagger.tags = ['Comentarios'];
     // #swagger.description = 'Elimina un comentario'
+    console.log('llego al baken')
     try {
         const identifier= {_id: ObjectId(req.params.id)}
         const commentToDelete = await Comentario.findOne(identifier)
@@ -80,6 +81,6 @@ exports.removeComment = async function (req, res) {
         const commentDeleted = await Comentario.remove(identifier)
         return res.status(200).json({status: 200, data: commentDeleted, message: "Comment successfully deleted"})
     } catch (e) {
-        return res.status(400).json({status: 400, message: e.message})
+        return res.status(400).json({status: 400, message: 'Error en la eliminacion de comentario'})
     }
 }
