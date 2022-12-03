@@ -93,12 +93,14 @@ exports.getClasses = async function (req, res) {
                     total = total + element.valor
                     contador = contador + 1
                 });
+                promedio = total/contador
+                promedio = promedio.toFixed(2)
                 Classes[index]._doc = {
                     ...Classes[index]._doc, 
                     calificacionPromedio: {
                         sumCalificaciones : total, 
                         cantCalificaciones: contador,
-                        promedioCalculado: total/contador
+                        promedioCalculado: promedio
                 }};
             } else {
                 Classes[index]._doc = {
@@ -133,12 +135,14 @@ exports.getClassById = async function (req, res) {
                 total = total + element.valor
                 contador = contador + 1
             });
+            promedio = total/contador
+            promedio = promedio.toFixed(2)
             Class._doc = {
                 ...Class._doc, 
                 calificacionPromedio: {
                     sumCalificaciones : total, 
                     cantCalificaciones: contador,
-                    promedioCalculado: total/contador
+                    promedioCalculado: promedio
                 }};
         } else {
             Class._doc = {
@@ -186,6 +190,26 @@ exports.updateClass = async function (req, res) {
             oldClass.duracion = req.body.duracion,
             oldClass.costo = req.body.costo,
             oldClass.imagen = req.body.imagen
+            const updatedClass = await oldClass.save()
+            return res.status(200).json({status: 200, data: updatedClass, message: "Class successfully updated"})
+        /*} else {
+            return res.status(400).json({status: 400, message: "User does not have the required role"})
+        }*/
+    } catch (e) {
+        return res.status(400).json({status: 400., message: e.message})
+    }
+
+}
+
+exports.hideClass = async function (req, res) {
+    // #swagger.tags = ['Clases'];
+    // #swagger.description = 'Actualiza una clase existente'
+    try {
+        /*if (req.user_role == "profesor") {*/
+            const identifier= {_id: ObjectId(req.params.id)}
+            var oldClass = await Clase.findOne(identifier);
+            //Edit the User Object
+            oldClass.nombre = req.body.nombre
             const updatedClass = await oldClass.save()
             return res.status(200).json({status: 200, data: updatedClass, message: "Class successfully updated"})
         /*} else {

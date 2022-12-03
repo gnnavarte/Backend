@@ -3,7 +3,7 @@ Content-Type: application/json
 
 {
     "destinatario": "gonzanavarte@outlook.com",
-    "motivo": "Sos un capo"
+    "motivo": "Sos el master del back"
 }
 
 ##############################################
