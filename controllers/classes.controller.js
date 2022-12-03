@@ -63,7 +63,6 @@ exports.unrollStudent = async function (req, res) {
             const target_class = await Clase.findOne(class_identifier)
             console.log(target_class)
             console.log("################################")
-            console.log(student._id)
             const index = target_class.estudiantes.indexOf(student_user.id)
             console.log(index)
             if (index != -1) {
