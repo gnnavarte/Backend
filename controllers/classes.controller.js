@@ -52,8 +52,7 @@ exports.unrollStudent = async function (req, res) {
     try {
             //Borra la clase de la lista de clases del alumno.
             const user_identifier= {_id: ObjectId(req.params.id)}
-            const student = await Estudiante.findOne(user_identifier)
-            const student_user = await Usuario.findOne(student.usuario)
+            const student_user = await Usuario.findOne(user_identifier)
             const indexToDelete = student_user.clases.indexOf(req.body.classId)
             if (indexToDelete != -1) {
                 student_user.clases.splice(indexToDelete, 1)
