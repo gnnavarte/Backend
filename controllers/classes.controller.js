@@ -205,7 +205,7 @@ exports.hideClass = async function (req, res) {
             const identifier= {_id: ObjectId(req.params.id)}
             var oldClass = await Clase.findOne(identifier);
             //Edit the User Object
-            oldClass.nombre = req.body.nombre
+            oldClass.publicada = !oldClass.publicada
             const updatedClass = await oldClass.save()
             return res.status(200).json({status: 200, data: updatedClass, message: "Class successfully updated"})
         /*} else {
