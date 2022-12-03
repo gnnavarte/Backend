@@ -51,7 +51,7 @@ exports.unrollStudent = async function (req, res) {
     // #swagger.description = 'Saca a un alumno de una clase'
     try {
             //Borra la clase de la lista de clases del alumno.
-            const user_identifier= {_id: ObjectId(req.body.estudianteId)}
+            const user_identifier= {_id: ObjectId(req.params.id)}
             const student = await Estudiante.findOne(user_identifier)
             const student_user = await Usuario.findOne(student.usuario)
             const indexToDelete = student_user.clases.indexOf(req.body.classId)
