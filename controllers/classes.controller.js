@@ -25,7 +25,8 @@ exports.createClass = async function (req, res) {
                 imagen: req.body.imagen,
                 calificaciones: [],
                 comentarios: [],
-                profesor: teacher.id
+                profesor: teacher.id,
+                publicada: true
             })
             const createdClass = await nuevaClase.save();
 
