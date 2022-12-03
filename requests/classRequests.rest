@@ -33,3 +33,6 @@ Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzODBlM2IxMmQ1MzI0
 {
     "estudianteId": "638062a7be641a4ded3405bf"
 }
+
+#########################################
+GET http://localhost:4000/classes/getUserClasses/63801df4ffd493345ad345d0

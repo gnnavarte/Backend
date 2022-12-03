@@ -8,6 +8,7 @@ router.get('/test', function(req, res) {
   });
 router.post('/',Authorization , ClassController.createClass)
 router.get('/', ClassController.getClasses)
+router.get('/getUserClasses/:id', ClassController.getUserClasses)
 router.get('/:id', ClassController.getClassById)
 router.get('/category/:category', ClassController.getClassByCategory)
 router.put('/:id',Authorization , ClassController.updateClass)

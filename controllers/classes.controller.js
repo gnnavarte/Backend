@@ -3,7 +3,8 @@ const Usuario = require('../models/Usuario.model');
 const Profesor = require('../models/Profesor.model')
 const Estudiante = require('../models/Estudiante.model')
 const Comentario = require('../models/Comentario.model')
-const Calificacion = require('../models/Calificacion.model')
+const Calificacion = require('../models/Calificacion.model');
+const { filter } = require('bluebird');
 const ObjectId = require('mongodb').ObjectId;
 
 _this = this;
@@ -257,5 +258,52 @@ exports.removeClass = async function (req, res) {
         // }
     } catch (e) {
         return res.status(400).json({status: 400, message: e.message})
+    }
+}
+
+exports.getUserClasses = async function (req, res) {
+    // #swagger.tags = ['Clases'];
+    // #swagger.description = 'Consulta todas las clases'
+    try {
+        const identifier= {_id: ObjectId(req.params.id)}
+        const User = await Usuario.findOne(identifier)
+        let Classes = await Clase.find({
+            '_id': {$in: User.clases}
+        }
+        ).populate({path: 'profesor', populate: {path: 'usuario'}}
+        ).populate('calificaciones'
+        ).populate('comentarios')
+        console.log(Classes)
+        
+        for (let index = 0; index < Classes.length; index++) {
+            let total = 0
+            let contador = 0
+            if (!Classes[index].calificaciones.length == 0) {
+                Classes[index].calificaciones.forEach(element => {
+                    total = total + element.valor
+                    contador = contador + 1
+                });
+                promedio = total/contador
+                promedio = promedio.toFixed(2)
+                Classes[index]._doc = {
+                    ...Classes[index]._doc, 
+                    calificacionPromedio: {
+                        sumCalificaciones : total, 
+                        cantCalificaciones: contador,
+                        promedioCalculado: promedio
+                }};
+            } else {
+                Classes[index]._doc = {
+                    ...Classes[index]._doc, 
+                    calificacionPromedio: {
+                        sumCalificaciones : 0, 
+                        cantCalificaciones: 0,
+                        promedioCalculado: 0
+                }};
+            }
+        }     
+        return res.status(200).json({status: 200, data: Classes, message: "Classes successfully received"});
+    } catch (e) {
+        return res.status(400).json({status: 400, message: e.message});
     }
 }
