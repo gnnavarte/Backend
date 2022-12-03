@@ -17,12 +17,12 @@ Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzODBlM2IxMmQ1MzI0
 GET http://localhost:4000/classes/
 
 #########################################
-GET http://localhost:4000/classes/63803cdb6ed7bdd1d3ccd643
+GET http://localhost:4000/classes/63879a6bc997942b353a856e
 
 #########################################
-DELETE http://localhost:4000/classes/637ee22622f01fc88255a189
+DELETE http://localhost:4000/classes/63879a6bc997942b353a856e
 Content-Type: application/json
-Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzN2VlMjA4MjJmMDFmYzg4MjU1YTE4NiIsInJvbCI6InByb2Zlc29yIiwiZW1haWwiOiJtYXRpQGdtYWlsLmNvbSIsImlhdCI6MTY2OTI1OTc4OX0.ZmGYvxm8IGmblycYrG_taCdRCFTEPPs_8KWLu9eBVJs
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzODBlM2IxMmQ1MzI0MWEwYzg5YmUxZSIsInJvbCI6InByb2Zlc29yIiwiZW1haWwiOiJjbGF1ZGlvQGdtYWlsLmNvbSIsImlhdCI6MTY3MDAzNDQ1Nn0.PVCtlgner8oQcMLaFxyKkQXFaJDaay5vGzwhQgcaj8U
 
 #########################################
 

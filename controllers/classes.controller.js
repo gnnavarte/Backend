@@ -221,27 +221,25 @@ exports.removeClass = async function (req, res) {
     // #swagger.tags = ['Clases'];
     // #swagger.description = 'Elimina una clase'
     try {
-        if (req.user_role == "profesor") {
+        // if (req.user_role == "profesor") {
             const identifier= {_id: ObjectId(req.params.id)}
-
             const classToDelete = await Clase.findOne(identifier)
-            
+
             //Borra la clase del listado de clases del profesor
             const teacher = await Profesor.findOne(classToDelete.profesor)
-            const teacher_user = await Usuario.findOne(teacher.id)
-            const indexToDelete = teacher_user.clases.indexOf(classToDelete._id)
+            const teacher_user = await Usuario.findOne(teacher.usuario)
+            const indexToDelete = teacher_user.clases.indexOf(classToDelete.id)
             teacher_user.clases.splice(indexToDelete, 1)
             await teacher_user.save()
 
             //Borra la clase del listado de clases de cada alumno inscripto
             classToDelete.estudiantes.forEach(element => {
-                const student = Estudiante.findOne(element)
-                const student_user = Usuario.findOne(student.id)
+                const student_user = Usuario.findOne(element)
                 const indexToDelete = student_user.clases.indexOf(classToDelete._id)
                 student_user.clases.splice(indexToDelete, 1)
                 student_user.save()
             });
-            
+
             //Borra el comentario de la coleccion
             classToDelete.comentarios.forEach(element => {
                 Comentario.remove(element)
@@ -254,9 +252,9 @@ exports.removeClass = async function (req, res) {
 
             const classDeleted = await Clase.remove(identifier)
             return res.status(200).json({status: 200, data: classDeleted, message: "Class successfully deleted"})
-        } else {
-            return res.status(400).json({status: 400, message: "User does not have the required role"})
-        }
+        // } else {
+        //     return res.status(400).json({status: 400, message: "User does not have the required role"})
+        // }
     } catch (e) {
         return res.status(400).json({status: 400, message: e.message})
     }
