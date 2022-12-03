@@ -64,7 +64,11 @@ exports.getUserByEmail = async function (req, res) {
     try {
         const user_email= {email: req.params.email}
         const User = await Usuario.findOne(user_email);
-        return res.status(200).json({status: 200, data: User, message: "User successfully received"});
+        if(User){
+            return res.status(200).json({status: 200, data: User, message: "User successfully received"});
+        }else{
+            return res.status(204).json({status: 204, message: "User unsuccessfully received"});
+        }        
     } catch (e) {
         return res.status(400).json({status: 400, message: e.message});
     }
@@ -119,36 +123,40 @@ exports.removeUser = async function (req, res, next) {
 exports.loginUser = async function (req, res) {
     // #swagger.tags = ['Usuarios'];
     // #swagger.description = 'Loguea un usuario'
-    const {body}=req
-    const {email,password}=body
-
-    const user = await Usuario.findOne({email})
+    try {
+        const {body}=req
+        const {email,password}=body
     
-    console.log(password,user.password)
-    //indica si password es correcto
-    const passwordCorrect = user ===null
-    ? false
-    : await bcrypt.compare(password,user.password)
-
-    if(!(user && passwordCorrect)){
-        response.status(401).json({
-            error:'Invalid user or password'
+        const user = await Usuario.findOne({email})
+        
+        console.log(password,user.password)
+        //indica si password es correcto
+        const passwordCorrect = user ===null
+        ? false
+        : await bcrypt.compare(password,user.password)
+    
+        if(!(user && passwordCorrect)){
+            res.status(401).json({
+                error:'Invalid user or password'
+            })
+        }
+    
+        const userForToken={
+            id:user._id,
+            rol: user.rol,
+            email:user.email
+        }
+    
+        const token = jwt.sign(userForToken,process.env.SECRET)
+    
+        res.send({
+            id: user.id,
+            rol: user.rol,
+            token
         })
+    } catch (error) {
+        return res.status(400).json({status: 400, message: error.message});
     }
-
-    const userForToken={
-        id:user._id,
-        rol: user.rol,
-        email:user.email
-    }
-
-    const token = jwt.sign(userForToken,process.env.SECRET)
-
-    res.send({
-        id: user.id,
-        rol: user.rol,
-        token
-    })
 }
 
 exports.checkVerificationAnswer = async function (req, res) {
