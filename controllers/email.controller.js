@@ -4,6 +4,7 @@ const nodemailer = require('nodemailer');
 //fwyiqeumjofyvopu
 
 exports.sendEmail = async function (req, res,) {
+    console.log('El mail llega al baken')
 
     const transporter = nodemailer.createTransport({
         host: "smtp.gmail.com",
@@ -13,6 +14,9 @@ exports.sendEmail = async function (req, res,) {
           user: "tusclases50@gmail.com", // generated ethereal user
           pass: "fwyiqeumjofyvopu", // generated ethereal password
         },
+        tls: {
+            rejectUnauthorized: false
+        }
       });
 
     try {

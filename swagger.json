@@ -874,7 +874,7 @@
         }
       }
     },
-    "/comments/remove": {
+    "/comments/remove/{id}": {
       "put": {
         "tags": [
           "Comentarios"
@@ -882,16 +882,10 @@
         "description": "Elimina un comentario",
         "parameters": [
           {
-            "name": "body",
-            "in": "body",
-            "schema": {
-              "type": "object",
-              "properties": {
-                "commentId": {
-                  "example": "any"
-                }
-              }
-            }
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
           }
         ],
         "responses": {
