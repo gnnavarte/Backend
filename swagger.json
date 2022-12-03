@@ -611,6 +611,30 @@
         }
       }
     },
+    "/classes/getUserClasses/{id}": {
+      "get": {
+        "tags": [
+          "Clases"
+        ],
+        "description": "Consulta todas las clases",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request"
+          }
+        }
+      }
+    },
     "/classes/{id}": {
       "get": {
         "tags": [
@@ -736,7 +760,7 @@
         }
       }
     },
-    "/classes/unrollStudent": {
+    "/classes/unrollStudent/{id}": {
       "put": {
         "tags": [
           "Clases"
@@ -744,19 +768,46 @@
         "description": "Saca a un alumno de una clase",
         "parameters": [
           {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
             "name": "body",
             "in": "body",
             "schema": {
               "type": "object",
               "properties": {
-                "estudianteId": {
-                  "example": "any"
-                },
                 "classId": {
                   "example": "any"
                 }
               }
             }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request"
+          }
+        }
+      }
+    },
+    "/classes/hideClass/{id}": {
+      "put": {
+        "tags": [
+          "Clases"
+        ],
+        "description": "Actualiza una clase existente",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
           }
         ],
         "responses": {
